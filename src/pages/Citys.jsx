@@ -1,5 +1,15 @@
+import City from '../components/City'
+
 const Citys = () => {
-  return <div>all Citys</div>
+  return (
+    <div>
+      <City></City>
+      <City></City>
+      <City></City>
+      <City></City>
+      <City></City>
+    </div>
+  )
 }
 
 export default Citys
