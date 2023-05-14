@@ -10,10 +10,19 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { useForm } from '../../hooks/useForm'
 
 const Register = () => {
+  const { values, register, handleChange } = useForm({
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+  })
+  console.log(values)
   return (
     <Center
+      onSubmit={register}
       paddingTop={5}
       as="form"
       gap="4"
@@ -29,24 +38,45 @@ const Register = () => {
       <VStack>
         <FormControl isRequired>
           <FormLabel>Name</FormLabel>
-          <Input name="name" placeholder="Name" />
+          <Input
+            onChange={handleChange}
+            value={values.name}
+            name="name"
+            placeholder="Name"
+          />
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Surname</FormLabel>
-          <Input name="surname" placeholder="Surname" />
+          <Input
+            onChange={handleChange}
+            value={values.surname}
+            name="surname"
+            placeholder="Surname"
+          />
         </FormControl>
         <FormControl isRequired>
           <FormLabel>E-mail</FormLabel>
-          <Input name="email" placeholder="Email" />
+          <Input
+            onChange={handleChange}
+            value={values.email}
+            name="email"
+            placeholder="Email"
+          />
         </FormControl>
 
         <FormControl isRequired>
           <FormLabel>Password</FormLabel>
-          <Input type="password" name="password" placeholder="Password" />
+          <Input
+            onChange={handleChange}
+            value={values.password}
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
         </FormControl>
         <ButtonGroup>
           <Button type="submit" colorScheme="yellow">
-            Sign up
+            Create
           </Button>
           <Button colorScheme="red">Go out</Button>
         </ButtonGroup>

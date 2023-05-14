@@ -10,39 +10,23 @@ import {
   Button,
   Avatar,
 } from '@chakra-ui/react'
+import { useForm } from '../../hooks/useForm'
+import { NavLink } from 'react-router-dom'
 
-import { useState } from 'react'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase/config'
+//import { useState } from 'react'
+// import { createUserWithEmailAndPassword } from 'firebase/auth'
+// import { auth } from '../firebase/config'
 
 const Login = () => {
-  const [values, setValues] = useState({
+  const { values, login, handleChange } = useForm({
     password: '',
     email: '',
   })
-  const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
-  const createCount = (e) => {
-    e.preventDefault()
-    createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user
-        console.log(user)
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        console.log(errorCode)
-        console.log(errorMessage)
-      })
-  }
+
   return (
     <Center
+      onSubmit={login}
       paddingTop={5}
-      onSubmit={createCount}
       as="form"
       gap="4"
       flexDirection="column"
@@ -76,9 +60,11 @@ const Login = () => {
         </FormControl>
         <ButtonGroup>
           <Button type="submit" colorScheme="yellow">
-            Create Account
+            Login
           </Button>
-          <Button colorScheme="red">Go out</Button>
+          <Button as={NavLink} to="/" colorScheme="red">
+            Cancel
+          </Button>
         </ButtonGroup>
       </VStack>
     </Center>

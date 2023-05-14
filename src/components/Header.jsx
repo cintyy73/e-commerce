@@ -40,6 +40,10 @@ const Header = () => {
           <Button as={NavLink} to="/login">
             Login
           </Button>
+          <Button as={NavLink} to="/register">
+            register
+          </Button>
+
           <Button as={NavLink} to="/order">
             order
           </Button>

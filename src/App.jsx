@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 
-import Register from './pages/Register'
+import Register from './pages/auth/Register'
 import Recent from './components/Recent'
 import Menu from './components/Menu'
 import Cities from './pages/Cities'
 import CityDetails from './pages/CityDetails'
-import Login from './pages/Login'
 import NotFound from './pages/NotFound'
+import Login from './pages/auth/Login'
 
 function App() {
   return (
