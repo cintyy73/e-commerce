@@ -44,7 +44,12 @@ const Menu = () => {
               <Text>plato1: kjkkjk</Text>
               <Text>postre: kokurm</Text>
               <ButtonGroup>
-                <Button size="xs" as={NavLink} to="/" colorScheme="yellow">
+                <Button
+                  size="xs"
+                  as={NavLink}
+                  to="/cityDetails"
+                  colorScheme="yellow"
+                >
                   Go
                 </Button>
                 <Button size="xs" as={NavLink} to="/" colorScheme="yellow">

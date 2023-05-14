@@ -1,22 +1,28 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import Citys from './pages/Citys'
 
 import Register from './pages/Register'
-import All from './components/All'
+import Recent from './components/Recent'
 import Menu from './components/Menu'
+import Cities from './pages/Cities'
+import CityDetails from './pages/CityDetails'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
     <Routes>
       <Route element={<Home />}>
         <Route>
-          <Route path="/" element={<All />} />
-          <Route path="/citys" element={<Citys />} />
+          <Route path="/" element={<Recent />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/cityDetails" element={<CityDetails />} />
         </Route>
       </Route>
       <Route path="/menu" element={<Menu />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
