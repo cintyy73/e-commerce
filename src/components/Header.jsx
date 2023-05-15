@@ -16,22 +16,15 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import logo from 'assets/favicon.png'
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const OverlayTwo = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropFilter="blur(10px) hue-rotate(90deg)"
-    />
-  )
-  const [overlay] = useState(<OverlayTwo />)
   return (
     <GridItem p={5} bg="black" color="#ffc600" area={'header'}>
       <HStack justifyContent="space-between" alignItems="center">
-        <Avatar size="xl" name="logo resto" src="./src/assets/favicon.png" />
+        <Avatar size="xl" name="logo resto" src={logo} />
         <VStack>
           <Heading>Arian Maldonado</Heading>
           <Text>CHEF INTERNATIONAL</Text>
@@ -57,7 +50,10 @@ const Header = () => {
               My order
             </Button>
             <Modal isCentered isOpen={isOpen} onClose={onClose}>
-              {overlay}
+              <ModalOverlay
+                bg="blackAlpha.300"
+                backdropFilter="blur(10px) hue-rotate(90deg)"
+              />
               <ModalContent>
                 <ModalHeader>Modal Title</ModalHeader>
                 <ModalCloseButton />
