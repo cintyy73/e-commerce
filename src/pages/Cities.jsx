@@ -1,20 +1,10 @@
 import { SimpleGrid } from '@chakra-ui/react'
 import City from '../components/City'
-import { useEffect, useState } from 'react'
-import { getAllCities } from '../services/cities'
+import { useMenu } from '../hooks/useMenu'
 
 const Cities = () => {
-  const [menu, setMenu] = useState([])
-  // const [loading, setLoading] = useState(true)
-  // const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const getMenu = async () => {
-      const menu = await getAllCities()
-      setMenu(menu)
-    }
-    getMenu()
-  }, [])
+  const { menu } = useMenu()
+  console.log(menu)
   return (
     <SimpleGrid
       padding={6}

@@ -1,6 +1,6 @@
 import {
   Button,
-  ButtonGroup,
+  // ButtonGroup,
   Card,
   CardBody,
   CardFooter,
@@ -12,7 +12,7 @@ import {
 import { NavLink } from 'react-router-dom'
 
 const City = (city) => {
-  const { dessert, first, entrance, price, image, name } = city.city
+  const { dessert, first, country, entrance, price, image, name } = city.city
   console.log(city.city)
   return (
     <Card
@@ -31,7 +31,9 @@ const City = (city) => {
 
       <Stack>
         <CardBody>
-          <Heading size="md">{name} </Heading>
+          <Heading size="lg">{name} </Heading>
+          <Heading size="md">{country} </Heading>
+
           <Text py="2">Entrance: </Text>
           <Text py="2">{entrance}</Text>
           <Text py="2">First course: </Text>
@@ -42,18 +44,18 @@ const City = (city) => {
         </CardBody>
 
         <CardFooter flexDirection={'column'} gap={2}>
-          <ButtonGroup alignItems="center" justifyContent="center">
+          {/* <ButtonGroup alignItems="center" justifyContent="center">
             <Button>+</Button>
             <Text>0</Text>
             <Button>-</Button>
-          </ButtonGroup>
+          </ButtonGroup> */}
           <Button
             as={NavLink}
             to="/cityDetails"
             variant="solid"
             colorScheme="yellow"
           >
-            deatils
+            Details
           </Button>
         </CardFooter>
       </Stack>

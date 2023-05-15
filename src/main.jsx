@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
-// import { MenuProvider } from './hooks/MenuContext.jsx'
+// import { UserProvider } from './components/hooks/UserContext/UserContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ChakraProvider>
       <BrowserRouter>
-        {/* <MenuProvider> */}
+        {/* <UserProvider> */}
         <App />
-        {/* </MenuProvider> */}
+        {/* </UserProvider> */}
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>

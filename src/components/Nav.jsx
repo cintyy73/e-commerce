@@ -23,12 +23,11 @@ const Nav = () => {
         </ListItem>
         <ListItem>
           <FormControl>
-            <FormLabel>Search City</FormLabel>
+            <FormLabel>Search Country</FormLabel>
             <Input
               // onChange={handleChange}
               // value={values.name}
               name="searchCity"
-              placeholder="Search City"
             />
           </FormControl>
         </ListItem>

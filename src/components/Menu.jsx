@@ -8,10 +8,14 @@ import {
   Grid,
   Button,
   ButtonGroup,
+  Divider,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
+import { useMenu } from '../hooks/useMenu'
 
 const Menu = () => {
+  const { menu } = useMenu()
+  // const { entrance, first, dessert, price } = menu
   return (
     <HStack
       color="yellow.200"
@@ -21,46 +25,51 @@ const Menu = () => {
       paddingTop={20}
       minHeight="100vh"
     >
-      <Heading>Menu</Heading>
-      <Grid maxWidth="500px" templateColumns="repeat(3, 1fr)" gap={6}>
-        <GridItem>
-          <List>
-            <ListItem>
-              <Heading>mosku</Heading>
+      <Heading fontSize={50}>Menu</Heading>
+      <Grid
+        templateColumns={{
+          base: 'repeat( 1fr)',
+          md: 'repeat( 2,1fr)',
+          xl: 'repeat(4, 1fr)',
+        }}
+        gap={20}
+      >
+        {menu.map(({ name, entrance, price, country, first, dessert }) => (
+          <GridItem fontSize={20} key={name}>
+            <List>
+              <ListItem>
+                <Heading fontSize={30}>{name} </Heading>
 
-              <Text>entrada: kokurm</Text>
-              <Text>plato1: kjkkjk</Text>
-              <Text>postre: kokurm</Text>
-            </ListItem>
-          </List>
-        </GridItem>
-        <GridItem></GridItem>
-        <GridItem>
-          <List>
-            <ListItem gap={2} alignContent="center">
-              <Heading>mosku</Heading>
+                <Divider />
+                <Heading fontSize={20}>{country} </Heading>
+                <Text>Entrance : {entrance}</Text>
+                <Text>First : {first}</Text>
+                <Text>Dessert: {dessert}</Text>
+                <Text textAlign="center" fontSize={30}>
+                  ${price}
+                </Text>
+              </ListItem>
+              <ButtonGroup justifyContent="center">
+                <Button as={NavLink} to="/" colorScheme="yellow">
+                  Details
+                </Button>
 
-              <Text>entrada: kokurm</Text>
-              <Text>plato1: kjkkjk</Text>
-              <Text>postre: kokurm</Text>
-              <ButtonGroup>
-                <Button
-                  size="xs"
-                  as={NavLink}
-                  to="/cityDetails"
-                  colorScheme="yellow"
-                >
-                  Go
-                </Button>
-                <Button size="xs" as={NavLink} to="/" colorScheme="yellow">
-                  add
-                </Button>
+                <Button colorScheme="yellow">Add</Button>
               </ButtonGroup>
-            </ListItem>
-          </List>
-        </GridItem>
+            </List>
+          </GridItem>
+        ))}
       </Grid>
-      <Button as={NavLink} to="/" colorScheme="yellow">
+
+      <Button
+        m={10}
+        p={10}
+        size="lg"
+        fontSize={30}
+        as={NavLink}
+        to="/"
+        colorScheme="yellow"
+      >
         Home
       </Button>
     </HStack>

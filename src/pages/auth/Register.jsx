@@ -11,6 +11,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useForm } from '../../hooks/useForm'
+import { NavLink } from 'react-router-dom'
 
 const Register = () => {
   const { values, register, handleChange } = useForm({
@@ -78,7 +79,9 @@ const Register = () => {
           <Button type="submit" colorScheme="yellow">
             Create
           </Button>
-          <Button colorScheme="red">Go out</Button>
+          <Button as={NavLink} to="/" colorScheme="red">
+            Cancel
+          </Button>
         </ButtonGroup>
       </VStack>
     </Center>

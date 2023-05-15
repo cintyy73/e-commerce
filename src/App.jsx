@@ -14,9 +14,10 @@ function App() {
     <Routes>
       <Route element={<Home />}>
         <Route>
-          <Route path="/" element={<Recent />} />
-          <Route path="/cities" element={<Cities />} />
+          <Route path="/" element={<Cities />} />
+          <Route path="/cities" element={<Recent />} />
           <Route path="/cityDetails" element={<CityDetails />} />
+          {/* cambiar a city/:id ... ver calse routes*/}
         </Route>
       </Route>
       <Route path="/menu" element={<Menu />} />
