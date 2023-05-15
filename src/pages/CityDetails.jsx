@@ -18,10 +18,16 @@ const CityDetails = () => {
   // console.log(menu)
   return (
     <VStack>
-      <Heading bg="black" p={4} color="yellow.300">
+      <Heading bg="black" p={4} color="yellow.200">
         Buenos Aires
       </Heading>
-      <SimpleGrid spacing={4} templateColumns="repeat(3, 1fr)">
+      <SimpleGrid
+        spacing={4}
+        templateColumns={{
+          base: 'repeat(1, 1fr) ',
+          md: 'repeat(3, 1fr) ',
+        }}
+      >
         <GridItem width="100%">
           <Card>
             <CardHeader>
@@ -74,7 +80,9 @@ const CityDetails = () => {
           </Card>
         </GridItem>
       </SimpleGrid>
-      <Heading color="yellow.200">$6740</Heading>
+      <Heading bg="black" color="yellow.200">
+        $6740
+      </Heading>
 
       <Button colorScheme="yellow">Add order</Button>
     </VStack>

@@ -16,18 +16,20 @@ const City = (city) => {
   console.log(city.city)
   return (
     <Card
-      direction={{ base: 'column', sm: 'row' }}
+      bgColor="yellow.200"
+      direction={{ base: 'column', lg: 'row' }}
       overflow="hidden"
       variant="outline"
+      maxWidth="md"
     >
       <Image
         objectFit="cover"
-        maxW={{ base: '100%', sm: '200px' }}
+        maxW={{ base: '100%', lg: '200px' }}
         src={image}
         alt="Caffe Latte"
       />
 
-      <Stack bgColor="yellow.200">
+      <Stack>
         <CardBody>
           <Heading size="md">{name} </Heading>
           <Text py="2">Entrance: </Text>

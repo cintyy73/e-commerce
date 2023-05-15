@@ -9,9 +9,12 @@ const Home = () => {
     <Grid
       templateAreas={`"header header"
                     "nav main"
-                    "nav footer"`}
-      gridTemplateRows={'130px 1fr 30px'}
-      gridTemplateColumns={'200px 1fr'}
+                    "footer footer"`}
+      gridTemplateRows={'130px 1fr 100px'}
+      gridTemplateColumns={{
+        base: '150px 1fr',
+        md: '200px 1fr',
+      }}
       minHeight="100vh"
       color="blackAlpha.700"
       fontWeight="bold"
