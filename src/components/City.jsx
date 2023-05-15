@@ -9,8 +9,11 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { NavLink } from 'react-router-dom'
 
-const City = () => {
+const City = (city) => {
+  const { dessert, first, entrance, price, image, name } = city.city
+  console.log(city.city)
   return (
     <Card
       direction={{ base: 'column', sm: 'row' }}
@@ -20,27 +23,36 @@ const City = () => {
       <Image
         objectFit="cover"
         maxW={{ base: '100%', sm: '200px' }}
-        src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
+        src={image}
         alt="Caffe Latte"
       />
 
-      <Stack>
+      <Stack bgColor="yellow.200">
         <CardBody>
-          <Heading size="md">Buenos aires</Heading>
-          <Text py="2">entrada:huhgguug</Text>
-          <Text py="2">plat: hdgfdghg</Text>
-          <Text py="2">postre: hgygh</Text> <Text size={12}>$8569824</Text>
+          <Heading size="md">{name} </Heading>
+          <Text py="2">Entrance: </Text>
+          <Text py="2">{entrance}</Text>
+          <Text py="2">First course: </Text>
+          <Text py="2">{first}</Text>
+          <Text py="2">Dessert: </Text>
+          <Text py="2">{dessert}</Text>
+          <Text size={12}>${price}</Text>
         </CardBody>
 
-        <CardFooter>
-          <Button variant="solid" colorScheme="blue">
-            deatils
-          </Button>
-          <ButtonGroup>
+        <CardFooter flexDirection={'column'} gap={2}>
+          <ButtonGroup alignItems="center" justifyContent="center">
             <Button>+</Button>
             <Text>0</Text>
             <Button>-</Button>
           </ButtonGroup>
+          <Button
+            as={NavLink}
+            to="/cityDetails"
+            variant="solid"
+            colorScheme="yellow"
+          >
+            deatils
+          </Button>
         </CardFooter>
       </Stack>
     </Card>
