@@ -11,8 +11,13 @@ import {
   ListItem,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
+import { useMenu } from '../hooks/useMenu'
 
 const Nav = () => {
+  const { menu } = useMenu()
+  console.log('2soymenu')
+  console.log(menu)
+
   return (
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>
       <List padding={6} spacing={6}>
@@ -52,31 +57,21 @@ const Nav = () => {
             />
           </FormControl>
         </ListItem>
-        <Heading size="md">Recommended</Heading>
-        <ListItem>
-          <ListIcon color="gray" as={StarIcon} />
-          <NavLink> Lima</NavLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon color="gray" as={StarIcon} />
-          <NavLink> Machu Pichu</NavLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon color="gray" as={StarIcon} />
-          <NavLink> Moscu</NavLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon color="gray" as={StarIcon} />
-          <NavLink> Buenos Aires</NavLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon color="gray" as={StarIcon} />
-          <NavLink> Mar del Plata</NavLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon color="gray" as={StarIcon} />
-          <NavLink> Paris</NavLink>
-        </ListItem>
+        <List>
+          <Heading as={NavLink} to="/recommended" size="md">
+            Recommended
+          </Heading>
+
+          {menu.map(
+            (city) =>
+              city.recommended && (
+                <ListItem key={city.id} city={city}>
+                  <ListIcon color="gray" as={StarIcon} />
+                  <NavLink> {city.name}</NavLink>
+                </ListItem>
+              )
+          )}
+        </List>
       </List>
     </GridItem>
   )

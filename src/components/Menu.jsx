@@ -15,7 +15,6 @@ import { useMenu } from '../hooks/useMenu'
 
 const Menu = () => {
   const { menu } = useMenu()
-  // const { entrance, first, dessert, price } = menu
   return (
     <HStack
       color="yellow.200"

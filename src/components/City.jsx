@@ -13,9 +13,9 @@ import { NavLink } from 'react-router-dom'
 
 const City = (city) => {
   const { dessert, first, country, entrance, price, image, name } = city.city
-  console.log(city.city)
   return (
     <Card
+      border="4px solid black"
       bgColor="yellow.200"
       direction={{ base: 'column', lg: 'row' }}
       overflow="hidden"
@@ -44,11 +44,6 @@ const City = (city) => {
         </CardBody>
 
         <CardFooter flexDirection={'column'} gap={2}>
-          {/* <ButtonGroup alignItems="center" justifyContent="center">
-            <Button>+</Button>
-            <Text>0</Text>
-            <Button>-</Button>
-          </ButtonGroup> */}
           <Button
             as={NavLink}
             to="/cityDetails"

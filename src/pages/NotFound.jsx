@@ -13,7 +13,8 @@ const NotFound = () => {
           to="/"
           size="xl"
           name="logo resto"
-          src="./src/assets/favicon.png"
+          // src="./src/assets/favicon.png"
+          src="https://i.pinimg.com/564x/3b/d3/85/3bd385a7dadc070e6d107be2ccf6beac.jpg"
         />
       </VStack>
     </Center>

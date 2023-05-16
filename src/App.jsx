@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 
 import Register from './pages/auth/Register'
-import Recent from './components/Recent'
+import Recommended from './components/Recommended'
 import Menu from './components/Menu'
 import Cities from './pages/Cities'
 import CityDetails from './pages/CityDetails'
@@ -15,7 +15,7 @@ function App() {
       <Route element={<Home />}>
         <Route>
           <Route path="/" element={<Cities />} />
-          <Route path="/cities" element={<Recent />} />
+          <Route path="/recommended" element={<Recommended />} />
           <Route path="/cityDetails" element={<CityDetails />} />
           {/* cambiar a city/:id ... ver calse routes*/}
         </Route>
