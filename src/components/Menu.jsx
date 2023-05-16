@@ -12,9 +12,12 @@ import {
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
+// import { useContext, useState } from 'react'
+// import { OrderContext } from './OrderContext/OrderContext'
 
 const Menu = () => {
   const { menu } = useMenu()
+
   return (
     <HStack
       color="yellow.200"
@@ -33,27 +36,25 @@ const Menu = () => {
         }}
         gap={20}
       >
-        {menu.map(({ name, entrance, price, country, first, dessert }) => (
-          <GridItem fontSize={20} key={name}>
+        {menu.map((city) => (
+          <GridItem fontSize={20} key={city.name}>
             <List>
               <ListItem>
-                <Heading fontSize={30}>{name} </Heading>
+                <Heading fontSize={30}>{city.name} </Heading>
 
                 <Divider />
-                <Heading fontSize={20}>{country} </Heading>
-                <Text>Entrance : {entrance}</Text>
-                <Text>First : {first}</Text>
-                <Text>Dessert: {dessert}</Text>
+                <Heading fontSize={20}>{city.country} </Heading>
+                <Text>Entrance : {city.entrance}</Text>
+                <Text>First : {city.first}</Text>
+                <Text>Dessert: {city.dessert}</Text>
                 <Text textAlign="center" fontSize={30}>
-                  ${price}
+                  ${city.price}
                 </Text>
               </ListItem>
               <ButtonGroup justifyContent="center">
-                <Button as={NavLink} to="/" colorScheme="yellow">
+                <Button as={NavLink} to="/cityDetails" colorScheme="yellow">
                   Details
                 </Button>
-
-                <Button colorScheme="yellow">Add</Button>
               </ButtonGroup>
             </List>
           </GridItem>

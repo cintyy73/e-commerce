@@ -17,7 +17,6 @@ function App() {
           <Route path="/" element={<Cities />} />
           <Route path="/recommended" element={<Recommended />} />
           <Route path="/cityDetails" element={<CityDetails />} />
-          {/* cambiar a city/:id ... ver calse routes*/}
         </Route>
       </Route>
       <Route path="/menu" element={<Menu />} />

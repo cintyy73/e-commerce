@@ -41,6 +41,7 @@ const Footer = () => {
         </HStack>
         <HStack>
           <Avatar size="xl" name="logo resto" src="./src/assets/favicon.png" />
+          https://ibb.co/qxLX6vf
           <Heading size={3}>Arian RESTAURANTE INTERNACIONAL</Heading>
         </HStack>
         <VStack>

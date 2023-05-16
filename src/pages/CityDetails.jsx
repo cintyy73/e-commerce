@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonGroup,
   Card,
   CardBody,
   CardHeader,
@@ -10,12 +11,15 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { useQuantity } from '../hooks/useQuantity'
 // import { MenuContext } from '../hooks/MenuContext'
 // import { useContext } from 'react'
 
 const CityDetails = () => {
   // const { menu } = useContext(MenuContext)
   // console.log(menu)
+  //  const { order, completeOrder } = useContext(OrderContext)
+  const { add, subtract, quantity, error, errorMsj } = useQuantity()
   return (
     <VStack>
       <Heading bg="black" p={4} color="yellow.200">
@@ -81,8 +85,23 @@ const CityDetails = () => {
       <Heading bg="black" color="yellow.200">
         $price
       </Heading>
-
-      <Button colorScheme="yellow">Add order</Button>
+      <ButtonGroup gap={5}>
+        <Button onClick={subtract} colorScheme="yellow">
+          -
+        </Button>
+        <Heading bg="black" color="yellow.200">
+          {quantity}
+        </Heading>
+        <Button onClick={add} colorScheme="yellow">
+          +
+        </Button>
+        <Button>ADD</Button>
+      </ButtonGroup>
+      {error && (
+        <Text bg="black" color="yellow.200" p={6}>
+          {errorMsj}{' '}
+        </Text>
+      )}
     </VStack>
   )
 }

@@ -12,8 +12,10 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
+import { useQuantity } from '../hooks/useQuantity'
 
 const Order = () => {
+  const { add, subtract, quantity, error, errorMsj } = useQuantity()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
@@ -55,31 +57,37 @@ const Order = () => {
               </VStack>
               <VStack>
                 <HStack>
-                  <Text>-</Text>
-                  <Text>0</Text>
-                  <Text>+</Text>
+                  <Button onClick={subtract}>-</Button>
+                  <Text>{quantity}</Text>
+                  <Button onClick={add}>+</Button>
                 </HStack>
                 <HStack>
-                  <Text>-</Text>
-                  <Text>0</Text>
-                  <Text>+</Text>
+                  <Button onClick={add}>-</Button>
+                  <Text>{quantity}</Text>
+                  <Button onClick={subtract}>+</Button>
                 </HStack>
                 <HStack>
-                  <Text>-</Text>
-                  <Text>0</Text>
-                  <Text>+</Text>
+                  <Button onClick={subtract}>-</Button>
+                  <Text>{quantity}</Text>
+
+                  <Button onClick={add}>+</Button>
                 </HStack>
               </VStack>
               <VStack>
-                <Text>$456 price * quantity</Text>
-                <Text>$456 price * quantity</Text>
-                <Text>$456 price * quantity</Text>
+                <Text>$456 price * {quantity}</Text>
+                <Text>$456 price * {quantity}</Text>
+                <Text>$456 price * {quantity}</Text>
               </VStack>
             </HStack>
           </ModalBody>
           <ModalFooter>
+            {error && (
+              <Text bg="black" color="yellow.200" p={6}>
+                {errorMsj}{' '}
+              </Text>
+            )}
             <VStack>
-              <Text> total $$$456 price * quantity+=</Text>
+              <Text> total $$$456 price +=</Text>
 
               <Button size="lg" onClick={onClose}>
                 ordenar y pagar $87870870
