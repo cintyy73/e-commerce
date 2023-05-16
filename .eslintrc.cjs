@@ -14,6 +14,6 @@ module.exports = {
     'react-refresh/only-export-components': 'warn',
     'prettier/prettier': ['warn', { endOfLine: 'auto' }],
     'react/no-children-prop': 'off',
-    ' react/prop-types': 'off',
+    'react/prop-types': 'off',
   },
 }

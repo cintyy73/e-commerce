@@ -10,20 +10,30 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { useForm } from '../../hooks/useForm'
+// import { useForm } from '../../hooks/useForm'
 import { NavLink } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { UserContext } from '../../components/UserContext/UserContext'
 
 const Register = () => {
-  const { values, register, handleChange } = useForm({
-    name: '',
+  const [values, setValues] = useState({
     surname: '',
+    name: '',
+
     email: '',
     password: '',
   })
-  console.log(values)
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
+  }
+  const { register } = useContext(UserContext)
+  const onSubmit = (e) => {
+    e.preventDefault()
+    register(values)
+  }
   return (
     <Center
-      onSubmit={register}
+      onSubmit={onSubmit}
       paddingTop={5}
       as="form"
       gap="4"

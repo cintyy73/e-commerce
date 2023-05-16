@@ -10,22 +10,25 @@ import {
   Button,
   Avatar,
 } from '@chakra-ui/react'
-import { useForm } from '../../hooks/useForm'
 import { NavLink } from 'react-router-dom'
-
-//import { useState } from 'react'
-// import { createUserWithEmailAndPassword } from 'firebase/auth'
-// import { auth } from '../firebase/config'
+import { useContext, useState } from 'react'
+import { UserContext } from '../../components/UserContext/UserContext'
 
 const Login = () => {
-  const { values, login, handleChange } = useForm({
-    password: '',
-    email: '',
-  })
+  const [values, setValues] = useState({ email: '', password: '' })
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value })
+  }
+  const { login } = useContext(UserContext)
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    login(values)
+  }
 
   return (
     <Center
-      onSubmit={login}
+      onSubmit={onSubmit}
       paddingTop={5}
       as="form"
       gap="4"
