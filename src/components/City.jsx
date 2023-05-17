@@ -31,16 +31,30 @@ const City = (city) => {
 
       <Stack>
         <CardBody>
-          <Heading size="lg">{name} </Heading>
-          <Heading size="md">{country} </Heading>
+          <Heading size="md">{name} </Heading>
+          <Heading size="sm">{country} </Heading>
 
-          <Text py="2">Entrance: </Text>
-          <Text py="2">{entrance}</Text>
-          <Text py="2">First course: </Text>
-          <Text py="2">{first}</Text>
-          <Text py="2">Dessert: </Text>
-          <Text py="2">{dessert}</Text>
-          <Text size={12}>${price}</Text>
+          <Text fontSize="small" py="2">
+            Entrance:{' '}
+          </Text>
+          <Text fontSize="small" py="2">
+            {entrance}
+          </Text>
+          <Text fontSize="small" py="2">
+            First course:{' '}
+          </Text>
+          <Text fontSize="small" py="2">
+            {first}
+          </Text>
+          <Text fontSize="small" py="2">
+            Dessert:{' '}
+          </Text>
+          <Text fontSize="small" py="2">
+            {dessert}
+          </Text>
+          <Text fontSize="small" size={12}>
+            ${price}
+          </Text>
         </CardBody>
 
         <CardFooter flexDirection={'column'} gap={2}>
