@@ -41,20 +41,32 @@ const Footer = () => {
         </HStack>
         <HStack>
           <Avatar size="xl" name="logo resto" src="./src/assets/favicon.png" />
-          https://ibb.co/qxLX6vf
+
           <Heading size={3}>Arian RESTAURANTE INTERNACIONAL</Heading>
         </HStack>
-        <VStack>
+        <HStack justifyContent="space-evenly">
           <Link target="blank" href="https://es-la.facebook.com">
-            Facebook
+            <Avatar
+              size="md"
+              name="logo facebook"
+              src="https://www.citypng.com/public/uploads/preview/-51615208019svqsspmeg7.png?v=2023051621"
+            />
           </Link>
           <Link target="blank" href="https://twitter.com">
-            Twitter
+            <Avatar
+              size="md"
+              name="logo instagram"
+              src="https://www.citypng.com/public/uploads/preview/-11598200949vmcvk1prc6.png?v=2023051621 "
+            />
           </Link>
           <Link target="blank" href="https://www.instagram.com/">
-            Instagram
+            <Avatar
+              size="md"
+              name="logo twitter"
+              src="https://www.citypng.com/public/uploads/preview/-51615207660lfhck0plbm.png?v=2023051621"
+            />
           </Link>
-        </VStack>
+        </HStack>
       </HStack>
     </GridItem>
   )
