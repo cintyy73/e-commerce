@@ -107,6 +107,7 @@ import {
   ButtonGroup,
   Center,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Heading,
   Input,
@@ -114,32 +115,42 @@ import {
   VStack,
 } from '@chakra-ui/react'
 // import { useForm } from '../../hooks/useForm'
-import { NavLink } from 'react-router-dom'
-import { useContext } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import { UserContext } from '../../components/UserContext/UserContext'
 import { useForm } from 'react-hook-form'
+import {
+  validateEmail,
+  validateName,
+  validatePassword,
+  validateSurname,
+} from '../../utils/validation'
 
 const Register = () => {
-  // const [values, setValues] = useState({
-  //   surname: '',
-  //   name: '',
-
-  //   email: '',
-  //   password: '',
-  // })
-  // const handleChange = (e) => {
-  //   setValues({ ...values, [e.target.name]: e.target.value })
-  // }
-  const { register, handleSubmit } = useForm()
-
+  const [isRegister, setIsRegister] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
   const { registerUser } = useContext(UserContext)
-  const onSubmit = (data) => {
-    registerUser(data)
-    console.log(data)
+  const onSubmitRegister = (data) => {
+    try {
+      registerUser(data)
+      setIsRegister(true)
+      console.log('no entra en error')
+    } catch (error) {
+      setIsRegister(false)
+
+      const errorCode = error.code
+      const errorMessage = error.message
+      console.log(errorCode)
+      console.log(errorMessage)
+    }
   }
   return (
     <Center
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmitRegister)}
       paddingTop={5}
       as="form"
       gap="4"
@@ -148,47 +159,74 @@ const Register = () => {
       bg="black"
       color="yellow.400"
     >
+      {/* {isLogin  no deberia ingresar aca] */}
+
       <Heading>Welcome to Arian</Heading>
       <Avatar size="2xl" name="logo resto" src="./src/assets/favicon.png" />
 
-      <Text>Please you must create an account to continue!</Text>
-      <VStack>
-        <FormControl isRequired>
-          <FormLabel>Name</FormLabel>
-          <Input id="name" placeholder="Name" {...register('name')} />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel>Surname</FormLabel>
-          <Input id="surname" placeholder="Surname" {...register('Surname')} />
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel>E-mail</FormLabel>
-          <Input
-            type="email"
-            {...register('email')}
-            id="email"
-            placeholder="Email"
-          />
-        </FormControl>
+      {!isRegister && (
+        <Text>Please you must create an account to continue!</Text>
+      )}
+      <>
+        {isRegister && (
+          <>
+            <Text>cuenta creada correctamente ir a</Text>
+            <Link to="/">home</Link>
+          </>
+        )}
 
-        <FormControl isRequired>
-          <FormLabel>Password</FormLabel>
-          <Input
-            type="password"
-            id="password"
-            placeholder="Password"
-            {...register('password')}
-          />
-        </FormControl>
-        <ButtonGroup>
-          <Button type="submit" colorScheme="yellow">
-            Create
-          </Button>
-          <Button as={NavLink} to="/" colorScheme="red">
-            Cancel
-          </Button>
-        </ButtonGroup>
-      </VStack>
+        {!isRegister && (
+          <VStack>
+            <FormControl isInvalid={errors.name}>
+              <FormLabel>Name</FormLabel>
+              <Input
+                id="name"
+                placeholder="Name"
+                {...register('name', validateName)}
+              />
+              <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={errors.surname}>
+              <FormLabel>Surname</FormLabel>
+              <Input
+                id="surname"
+                placeholder="Surname"
+                {...register('surname', validateSurname)}
+              />
+              <FormErrorMessage>{errors.surname?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={errors.email}>
+              <FormLabel>E-mail</FormLabel>
+              <Input
+                type="email"
+                {...register('email', validateEmail)}
+                id="email"
+                placeholder="Email"
+              />
+              <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl isInvalid={errors.password}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                id="password"
+                placeholder="Password"
+                {...register('password', validatePassword)}
+              />
+              <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+            </FormControl>
+            <ButtonGroup>
+              <Button type="submit" colorScheme="yellow">
+                Create
+              </Button>
+              <Button as={NavLink} to="/" colorScheme="red">
+                Cancel
+              </Button>
+            </ButtonGroup>
+          </VStack>
+        )}
+      </>
     </Center>
   )
 }

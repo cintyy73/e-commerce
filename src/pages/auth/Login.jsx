@@ -91,58 +91,89 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { UserContext } from '../../components/UserContext/UserContext'
 import { useForm } from 'react-hook-form'
+import { validateEmail, validatePassword } from '../../utils/validation'
 
 const Login = () => {
-  const { register, handleSubmit } = useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+  console.log(errors)
+  const { loginUser, isLogin } = useContext(UserContext)
+  const [isError, setIsError] = useState(false)
 
-  const { loginUser } = useContext(UserContext)
-
-  const onSubmit = (data) => {
-    loginUser(data)
+  const onSubmitlogin = async (data) => {
+    try {
+      await loginUser(data)
+      console.log(isLogin)
+      setIsError(true)
+      console.log(isError)
+    } catch (error) {
+      setIsError(true)
+      const errorCode = error.code
+      const errorMessage = error.message
+      console.log(errorCode)
+      console.log(errorMessage)
+      console.log(isError)
+    }
   }
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Center
-        paddingTop={5}
-        gap="4"
-        flexDirection="column"
-        minHeight="100vh"
-        bg="black"
-        color="yellow.400"
-      >
-        <Heading>Welcome to Arian</Heading>
-        <Avatar size="2xl" name="logo resto" src="./src/assets/favicon.png" />
+    <form onSubmit={handleSubmit(onSubmitlogin)}>
+      {isLogin && <Text>usuario logueado //redirigir a home</Text>}
+      {!isLogin && (
+        <Center
+          paddingTop={5}
+          gap="4"
+          flexDirection="column"
+          minHeight="100vh"
+          bg="black"
+          color="yellow.400"
+        >
+          <Heading>Welcome to Arian</Heading>
+          <Avatar size="2xl" name="logo resto" src="./src/assets/favicon.png" />
 
-        <Text>Please you must create an account to continue!</Text>
-        <VStack>
-          <FormControl isInvalid={true} isRequired>
-            <FormLabel>E-mail</FormLabel>
-            <Input id="email" {...register('email')} placeholder="Email" />
-            <FormErrorMessage>Email is required.</FormErrorMessage>
-          </FormControl>
-          <FormControl isInvalid={true} isRequired>
-            <FormLabel>Password</FormLabel>
-            <Input
-              type="password"
-              {...register('password')}
-              id="password"
-              placeholder="Password"
-            />
-            <FormErrorMessage>Email is required.</FormErrorMessage>
-          </FormControl>
-          <ButtonGroup>
-            <Button type="submit" colorScheme="yellow">
-              Login
-            </Button>
-            <Button as={NavLink} to="/" colorScheme="red">
-              Cancel
-            </Button>
-          </ButtonGroup>
-        </VStack>
-      </Center>
+          {isError && (
+            <>
+              <Text>Please you must create an account to continue!</Text>
+              <NavLink to="/register">Go Register</NavLink>
+            </>
+          )}
+          <VStack>
+            <FormControl isInvalid={errors.email}>
+              <FormLabel>E-mail</FormLabel>
+              <Input
+                id="email"
+                type="email"
+                {...register('email', validateEmail)}
+                placeholder="Email"
+              />
+              <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl isInvalid={errors.password}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                {...register('password', validatePassword)}
+                id="password"
+                placeholder="Password"
+              />
+              <FormErrorMessage>{errors.password?.message}.</FormErrorMessage>
+            </FormControl>
+            <ButtonGroup>
+              <Button type="submit" colorScheme="yellow">
+                Login
+              </Button>
+              <Button as={NavLink} to="/" colorScheme="red">
+                Cancel
+              </Button>
+            </ButtonGroup>
+          </VStack>
+        </Center>
+      )}
     </form>
   )
 }
