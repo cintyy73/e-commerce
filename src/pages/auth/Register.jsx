@@ -116,6 +116,7 @@ import {
 } from '@chakra-ui/react'
 // import { useForm } from '../../hooks/useForm'
 import { Link, NavLink } from 'react-router-dom'
+import logo from 'assets/favicon.png'
 import { useContext, useState } from 'react'
 import { UserContext } from '../../components/UserContext/UserContext'
 import { useForm } from 'react-hook-form'
@@ -162,7 +163,7 @@ const Register = () => {
       {/* {isLogin  no deberia ingresar aca] */}
 
       <Heading>Welcome to Arian</Heading>
-      <Avatar size="2xl" name="logo resto" src="./src/assets/favicon.png" />
+      <Avatar size="xl" name="logo resto" src={logo} />
 
       {!isRegister && (
         <Text>Please you must create an account to continue!</Text>

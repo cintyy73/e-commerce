@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import Nav from '../components/Nav'
 import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
-
+import bgMarmol from 'assets/bg-menu.jpeg'
 const Home = () => {
   return (
     <Grid
@@ -21,7 +21,7 @@ const Home = () => {
     >
       <Header />
       <Nav />
-      <GridItem bgImage="url(src/assets/marmol.jpeg)" pl="2" area={'main'}>
+      <GridItem bgImage={bgMarmol} pl="2" area={'main'}>
         <Outlet />
       </GridItem>
       <Footer />

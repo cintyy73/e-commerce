@@ -95,6 +95,7 @@ import { useContext, useState } from 'react'
 import { UserContext } from '../../components/UserContext/UserContext'
 import { useForm } from 'react-hook-form'
 import { validateEmail, validatePassword } from '../../utils/validation'
+import logo from 'assets/favicon.png'
 
 const Login = () => {
   const {
@@ -134,7 +135,7 @@ const Login = () => {
           color="yellow.400"
         >
           <Heading>Welcome to Arian</Heading>
-          <Avatar size="2xl" name="logo resto" src="./src/assets/favicon.png" />
+          <Avatar size="2xl" name="logo resto" src={logo} />
 
           {isError && (
             <>

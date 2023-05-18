@@ -9,6 +9,7 @@ import {
   Divider,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
+import logo from 'assets/favicon.png'
 
 const Footer = () => {
   return (
@@ -40,7 +41,7 @@ const Footer = () => {
           </VStack>
         </HStack>
         <HStack>
-          <Avatar size="xl" name="logo resto" src="./src/assets/favicon.png" />
+          <Avatar size="xl" name="logo resto" src={logo} />
 
           <Heading size={3}>Arian RESTAURANTE INTERNACIONAL</Heading>
         </HStack>
