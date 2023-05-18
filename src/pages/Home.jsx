@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import Nav from '../components/Nav'
 import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
-import bgMarmol from 'assets/bg-menu.jpeg'
+import bgMarmol from 'assets/marmol.jpeg'
 const Home = () => {
   return (
     <Grid
