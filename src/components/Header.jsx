@@ -5,17 +5,23 @@ import {
   GridItem,
   HStack,
   Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import logo from 'assets/favicon.png'
 import Order from './Order'
 import { useContext } from 'react'
 import { UserContext } from './UserContext/UserContext'
+import { ChevronDownIcon } from '@chakra-ui/icons'
+// import { signOut } from 'firebase/auth'
 
 const Header = () => {
-  const { isLogin } = useContext(UserContext)
+  const { isLogin, signOff } = useContext(UserContext)
   return (
     <GridItem p={5} bg="black" color="#ffc600" area={'header'}>
       <HStack justifyContent="space-between" alignItems="center">
@@ -32,13 +38,36 @@ const Header = () => {
           )}
           {!isLogin && (
             <Button as={NavLink} to="/register">
-              register
+              Register
             </Button>
           )}
 
-          <Button as={NavLink} to="">
-            my account
-          </Button>
+          {isLogin && (
+            <Menu>
+              <MenuButton
+                colorScheme="yellow"
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+              >
+                user? poner name!!
+              </MenuButton>
+              <MenuList background="black">
+                <MenuItem background="black" as={Link} to="/order">
+                  My account--hacer!!
+                </MenuItem>
+                <MenuItem background="black" as={Link} to="/order">
+                  My orders--hacer!!
+                </MenuItem>
+                <MenuItem background="black" as={Link} to="/order">
+                  My current order
+                </MenuItem>
+                <MenuItem background="black" onClick={signOff}>
+                  Sign off
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          )}
+
           <Order />
         </ButtonGroup>
       </HStack>

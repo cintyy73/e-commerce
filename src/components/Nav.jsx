@@ -1,4 +1,4 @@
-import { HamburgerIcon, StarIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon, StarIcon, ViewIcon } from '@chakra-ui/icons'
 import {
   Button,
   FormControl,
@@ -9,8 +9,12 @@ import {
   List,
   ListIcon,
   ListItem,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
 } from '@chakra-ui/react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
 
 const Nav = () => {
@@ -23,18 +27,48 @@ const Nav = () => {
       <List padding={6} spacing={6}>
         <ListItem>
           <Button to="/menu" as={NavLink} colorScheme="yellow">
-            <ListIcon color="gray" as={HamburgerIcon} /> Menu
+            <ViewIcon /> Menu
           </Button>
         </ListItem>
         <ListItem>
-          <FormControl>
-            <FormLabel>Search Country</FormLabel>
-            <Input
-              // onChange={handleChange}
-              // value={values.name}
-              name="searchCity"
-            />
-          </FormControl>
+          <List>
+            <Heading as={NavLink} to="/recommended" size="md">
+              Recommended
+            </Heading>
+
+            {menu.map(
+              (city) =>
+                city.recommended && (
+                  <ListItem key={city.id} city={city}>
+                    <ListIcon color="gray" as={StarIcon} />
+                    <NavLink> {city.name}</NavLink>
+                  </ListItem>
+                )
+            )}
+          </List>
+        </ListItem>
+        <ListItem>
+          <Menu>
+            <MenuButton
+              colorScheme="yellow"
+              as={Button}
+              rightIcon={<ChevronDownIcon />}
+            >
+              Search Country
+            </MenuButton>
+            <MenuList background="black">
+              <MenuItem background="black" as={Link} to="/order">
+                Argentina
+              </MenuItem>
+              <MenuItem background="black" as={Link} to="/order">
+                Peru
+              </MenuItem>
+              <MenuItem background="black" as={Link} to="/order">
+                Russia
+              </MenuItem>
+              <MenuItem background="black">Spain</MenuItem>
+            </MenuList>
+          </Menu>
         </ListItem>
 
         <ListItem>
@@ -57,21 +91,6 @@ const Nav = () => {
             />
           </FormControl>
         </ListItem>
-        <List>
-          <Heading as={NavLink} to="/recommended" size="md">
-            Recommended
-          </Heading>
-
-          {menu.map(
-            (city) =>
-              city.recommended && (
-                <ListItem key={city.id} city={city}>
-                  <ListIcon color="gray" as={StarIcon} />
-                  <NavLink> {city.name}</NavLink>
-                </ListItem>
-              )
-          )}
-        </List>
       </List>
     </GridItem>
   )

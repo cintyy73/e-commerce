@@ -24,7 +24,7 @@ const Menu = () => {
       bg="black"
       flexDir="column"
       gap={4}
-      paddingTop={5}
+      padding={5}
       minHeight="100vh"
     >
       <Heading fontSize={40}>Menu</Heading>
