@@ -1,4 +1,9 @@
-import { ChevronDownIcon, StarIcon, ViewIcon } from '@chakra-ui/icons'
+import {
+  ChevronDownIcon,
+  SearchIcon,
+  StarIcon,
+  ViewIcon,
+} from '@chakra-ui/icons'
 import {
   Button,
   FormControl,
@@ -41,7 +46,7 @@ const Nav = () => {
                 city.recommended && (
                   <ListItem key={city.id} city={city}>
                     <ListIcon color="gray" as={StarIcon} />
-                    <NavLink> {city.name}</NavLink>
+                    <NavLink to={'/' + city.id}> {city.name}</NavLink>
                   </ListItem>
                 )
             )}
@@ -53,8 +58,9 @@ const Nav = () => {
               colorScheme="yellow"
               as={Button}
               rightIcon={<ChevronDownIcon />}
+              size="sm"
             >
-              Search Country
+              <SearchIcon /> Country
             </MenuButton>
             <MenuList background="black">
               <MenuItem background="black" as={Link} to="/order">

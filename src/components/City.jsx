@@ -12,7 +12,8 @@ import {
 import { NavLink } from 'react-router-dom'
 
 const City = (city) => {
-  const { dessert, first, country, entrance, price, image, name } = city.city
+  const { dessert, first, country, entrance, price, image, id, name } =
+    city.city
   return (
     <Card
       border="4px solid black"
@@ -25,6 +26,7 @@ const City = (city) => {
       <Image
         objectFit="cover"
         maxW={{ base: '100%', lg: '200px' }}
+        height={{ base: '200px', md: '100%' }}
         src={image}
         alt="Caffe Latte"
       />
@@ -60,7 +62,7 @@ const City = (city) => {
         <CardFooter flexDirection={'column'} gap={2}>
           <Button
             as={NavLink}
-            to="/cityDetails"
+            to={'/' + id}
             variant="solid"
             colorScheme="yellow"
           >

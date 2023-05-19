@@ -25,12 +25,14 @@ const OrderProvider = ({ children }) => {
       img,
       quantity,
     })
+    console.log(order)
   }
   const completeOrder = async (order) => {
-    const { city, quantity } = order
+    const { city, quantity, price } = order
     const doc = await addDoc(collection(db, 'orders'), {
       city,
       quantity,
+      price,
     })
     setOrder(doc)
   }

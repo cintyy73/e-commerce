@@ -49,7 +49,7 @@ const Header = () => {
                 as={Button}
                 rightIcon={<ChevronDownIcon />}
               >
-                user? poner name!!
+                My account
               </MenuButton>
               <MenuList background="black">
                 <MenuItem background="black" as={Link} to="/order">
@@ -61,7 +61,7 @@ const Header = () => {
                 <MenuItem background="black" as={Link} to="/order">
                   My current order
                 </MenuItem>
-                <MenuItem background="black" onClick={signOff}>
+                <MenuItem background="black" color="red" onClick={signOff}>
                   Sign off
                 </MenuItem>
               </MenuList>

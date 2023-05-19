@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getAllCities } from '../services/cities'
+import { collection, doc } from 'firebase/firestore'
+import { db } from '../firebase/config'
+import { useParams } from 'react-router-dom'
 
 export const useMenu = () => {
   const [menu, setMenu] = useState([])
@@ -14,5 +17,14 @@ export const useMenu = () => {
     }
     getMenu()
   }, [])
-  return { menu, loading }
+  const { id } = useParams()
+  const cityD = menu.find((c) => c.id === id)
+  // const { city } = menu
+  console.log(cityD)
+
+  // Add a new document with a generated id
+  const cityDet = doc(collection(db, 'cities'))
+
+  // later...
+  return { cityDet, menu, loading, cityD }
 }

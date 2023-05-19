@@ -63,6 +63,7 @@ export const UserProvider = ({ children }) => {
     )
     const user = userCredential.user
     setUser(user)
+    console.log(user)
   }
   const loginUser = async (data) => {
     const userCredential = await signInWithEmailAndPassword(
@@ -81,7 +82,7 @@ export const UserProvider = ({ children }) => {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid
         setIsLogin(true)
-        console.log('is login', uid)
+        console.log('is login', uid, user)
       } else {
         // User is signed out
         setIsLogin(false)

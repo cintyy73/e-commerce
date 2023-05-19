@@ -17,7 +17,7 @@ const Footer = () => {
       <Divider color="yellow.300"></Divider>
       <HStack justifyContent="space-around">
         <HStack gap={4}>
-          <VStack>
+          <VStack display={{ base: 'none', md: 'flex' }}>
             <Text as={NavLink} to="/">
               Home
             </Text>
@@ -28,7 +28,7 @@ const Footer = () => {
               Recommended
             </Text>
           </VStack>
-          <VStack>
+          <VStack display={{ base: 'none', md: 'flex' }}>
             <Text as={NavLink} to="/order">
               Order
             </Text>
@@ -43,7 +43,9 @@ const Footer = () => {
         <HStack>
           <Avatar size="xl" name="logo resto" src={logo} />
 
-          <Heading size={3}>Arian RESTAURANTE INTERNACIONAL</Heading>
+          <Heading display={{ base: 'none', md: 'flex' }} size={3}>
+            Arian RESTAURANTE INTERNACIONAL
+          </Heading>
         </HStack>
         <HStack justifyContent="space-evenly">
           <Link target="blank" href="https://es-la.facebook.com">

@@ -1,5 +1,6 @@
 import { VStack, Heading, Text, Center, Avatar } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import logo from 'assets/favicon.png'
 
 const NotFound = () => {
   return (
@@ -14,7 +15,7 @@ const NotFound = () => {
           size="xl"
           name="logo resto"
           // src="./src/assets/favicon.png"
-          src="https://i.pinimg.com/564x/3b/d3/85/3bd385a7dadc070e6d107be2ccf6beac.jpg"
+          src={logo}
         />
       </VStack>
     </Center>

@@ -58,7 +58,7 @@ const Menu = () => {
                     alignSelf="center"
                     as={NavLink}
                     size="sm"
-                    to="/cityDetails"
+                    to={'/' + city.id}
                     colorScheme="yellow"
                   >
                     Details

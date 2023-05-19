@@ -16,6 +16,7 @@ const Home = () => {
         md: '200px 1fr',
       }}
       minHeight="100vh"
+      minW="350px"
       color="blackAlpha.700"
       fontWeight="bold"
     >
