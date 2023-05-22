@@ -18,6 +18,7 @@ import Order from './Order'
 import { useContext } from 'react'
 import { UserContext } from './UserContext/UserContext'
 import { ChevronDownIcon } from '@chakra-ui/icons'
+import MyAccount from './MyAccount'
 // import { signOut } from 'firebase/auth'
 
 const Header = () => {
@@ -41,35 +42,32 @@ const Header = () => {
               Register
             </Button>
           )}
-
-          {isLogin && (
-            <Menu>
-              <MenuButton
-                colorScheme="yellow"
-                as={Button}
-                rightIcon={<ChevronDownIcon />}
-              >
-                My account
-              </MenuButton>
-              <MenuList background="black">
-                <MenuItem background="black" as={Link} to="/order">
-                  My account--hacer!!
-                </MenuItem>
-                <MenuItem background="black" as={Link} to="/order">
-                  My orders--hacer!!
-                </MenuItem>
-                <MenuItem background="black" as={Link} to="/order">
-                  My current order
-                </MenuItem>
-                <MenuItem background="black" color="red" onClick={signOff}>
-                  Sign off
-                </MenuItem>
-              </MenuList>
-            </Menu>
-          )}
-
-          <Order />
         </ButtonGroup>
+        {isLogin && (
+          <Menu>
+            <MenuButton
+              colorScheme="yellow"
+              as={Button}
+              rightIcon={<ChevronDownIcon />}
+            >
+              My account
+            </MenuButton>
+            <MenuList background="black">
+              <MyAccount />
+              <MenuItem background="black" as={Link} to="/order">
+                My orders--hacer!!
+              </MenuItem>
+              <MenuItem background="black" as={Link} to="/order">
+                My current order
+              </MenuItem>
+              <MenuItem background="black" color="red" onClick={signOff}>
+                Sign off
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        )}
+
+        <Order />
       </HStack>
     </GridItem>
   )

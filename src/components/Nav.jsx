@@ -24,8 +24,6 @@ import { useMenu } from '../hooks/useMenu'
 
 const Nav = () => {
   const { menu } = useMenu()
-  console.log('2soymenu')
-  console.log(menu)
 
   return (
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>

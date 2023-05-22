@@ -20,7 +20,6 @@ export const useMenu = () => {
   const { id } = useParams()
   const cityD = menu.find((c) => c.id === id)
   // const { city } = menu
-  console.log(cityD)
 
   // Add a new document with a generated id
   const cityDet = doc(collection(db, 'cities'))

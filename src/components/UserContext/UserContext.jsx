@@ -1,45 +1,3 @@
-// import { createContext, useState } from 'react'
-// import { auth } from '../../firebase/config'
-// import {
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-// } from 'firebase/auth'
-// export const UserContext = createContext()
-
-// export const UserProvider = ({ children }) => {
-//   const [user, setUser] = useState(null)
-//   const register = async (values) => {
-//     const userCredential = await createUserWithEmailAndPassword(
-//       auth,
-//       values.email,
-//       values.password
-//     )
-//     const user = userCredential.user
-//     setUser(user)
-//     // } catch (error) {
-//     //   const errorCode = error.code
-//     //   const errorMessage = error.message
-//     //   console.log(errorCode)
-//     //   console.log(errorMessage)
-//     // }
-//   }
-//   const login = async (values) => {
-//     const userCredential = await signInWithEmailAndPassword(
-//       auth,
-//       values.email,
-//       values.password
-//     )
-//     const user = userCredential.user
-//     console.log(user)
-//   }
-//   return (
-//     <UserContext.Provider value={{ user, register, login }}>
-//       {children}
-//     </UserContext.Provider>
-//   )
-// }
-// ++++++++++++++++++++++++++++++++++++++++++++
-// ++++++++++++++++++++++++++++++++++++++++
 import { createContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase/config'
 import {
@@ -63,7 +21,6 @@ export const UserProvider = ({ children }) => {
     )
     const user = userCredential.user
     setUser(user)
-    console.log(user)
   }
   const loginUser = async (data) => {
     const userCredential = await signInWithEmailAndPassword(
@@ -82,11 +39,10 @@ export const UserProvider = ({ children }) => {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid
         setIsLogin(true)
-        console.log('is login', uid, user)
+        console.log(uid)
       } else {
         // User is signed out
         setIsLogin(false)
-        console.log(isLogin)
       }
     })
   }, [isLogin])

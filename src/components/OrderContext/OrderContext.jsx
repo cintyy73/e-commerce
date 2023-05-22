@@ -4,40 +4,47 @@ import { db } from '../../firebase/config'
 export const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
-  const [order, setOrder] = useState({
-    name: '',
-    id: '',
-    table: '',
-    sucursal: '',
-    price: 0,
-    img: '',
-    quantity: 0,
-  })
-  const createOrder = (city, quantity) => {
-    const { name, id, price, img } = city
-    setOrder({
-      ...order,
-      name,
-      id,
-      table: '',
-      sucursal: '',
-      price,
-      img,
-      quantity,
+  const [order, setOrder] = useState([{}])
+  const createOrder = (cityD, quantity, id) => {
+    const { name, price } = cityD
+
+    order.find((city) => {
+      console.log(city.id === id)
+      console.log(city.id, id)
+      console.log(order)
+      if (city?.id !== id) {
+        setOrder([
+          ...order,
+          {
+            name,
+            id,
+            // table: '',
+            // sucursal: '',
+            price,
+            // img,
+            total: 0,
+          },
+        ])
+      } else {
+        setOrder([...order])
+      }
     })
-    console.log(order)
   }
-  const completeOrder = async (order) => {
-    const { city, quantity, price } = order
-    const doc = await addDoc(collection(db, 'orders'), {
-      city,
-      quantity,
-      price,
-    })
-    setOrder(doc)
+  const completeOrder = async (order, total) => {
+    // console.log(user, order)
+    // const { email, uid } = user
+    const orderUser = {
+      user: { email: 'fake', id: 'fake' },
+      order,
+      total,
+    }
+    // const { name, price, id } = order
+    const doc = await addDoc(collection(db, 'orders'), orderUser)
+    console.log(doc)
   }
+
   return (
-    <OrderContext.Provider value={(order, createOrder, completeOrder)}>
+    <OrderContext.Provider value={{ order, createOrder, completeOrder }}>
       {children}
     </OrderContext.Provider>
   )
