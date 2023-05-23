@@ -92,7 +92,7 @@ import {
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import { useContext, useState } from 'react'
-import { UserContext } from '../../components/UserContext/UserContext'
+import { UserContext } from 'context/UserContext'
 import { useForm } from 'react-hook-form'
 import { validateEmail, validatePassword } from '../../utils/validation'
 import logo from 'assets/favicon.png'

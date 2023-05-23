@@ -9,15 +9,21 @@ import {
   Button,
   Divider,
   Spinner,
+  useToast,
+  // useToast,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
+import { useContext } from 'react'
+import { OrderContext } from '../context/OrderContext'
 // import { useContext, useState } from 'react'
 // import { OrderContext } from './OrderContext/OrderContext'
 
 const Menu = () => {
-  const { menu, loading } = useMenu()
+  const toast = useToast()
 
+  const { menu, loading } = useMenu()
+  const { createOrder, isAdd } = useContext(OrderContext)
   return (
     <HStack
       color="yellow.200"
@@ -54,6 +60,26 @@ const Menu = () => {
                     </Text>
                   </ListItem>
                   )
+                  <Button
+                    alignSelf="center"
+                    size="sm"
+                    colorScheme="yellow"
+                    onClick={() => {
+                      createOrder(city, city.id, 1)
+
+                      toast({
+                        title: isAdd
+                          ? 'Added to your order'
+                          : 'Cannot be added to your order',
+                        description: 'Change quantity in your order',
+                        status: isAdd ? 'success' : 'warning',
+                        duration: 4000,
+                        isClosable: true,
+                      })
+                    }}
+                  >
+                    Add
+                  </Button>
                   <Button
                     alignSelf="center"
                     as={NavLink}

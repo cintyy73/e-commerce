@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useContext, useRef } from 'react'
-import { UserContext } from './UserContext/UserContext'
+import { UserContext } from 'context/UserContext'
 const MyAccount = () => {
   const { user } = useContext(UserContext)
   console.log(user)

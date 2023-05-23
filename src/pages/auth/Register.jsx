@@ -118,7 +118,7 @@ import {
 import { Link, NavLink } from 'react-router-dom'
 import logo from 'assets/favicon.png'
 import { useContext, useState } from 'react'
-import { UserContext } from '../../components/UserContext/UserContext'
+import { UserContext } from 'context/UserContext'
 import { useForm } from 'react-hook-form'
 import {
   validateEmail,

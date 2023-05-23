@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   HStack,
   Modal,
@@ -8,22 +9,28 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Text,
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useQuantity } from '../hooks/useQuantity'
 import { useContext } from 'react'
-import { OrderContext } from './OrderContext/OrderContext'
+import { OrderContext } from 'context/OrderContext'
+import { completeOrder } from '../services/createOrder'
 // import { UserContext } from './UserContext/UserContext'
 
 const Order = () => {
   // const { user } = useContext(UserContext)
   // console.log(user) nollega info user
-  const { completeOrder, order } = useContext(OrderContext)
+  const { order } = useContext(OrderContext)
   const total = 0
 
-  const { add, subtract, quantity, error, errorMsj } = useQuantity()
+  const { quantity, setQuantity, error, errorMsj } = useQuantity()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
@@ -67,11 +74,22 @@ const Order = () => {
                   <Text>$ {city.price}</Text>
                 </VStack>
                 <VStack w="25%">
-                  <HStack>
-                    <Button onClick={subtract}>-</Button>
-                    <Text>{quantity}</Text>
-                    <Button onClick={add}>+</Button>
-                  </HStack>
+                  <NumberInput
+                    color="yellow"
+                    defaultValue={1}
+                    min={1}
+                    max={city.stock}
+                    value={quantity}
+                    onChange={(value) => setQuantity(Number(value))}
+                  >
+                    <Box bg="black">
+                      <NumberInputField />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </Box>
+                  </NumberInput>
                 </VStack>
                 <VStack w="25%">
                   <Text>$ {city.price * quantity}</Text>

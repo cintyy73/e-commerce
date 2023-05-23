@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   ButtonGroup,
   Card,
@@ -7,22 +8,31 @@ import {
   GridItem,
   Heading,
   Image,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   SimpleGrid,
   Spinner,
   Text,
   VStack,
+  useToast,
 } from '@chakra-ui/react'
 import { useQuantity } from '../hooks/useQuantity'
 import { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getById } from '../services/cities'
-import { OrderContext } from '../components/OrderContext/OrderContext'
+import { OrderContext } from 'context/OrderContext'
 
 const CityDetails = () => {
   const [cityD, setCityD] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const { id } = useParams()
+  const toast = useToast()
+
+  const { quantity, setQuantity, error, isAdd, errorMsj } = useQuantity()
   useEffect(() => {
     const getData = async () => {
       const data = await getById(id)
@@ -34,7 +44,6 @@ const CityDetails = () => {
 
   const { createOrder } = useContext(OrderContext)
   //  const { order, completeOrder } = useContext(OrderContext)
-  const { add, subtract, quantity, error, errorMsj } = useQuantity()
   return (
     <VStack>
       {isLoading && <Spinner color="yellow" size="xl" />}
@@ -106,17 +115,36 @@ const CityDetails = () => {
           <Heading bg="black" color="yellow.200">
             ${cityD?.price}
           </Heading>
+          <NumberInput
+            color="yellow"
+            defaultValue={1}
+            min={1}
+            max={cityD.stock}
+            value={quantity}
+            onChange={(value) => setQuantity(Number(value))}
+          >
+            <Box bg="black">
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </Box>
+          </NumberInput>
           <ButtonGroup gap={5}>
-            <Button onClick={subtract} colorScheme="yellow">
-              -
-            </Button>
-            <Heading bg="black" color="yellow.200">
-              {quantity}
-            </Heading>
-            <Button onClick={add} colorScheme="yellow">
-              +
-            </Button>
-            <Button onClick={() => createOrder(cityD, quantity, id)}>
+            <Button
+              onClick={() => {
+                createOrder(cityD, id, quantity)
+                toast({
+                  title: isAdd
+                    ? 'Added to your order'
+                    : 'Cannot be added to your order',
+                  status: isAdd ? 'success' : 'warning',
+                  duration: 4000,
+                  isClosable: true,
+                })
+              }}
+            >
               ADD
             </Button>
           </ButtonGroup>
