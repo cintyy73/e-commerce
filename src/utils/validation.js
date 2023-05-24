@@ -19,6 +19,17 @@ export const validatePassword = {
     message: '8 characters',
   },
 }
+export const validateTable = {
+  required: 'this is required',
+  minLength: {
+    value: 1,
+    message: '8 characters',
+  },
+  maxLength: {
+    value: 20,
+    message: ' 1 - 20',
+  },
+}
 export const validateEmail = {
   required: 'Este campo es requerido',
   pattern: {

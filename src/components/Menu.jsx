@@ -10,6 +10,7 @@ import {
   Divider,
   Spinner,
   useToast,
+  ButtonGroup,
   // useToast,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
@@ -33,7 +34,20 @@ const Menu = () => {
       padding={5}
       minHeight="100vh"
     >
-      <Heading fontSize={40}>Menu</Heading>
+      <HStack w="100%" justifyContent="space-evenly" pb={6}>
+        <Heading fontSize={40}>Menu</Heading>
+        <Button
+          variant="outline"
+          p={2}
+          size="lg"
+          fontSize={25}
+          as={NavLink}
+          to="/"
+          colorScheme="black"
+        >
+          Home
+        </Button>
+      </HStack>
       {loading && <Spinner color="yellow" size="xl" />}
       {!loading && (
         <>
@@ -60,50 +74,41 @@ const Menu = () => {
                     </Text>
                   </ListItem>
                   )
-                  <Button
-                    alignSelf="center"
-                    size="sm"
-                    colorScheme="yellow"
-                    onClick={() => {
-                      createOrder(city, city.id, 1)
+                  <ButtonGroup>
+                    <Button
+                      alignSelf="center"
+                      size="sm"
+                      colorScheme="yellow"
+                      onClick={() => {
+                        createOrder(city, city.id, 1)
 
-                      toast({
-                        title: isAdd
-                          ? 'Added to your order'
-                          : 'Cannot be added to your order',
-                        description: 'Change quantity in your order',
-                        status: isAdd ? 'success' : 'warning',
-                        duration: 4000,
-                        isClosable: true,
-                      })
-                    }}
-                  >
-                    Add
-                  </Button>
-                  <Button
-                    alignSelf="center"
-                    as={NavLink}
-                    size="sm"
-                    to={'/' + city.id}
-                    colorScheme="yellow"
-                  >
-                    Details
-                  </Button>
+                        toast({
+                          title: isAdd
+                            ? 'Added to your order'
+                            : 'Cannot be added to your order',
+                          description: 'Change quantity in your order',
+                          status: isAdd ? 'success' : 'warning',
+                          duration: 4000,
+                          isClosable: true,
+                        })
+                      }}
+                    >
+                      Add
+                    </Button>
+                    <Button
+                      alignSelf="center"
+                      as={NavLink}
+                      size="sm"
+                      to={'/' + city.id}
+                      colorScheme="yellow"
+                    >
+                      Details
+                    </Button>
+                  </ButtonGroup>
                 </List>
               </GridItem>
             ))}
           </Grid>
-
-          <Button
-            p={2}
-            size="lg"
-            fontSize={15}
-            as={NavLink}
-            to="/"
-            colorScheme="yellow"
-          >
-            Home
-          </Button>
         </>
       )}
     </HStack>

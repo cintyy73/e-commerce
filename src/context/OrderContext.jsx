@@ -4,8 +4,10 @@ export const OrderContext = createContext()
 const OrderProvider = ({ children }) => {
   const [isAdd, setIsAdd] = useState(false)
   const [order, setOrder] = useState([])
+  // const [finallyOrder, setFinallyOrder] = useState([])
 
   const createOrder = (cityD, id, quantity) => {
+    console.log(quantity)
     const { name, price } = cityD
     const orderExist = order.some((city) => city.id === id)
     const newOrder = {
@@ -26,10 +28,13 @@ const OrderProvider = ({ children }) => {
       setIsAdd(false)
     }
     console.log(isAdd)
+    console.log(order)
   }
+  const emptyOrder = () => setOrder([])
 
+  // const finallyOrder = () => {}
   return (
-    <OrderContext.Provider value={{ order, createOrder, isAdd }}>
+    <OrderContext.Provider value={{ order, createOrder, isAdd, emptyOrder }}>
       {children}
     </OrderContext.Provider>
   )

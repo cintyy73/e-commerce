@@ -4,6 +4,7 @@ import { useMenu } from '../hooks/useMenu'
 
 const Cities = () => {
   const { menu, loading } = useMenu()
+  // menu.map((city) => console.log(city.id))
   return (
     <Center w="100%" h="100%">
       {loading && <Spinner color="yellow" size="xl" />}

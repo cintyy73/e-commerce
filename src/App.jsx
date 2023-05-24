@@ -8,6 +8,7 @@ import Cities from './pages/Cities'
 import CityDetails from './pages/CityDetails'
 import NotFound from './pages/NotFound'
 import Login from './pages/auth/Login'
+import CheckOut from './pages/CheckOut'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/menu" element={<Menu />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/checkout" element={<CheckOut />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

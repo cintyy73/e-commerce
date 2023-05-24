@@ -121,6 +121,7 @@ const CityDetails = () => {
             min={1}
             max={cityD.stock}
             value={quantity}
+            name={cityD.id}
             onChange={(value) => setQuantity(Number(value))}
           >
             <Box bg="black">
@@ -134,7 +135,7 @@ const CityDetails = () => {
           <ButtonGroup gap={5}>
             <Button
               onClick={() => {
-                createOrder(cityD, id, quantity)
+                createOrder(cityD, id, quantity.id)
                 toast({
                   title: isAdd
                     ? 'Added to your order'

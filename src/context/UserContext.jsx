@@ -29,6 +29,7 @@ export const UserProvider = ({ children }) => {
       data.password
     )
     const user = userCredential.user
+    // setUser(user)
     console.log(user)
   }
 
@@ -56,6 +57,7 @@ export const UserProvider = ({ children }) => {
         // An error happened
         console.log(error)
       })
+    console.log(user)
   }
   return (
     <UserContext.Provider

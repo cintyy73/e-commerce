@@ -27,47 +27,52 @@ const Header = () => {
     <GridItem p={5} bg="black" color="#ffc600" area={'header'}>
       <HStack justifyContent="space-between" alignItems="center">
         <Avatar size="xl" name="logo resto" src={logo} />
-        <VStack>
+        <VStack display={{ base: 'none', md: 'flex' }}>
           <Heading>Arian Maldonado</Heading>
-          <Text>CHEF INTERNATIONAL</Text>
+          <Text>CHEFF INTERNATIONAL</Text>
         </VStack>
-        <ButtonGroup size="sm" colorScheme="yellow">
-          {!isLogin && (
-            <Button as={NavLink} to="/login">
-              Login
-            </Button>
-          )}
-          {!isLogin && (
-            <Button as={NavLink} to="/register">
-              Register
-            </Button>
-          )}
-        </ButtonGroup>
-        {isLogin && (
-          <Menu>
-            <MenuButton
-              colorScheme="yellow"
-              as={Button}
-              rightIcon={<ChevronDownIcon />}
-            >
-              My account
-            </MenuButton>
-            <MenuList background="black">
-              <MyAccount />
-              <MenuItem background="black" as={Link} to="/order">
-                My orders--hacer!!
-              </MenuItem>
-              <MenuItem background="black" as={Link} to="/order">
-                My current order
-              </MenuItem>
-              <MenuItem background="black" color="red" onClick={signOff}>
-                Sign off
-              </MenuItem>
-            </MenuList>
-          </Menu>
-        )}
+        <VStack display={{ base: 'flex', md: 'none' }}>
+          <Heading>Arian M.</Heading>
+          <Text>CHEFF INT.</Text>
+        </VStack>
 
-        <Order />
+        <HStack>
+          <ButtonGroup size={{ base: 'xs', md: 'lg' }} colorScheme="yellow">
+            {!isLogin && (
+              <Button as={NavLink} to="/register">
+                Register
+              </Button>
+            )}
+            {!isLogin && (
+              <Button as={NavLink} to="/login">
+                Login
+              </Button>
+            )}
+          </ButtonGroup>
+
+          {isLogin && (
+            <Menu>
+              <MenuButton
+                size={{ base: 'xs', md: 'lg' }}
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                colorScheme="yellow"
+              >
+                My account
+              </MenuButton>
+              <MenuList background="black">
+                <MenuItem background="black" as={Link} to="/order">
+                  <MyAccount />
+                </MenuItem>
+
+                <MenuItem background="black" color="red" onClick={signOff}>
+                  Sign Out
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          )}
+          <Order />
+        </HStack>
       </HStack>
     </GridItem>
   )

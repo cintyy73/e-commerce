@@ -29,6 +29,11 @@ const Nav = () => {
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>
       <List padding={6} spacing={6}>
         <ListItem>
+          <Button to="/" as={NavLink} colorScheme="yellow">
+            HOME
+          </Button>
+        </ListItem>
+        <ListItem>
           <Button to="/menu" as={NavLink} colorScheme="yellow">
             <ViewIcon /> Menu
           </Button>

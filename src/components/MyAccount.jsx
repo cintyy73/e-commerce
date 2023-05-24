@@ -8,6 +8,7 @@ import {
   DrawerCloseButton,
   Button,
   useDisclosure,
+  Heading,
 } from '@chakra-ui/react'
 import { useContext, useRef } from 'react'
 import { UserContext } from 'context/UserContext'
@@ -18,7 +19,7 @@ const MyAccount = () => {
   const btnRef = useRef()
   return (
     <>
-      <Button ref={btnRef} onClick={onOpen}>
+      <Button ref={btnRef} color="yellow" colorScheme="black" onClick={onOpen}>
         My account--hacer!!
       </Button>
 
@@ -32,7 +33,7 @@ const MyAccount = () => {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader bg="black" color="yellow.100">
-            Create your account
+            <Heading>name</Heading>
           </DrawerHeader>
 
           <DrawerBody bg="black" color="yellow.100"></DrawerBody>

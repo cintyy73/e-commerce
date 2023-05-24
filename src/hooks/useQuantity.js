@@ -1,7 +1,8 @@
 import { useState } from 'react'
-
 export const useQuantity = () => {
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState({
+    // agragrear los name p id
+  })
   const [error, setError] = useState(false)
   // const [msjStock, setMsjStock]=useState(false)
   const errorQuantity = () => {

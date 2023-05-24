@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   HStack,
+  IconButton,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -22,24 +23,26 @@ import { useQuantity } from '../hooks/useQuantity'
 import { useContext } from 'react'
 import { OrderContext } from 'context/OrderContext'
 import { completeOrder } from '../services/createOrder'
-// import { UserContext } from './UserContext/UserContext'
+import { UserContext } from '../context/UserContext'
+import { Link } from 'react-router-dom'
+import { DeleteIcon } from '@chakra-ui/icons'
+// import { UserContext } from '../context/UserContext'
 
 const Order = () => {
-  // const { user } = useContext(UserContext)
-  // console.log(user) nollega info user
-  const { order } = useContext(OrderContext)
+  const { user } = useContext(UserContext)
+  console.log(user)
+  const { order, emptyOrder } = useContext(OrderContext)
   const total = 0
-
   const { quantity, setQuantity, error, errorMsj } = useQuantity()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button
+        size={{ base: 'xs', md: 'lg' }}
+        colorScheme="yellow"
         ml="4"
         onClick={() => {
           onOpen()
-          // completeOrder(order)
-          // console.log(order)
         }}
       >
         My order
@@ -111,15 +114,28 @@ const Order = () => {
               </HStack>
 
               <Button
+                as={Link}
                 colorScheme="yellow"
                 size="lg"
+                to="/checkout"
                 onClick={() => {
                   completeOrder(order, total)
+
                   onClose()
                 }}
               >
                 Order and pay $87870870
               </Button>
+              <IconButton
+                size="lg"
+                colorScheme="black"
+                onClick={() => {
+                  console.log(order)
+                  emptyOrder()
+                  console.log(order)
+                }}
+                icon={<DeleteIcon />}
+              />
             </VStack>
           </ModalFooter>
         </ModalContent>
