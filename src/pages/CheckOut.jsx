@@ -146,7 +146,6 @@ const CheckOut = () => {
       color="yellow.400"
     >
       <VStack>
-        <Avatar size="xl" name="logo resto" src={logo} />
         <Heading>Finish order and pay</Heading>
         <FormControl
         // isInvalid={errors.name}

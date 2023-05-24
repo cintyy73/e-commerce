@@ -115,7 +115,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 // import { useForm } from '../../hooks/useForm'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import logo from 'assets/favicon.png'
 import { useContext, useState } from 'react'
 import { UserContext } from 'context/UserContext'
@@ -128,6 +128,8 @@ import {
 } from '../../utils/validation'
 
 const Register = () => {
+  const navigate = useNavigate()
+
   const [isRegister, setIsRegister] = useState(false)
   const {
     register,
@@ -139,7 +141,7 @@ const Register = () => {
     try {
       registerUser(data)
       setIsRegister(true)
-      console.log('no entra en error')
+      navigate('/login')
     } catch (error) {
       setIsRegister(false)
 

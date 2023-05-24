@@ -29,7 +29,6 @@ export const UserProvider = ({ children }) => {
       data.password
     )
     const user = userCredential.user
-    // setUser(user)
     console.log(user)
   }
 

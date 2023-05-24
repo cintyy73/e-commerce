@@ -111,6 +111,16 @@ const Order = () => {
                 <Text w="55%">Total </Text>
 
                 <Text w="45%">$ {total}</Text>
+                <IconButton
+                  size="lg"
+                  colorScheme="black"
+                  onClick={() => {
+                    console.log(order)
+                    emptyOrder()
+                    console.log(order)
+                  }}
+                  icon={<DeleteIcon />}
+                />
               </HStack>
 
               <Button
@@ -126,16 +136,6 @@ const Order = () => {
               >
                 Order and pay $87870870
               </Button>
-              <IconButton
-                size="lg"
-                colorScheme="black"
-                onClick={() => {
-                  console.log(order)
-                  emptyOrder()
-                  console.log(order)
-                }}
-                icon={<DeleteIcon />}
-              />
             </VStack>
           </ModalFooter>
         </ModalContent>

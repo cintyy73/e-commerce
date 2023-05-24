@@ -9,6 +9,7 @@ import CityDetails from './pages/CityDetails'
 import NotFound from './pages/NotFound'
 import Login from './pages/auth/Login'
 import CheckOut from './pages/CheckOut'
+import LayoutAccount from './pages/Account/LayoutAccount'
 
 function App() {
   return (
@@ -23,7 +24,9 @@ function App() {
       <Route path="/menu" element={<Menu />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/checkout" element={<CheckOut />} />
+      <Route element={<LayoutAccount />}>
+        <Route path="/checkout" element={<CheckOut />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

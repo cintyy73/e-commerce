@@ -12,7 +12,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import logo from 'assets/favicon.png'
 import Order from './Order'
 import { useContext } from 'react'
@@ -61,7 +61,7 @@ const Header = () => {
                 My account
               </MenuButton>
               <MenuList background="black">
-                <MenuItem background="black" as={Link} to="/order">
+                <MenuItem background="black">
                   <MyAccount />
                 </MenuItem>
 
