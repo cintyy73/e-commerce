@@ -1,9 +1,11 @@
 import { createContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 export const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
   const [isAdd, setIsAdd] = useState(false)
   const [order, setOrder] = useState([])
+  const navigate = useNavigate()
   // const [finallyOrder, setFinallyOrder] = useState([])
 
   const createOrder = (cityD, id, quantity) => {
@@ -30,11 +32,14 @@ const OrderProvider = ({ children }) => {
     console.log(isAdd)
     console.log(order)
   }
-  const emptyOrder = () => setOrder([])
+  const payOrder = () => {
+    navigate('/')
+    setOrder([])
+  }
 
   // const finallyOrder = () => {}
   return (
-    <OrderContext.Provider value={{ order, createOrder, isAdd, emptyOrder }}>
+    <OrderContext.Provider value={{ order, createOrder, isAdd, payOrder }}>
       {children}
     </OrderContext.Provider>
   )

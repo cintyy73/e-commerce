@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound'
 import Login from './pages/auth/Login'
 import CheckOut from './pages/CheckOut'
 import LayoutAccount from './pages/Account/LayoutAccount'
+import ProtectedRoute from './pages/Account/ProtectedRoute'
 
 function App() {
   return (
@@ -24,8 +25,15 @@ function App() {
       <Route path="/menu" element={<Menu />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route element={<LayoutAccount />}>
-        <Route path="/checkout" element={<CheckOut />} />
+      <Route
+        path="/checkout"
+        element={
+          <ProtectedRoute>
+            <LayoutAccount />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="order-pay" element={<CheckOut />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

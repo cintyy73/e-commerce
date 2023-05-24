@@ -126,7 +126,7 @@ import { OrderContext } from '../context/OrderContext'
 import { Link } from 'react-router-dom'
 
 const CheckOut = () => {
-  const { emptyOrder } = useContext(OrderContext)
+  const { payOrder } = useContext(OrderContext)
   const {
     // register,
     handleSubmit,
@@ -134,7 +134,7 @@ const CheckOut = () => {
   } = useForm()
   return (
     <Center
-      onSubmit={handleSubmit(emptyOrder)}
+      onSubmit={handleSubmit(payOrder)}
       paddingTop={5}
       as="form"
       gap="4"
