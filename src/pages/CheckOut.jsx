@@ -102,7 +102,6 @@
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++++++++++++++++++++++
 import {
-  Avatar,
   Button,
   ButtonGroup,
   Center,
@@ -115,7 +114,6 @@ import {
 } from '@chakra-ui/react'
 // import { useForm } from '../../hooks/useForm'
 // import { NavLink } from 'react-router-dom'
-import logo from 'assets/favicon.png'
 import { useForm } from 'react-hook-form'
 // import {
 //   validateEmail,
