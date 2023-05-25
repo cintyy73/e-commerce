@@ -62,7 +62,7 @@ const City = (city) => {
         <CardFooter flexDirection={'column'} gap={2}>
           <Button
             as={NavLink}
-            to={'/' + id}
+            to={'/city/' + id}
             variant="solid"
             colorScheme="yellow"
           >

@@ -26,10 +26,12 @@ import { completeOrder } from '../services/createOrder'
 // import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom'
 import { DeleteIcon } from '@chakra-ui/icons'
+import { UserContext } from '../context/UserContext'
 // import { UserContext } from '../context/UserContext'
 
 const Order = () => {
-  // const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext)
+  console.log(user)
   const { order, emptyOrder } = useContext(OrderContext)
   const total = 0
   const { quantity, setQuantity, error, errorMsj } = useQuantity()
@@ -126,7 +128,7 @@ const Order = () => {
                 as={Link}
                 colorScheme="yellow"
                 size="lg"
-                to="/checkout"
+                to="my-account/checkout"
                 onClick={() => {
                   completeOrder(order, total)
 

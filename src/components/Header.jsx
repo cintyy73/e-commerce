@@ -18,11 +18,10 @@ import Order from './Order'
 import { useContext } from 'react'
 import { UserContext } from 'context/UserContext'
 import { ChevronDownIcon } from '@chakra-ui/icons'
-import MyAccount from './MyAccount'
 // import { signOut } from 'firebase/auth'
 
 const Header = () => {
-  const { isLogin, signOff } = useContext(UserContext)
+  const { signOff, user } = useContext(UserContext)
   return (
     <GridItem p={5} bg="black" color="#ffc600" area={'header'}>
       <HStack justifyContent="space-between" alignItems="center">
@@ -38,19 +37,19 @@ const Header = () => {
 
         <HStack>
           <ButtonGroup size={{ base: 'xs', md: 'lg' }} colorScheme="yellow">
-            {!isLogin && (
+            {!user && (
               <Button as={NavLink} to="/register">
                 Register
               </Button>
             )}
-            {!isLogin && (
+            {!user && (
               <Button as={NavLink} to="/login">
                 Login
               </Button>
             )}
           </ButtonGroup>
 
-          {isLogin && (
+          {user && (
             <Menu>
               <MenuButton
                 size={{ base: 'xs', md: 'lg' }}
@@ -61,10 +60,12 @@ const Header = () => {
                 My account
               </MenuButton>
               <MenuList background="black">
-                <MenuItem background="black">
-                  <MyAccount />
+                <MenuItem background="black" to="/my-account">
+                  My account
                 </MenuItem>
-
+                <MenuItem background="black" to="/order-in-progress">
+                  My order in progress
+                </MenuItem>
                 <MenuItem background="black" color="red" onClick={signOff}>
                   Sign Out
                 </MenuItem>

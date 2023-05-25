@@ -20,7 +20,7 @@ const MyAccount = () => {
   return (
     <>
       <Button ref={btnRef} color="yellow" colorScheme="black" onClick={onOpen}>
-        My account--hacer!!
+        My previous Orders
       </Button>
 
       <Drawer

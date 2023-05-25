@@ -37,7 +37,6 @@ const OrderProvider = ({ children }) => {
     setOrder([])
   }
 
-  // const finallyOrder = () => {}
   return (
     <OrderContext.Provider value={{ order, createOrder, isAdd, payOrder }}>
       {children}

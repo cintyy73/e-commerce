@@ -29,14 +29,14 @@ const Footer = () => {
             </Text>
           </VStack>
           <VStack display={{ base: 'none', md: 'flex' }}>
-            <Text as={NavLink} to="/order">
-              Order
+            <Text as={NavLink} to="/my-account">
+              my account
             </Text>
             <Text as={NavLink} to="/login">
               Login
             </Text>
             <Text as={NavLink} to="/register">
-              Crete account
+              Create account
             </Text>
           </VStack>
         </HStack>

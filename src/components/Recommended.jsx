@@ -4,6 +4,7 @@ import City from './City'
 
 const Recommended = () => {
   const { menu } = useMenu()
+
   return (
     <SimpleGrid
       padding={6}

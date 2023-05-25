@@ -8,32 +8,32 @@ import Cities from './pages/Cities'
 import CityDetails from './pages/CityDetails'
 import NotFound from './pages/NotFound'
 import Login from './pages/auth/Login'
-import CheckOut from './pages/CheckOut'
+import CheckOut from './pages/Account/CheckOut'
 import LayoutAccount from './pages/Account/LayoutAccount'
-import ProtectedRoute from './pages/Account/ProtectedRoute'
+// import ProtectedRoute from './pages/Account/ProtectedRoute'
+import OrderInProgress from './pages/Account/OrderInProgress'
 
 function App() {
   return (
     <Routes>
       <Route element={<Home />}>
-        <Route>
-          <Route path="/" element={<Cities />} />
-          <Route path="/recommended" element={<Recommended />} />
-          <Route path=":id" element={<CityDetails />} />
-        </Route>
+        <Route path="/" element={<Cities />} />
+        <Route path="/recommended" element={<Recommended />} />
+        <Route path="/city/:id" element={<CityDetails />} />
       </Route>
       <Route path="/menu" element={<Menu />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route
-        path="/checkout"
+        path="/my-account"
         element={
-          <ProtectedRoute>
-            <LayoutAccount />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <LayoutAccount />
+          // </ProtectedRoute>
         }
       >
-        <Route path="order-pay" element={<CheckOut />} />
+        <Route path="order-in-progress" element={<OrderInProgress />} />
+        <Route path="checkout" element={<CheckOut />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

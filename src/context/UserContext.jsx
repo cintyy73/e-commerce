@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from 'react'
 import { auth } from '../firebase/config'
 import {
   createUserWithEmailAndPassword,
-  // getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
@@ -11,7 +10,6 @@ export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  const [isLogin, setIsLogin] = useState(false)
 
   const registerUser = async (data) => {
     const userCredential = await createUserWithEmailAndPassword(
@@ -29,39 +27,35 @@ export const UserProvider = ({ children }) => {
       data.password
     )
     const user = userCredential.user
-    console.log(user)
+    setUser(user)
   }
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid
-        setIsLogin(true)
-        console.log(uid)
+        setUser({
+          email: user.email,
+          password: user.password,
+          uid,
+        })
       } else {
-        // User is signed out
-        setIsLogin(false)
+        setUser(null)
       }
     })
-  }, [isLogin])
+  }, [])
   const signOff = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        setIsLogin(false)
       })
       .catch((error) => {
         // An error happened
         console.log(error)
       })
-    console.log(user)
   }
   return (
-    <UserContext.Provider
-      value={{ user, registerUser, loginUser, isLogin, signOff }}
-    >
+    <UserContext.Provider value={{ user, registerUser, loginUser, signOff }}>
       {children}
     </UserContext.Provider>
   )
