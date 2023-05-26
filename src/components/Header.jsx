@@ -12,7 +12,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import logo from 'assets/favicon.png'
 import Order from './Order'
 import { useContext } from 'react'
@@ -60,10 +60,14 @@ const Header = () => {
                 My account
               </MenuButton>
               <MenuList background="black">
-                <MenuItem background="black" to="/my-account">
+                <MenuItem as={Link} background="black" to="/my-account">
                   My account
                 </MenuItem>
-                <MenuItem background="black" to="/order-in-progress">
+                <MenuItem
+                  as={Link}
+                  background="black"
+                  to="/my-account/order-in-progress"
+                >
                   My order in progress
                 </MenuItem>
                 <MenuItem background="black" color="red" onClick={signOff}>

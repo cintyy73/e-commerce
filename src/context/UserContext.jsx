@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
+import { deleteStorage } from '../utils/localStorage'
 export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
@@ -47,7 +48,7 @@ export const UserProvider = ({ children }) => {
   const signOff = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        deleteStorage('order')
       })
       .catch((error) => {
         // An error happened

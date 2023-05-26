@@ -33,6 +33,7 @@ const Login = () => {
       await loginUser(data)
 
       setIsError(true)
+
       navigate('/')
     } catch (error) {
       setIsError(true)

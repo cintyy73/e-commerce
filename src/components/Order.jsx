@@ -23,16 +23,15 @@ import { useQuantity } from '../hooks/useQuantity'
 import { useContext } from 'react'
 import { OrderContext } from 'context/OrderContext'
 import { completeOrder } from '../services/createOrder'
-// import { UserContext } from '../context/UserContext'
 import { Link } from 'react-router-dom'
 import { DeleteIcon } from '@chakra-ui/icons'
 import { UserContext } from '../context/UserContext'
-// import { UserContext } from '../context/UserContext'
 
 const Order = () => {
   const { user } = useContext(UserContext)
   console.log(user)
-  const { order, emptyOrder } = useContext(OrderContext)
+  const { order } = useContext(OrderContext)
+
   const total = 0
   const { quantity, setQuantity, error, errorMsj } = useQuantity()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -117,7 +116,7 @@ const Order = () => {
                   colorScheme="black"
                   onClick={() => {
                     console.log(order)
-                    emptyOrder()
+                    // emptyOrder() creo q no hace nada
                     console.log(order)
                   }}
                   icon={<DeleteIcon />}

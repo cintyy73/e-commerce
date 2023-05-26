@@ -49,7 +49,7 @@ const Nav = () => {
                 city.recommended && (
                   <ListItem key={city.id} city={city}>
                     <ListIcon color="gray" as={StarIcon} />
-                    <NavLink to={'/' + city.id}> {city.name}</NavLink>
+                    <NavLink to={'/city/' + city.id}> {city.name}</NavLink>
                   </ListItem>
                 )
             )}

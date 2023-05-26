@@ -10,7 +10,7 @@ import NotFound from './pages/NotFound'
 import Login from './pages/auth/Login'
 import CheckOut from './pages/Account/CheckOut'
 import LayoutAccount from './pages/Account/LayoutAccount'
-// import ProtectedRoute from './pages/Account/ProtectedRoute'
+import ProtectedRoute from './pages/Account/ProtectedRoute'
 import OrderInProgress from './pages/Account/OrderInProgress'
 
 function App() {
@@ -24,17 +24,23 @@ function App() {
       <Route path="/menu" element={<Menu />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route
+      <Route element={<ProtectedRoute />}>
+        <Route path="/my-account" element={<LayoutAccount />}>
+          <Route path="order-in-progress" element={<OrderInProgress />} />
+          <Route path="checkout" element={<CheckOut />} />
+        </Route>
+      </Route>
+      {/* <Route
         path="/my-account"
         element={
-          // <ProtectedRoute>
-          <LayoutAccount />
-          // </ProtectedRoute>
+          <ProtectedRoute>
+            <LayoutAccount />
+          </ProtectedRoute>
         }
       >
         <Route path="order-in-progress" element={<OrderInProgress />} />
         <Route path="checkout" element={<CheckOut />} />
-      </Route>
+      </Route> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

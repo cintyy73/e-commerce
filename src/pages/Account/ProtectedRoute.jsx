@@ -1,13 +1,15 @@
 // import { useContext } from 'react'
+
 // import UserContext from 'hooks/UserContext'
-import { Navigate } from 'react-router-dom'
-const ProtectedRoute = ({ children }) => {
+import { Navigate, Outlet } from 'react-router-dom'
+const ProtectedRoute = () => {
   // const { user } = useContext(UserContext)
-  const user = true
-  if (!user) {
+  // console.log(user)
+  const userL = true
+  if (!userL) {
     return <Navigate to="/login" replace />
   }
-  return children
+  return <Outlet />
 }
 
 export default ProtectedRoute

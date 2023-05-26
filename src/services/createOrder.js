@@ -4,6 +4,7 @@ import { db } from '../firebase/config'
 export const completeOrder = async (order, total) => {
   // console.log(user, order)
   // const { email, uid } = user
+
   const orderUser = {
     user: { email: 'fake', id: 'fake' },
     order,
