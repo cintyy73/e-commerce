@@ -17,8 +17,7 @@ import { NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
 import { useContext } from 'react'
 import { OrderContext } from '../context/OrderContext'
-// import { useContext, useState } from 'react'
-// import { OrderContext } from './OrderContext/OrderContext'
+import Order from './Order'
 
 const Menu = () => {
   const toast = useToast()
@@ -36,17 +35,20 @@ const Menu = () => {
     >
       <HStack w="100%" justifyContent="space-evenly" pb={6}>
         <Heading fontSize={40}>Menu</Heading>
-        <Button
-          variant="outline"
-          p={2}
-          size="lg"
-          fontSize={25}
-          as={NavLink}
-          to="/"
-          colorScheme="black"
-        >
-          Home
-        </Button>
+        <ButtonGroup>
+          <Button
+            variant="outline"
+            p={2}
+            size="lg"
+            fontSize={25}
+            as={NavLink}
+            to="/"
+            colorScheme="black"
+          >
+            Home
+          </Button>
+          <Order />
+        </ButtonGroup>
       </HStack>
       {loading && <Spinner color="yellow" size="xl" />}
       {!loading && (

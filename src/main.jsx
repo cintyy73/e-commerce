@@ -5,7 +5,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter } from 'react-router-dom'
 import { UserProvider } from 'context/UserContext.jsx'
 import OrderProvider from 'context/OrderContext.jsx'
-import LocalStorageProvider from './context/LocaStorageContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,9 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <UserProvider>
           <OrderProvider>
-            <LocalStorageProvider>
-              <App />
-            </LocalStorageProvider>
+            <App />
           </OrderProvider>
         </UserProvider>
       </BrowserRouter>

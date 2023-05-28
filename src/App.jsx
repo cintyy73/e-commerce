@@ -12,8 +12,15 @@ import CheckOut from './pages/Account/CheckOut'
 import LayoutAccount from './pages/Account/LayoutAccount'
 import ProtectedRoute from './pages/Account/ProtectedRoute'
 import OrderInProgress from './pages/Account/OrderInProgress'
+import { useContext } from 'react'
+import { UserContext } from './context/UserContext'
+import { Spinner } from '@chakra-ui/react'
 
 function App() {
+  const { isLoading } = useContext(UserContext)
+  if (isLoading) {
+    return <Spinner />
+  }
   return (
     <Routes>
       <Route element={<Home />}>

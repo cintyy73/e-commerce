@@ -19,6 +19,8 @@ export const useMenu = () => {
   }, [])
   const { id } = useParams()
   const cityD = menu.find((c) => c.id === id)
+  // const q = query(citiesRef, orderBy("name"), limit(3));
+
   // const { city } = menu
 
   // Add a new document with a generated id

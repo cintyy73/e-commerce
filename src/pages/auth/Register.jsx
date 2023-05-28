@@ -31,7 +31,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm()
   const { registerUser } = useContext(UserContext)
   const onSubmitRegister = (data) => {
@@ -115,7 +115,11 @@ const Register = () => {
               <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
             </FormControl>
             <ButtonGroup>
-              <Button type="submit" colorScheme="yellow">
+              <Button
+                type="submit"
+                isLoading={isSubmitting}
+                colorScheme="yellow"
+              >
                 Create
               </Button>
               <Button as={NavLink} to="/" colorScheme="red">

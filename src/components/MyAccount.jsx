@@ -10,11 +10,11 @@ import {
   useDisclosure,
   Heading,
 } from '@chakra-ui/react'
-import { useContext, useRef } from 'react'
-import { UserContext } from 'context/UserContext'
+import { useRef } from 'react'
+// import { UserContext } from 'context/UserContext'
 const MyAccount = () => {
-  const { user } = useContext(UserContext)
-  console.log(user)
+  // const { user } = useContext(UserContext)
+  // console.log(user)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
   return (

@@ -30,7 +30,7 @@ const CheckOut = () => {
   const {
     // register,
     handleSubmit,
-    // formState: { errors },
+    formState: { isSubmiting }, //errors,
   } = useForm()
   return (
     <Center
@@ -94,7 +94,7 @@ const CheckOut = () => {
           {/* <FormErrorMessage>{errors.table?.message}</FormErrorMessage> */}
         </FormControl>
         <ButtonGroup>
-          <Button type="submit" colorScheme="green">
+          <Button type="submit" isLoading={isSubmiting} colorScheme="green">
             Pay order total: $
           </Button>
           <Button as={Link} to="/" colorScheme="red">

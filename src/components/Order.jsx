@@ -19,27 +19,23 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useQuantity } from '../hooks/useQuantity'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { OrderContext } from 'context/OrderContext'
 import { completeOrder } from '../services/createOrder'
 import { Link } from 'react-router-dom'
 import { DeleteIcon } from '@chakra-ui/icons'
-import { UserContext } from '../context/UserContext'
 
 const Order = () => {
-  const { user } = useContext(UserContext)
-  console.log(user)
-  const { order } = useContext(OrderContext)
-
+  const { order, deleteOrder } = useContext(OrderContext)
+  const [quantity, setQuantity] = useState(1)
   const total = 0
-  const { quantity, setQuantity, error, errorMsj } = useQuantity()
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
       <Button
         size={{ base: 'xs', md: 'lg' }}
-        colorScheme="yellow"
+        colorScheme="black"
+        variant="outline"
         ml="4"
         onClick={() => {
           onOpen()
@@ -60,7 +56,7 @@ const Order = () => {
           border="4px solid green"
         >
           <ModalHeader fontStyle="underline" fontSize={30} textAlign="center">
-            name surname this is your order
+            Order
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -84,6 +80,7 @@ const Order = () => {
                     max={city.stock}
                     value={quantity}
                     onChange={(value) => setQuantity(Number(value))}
+                    name={city.name}
                   >
                     <Box bg="black">
                       <NumberInputField />
@@ -101,11 +98,11 @@ const Order = () => {
             ))}
           </ModalBody>
           <ModalFooter>
-            {error && (
+            {/* {error && (
               <Text bg="black" color="yellow.200" p={6}>
                 {errorMsj}
               </Text>
-            )}
+            )} */}
             <VStack>
               <HStack w="100%">
                 <Text w="55%">Total </Text>
@@ -115,9 +112,7 @@ const Order = () => {
                   size="lg"
                   colorScheme="black"
                   onClick={() => {
-                    console.log(order)
-                    // emptyOrder() creo q no hace nada
-                    console.log(order)
+                    deleteOrder()
                   }}
                   icon={<DeleteIcon />}
                 />
@@ -127,7 +122,7 @@ const Order = () => {
                 as={Link}
                 colorScheme="yellow"
                 size="lg"
-                to="my-account/checkout"
+                to="/my-account/checkout"
                 onClick={() => {
                   completeOrder(order, total)
 

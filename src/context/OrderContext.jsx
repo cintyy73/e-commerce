@@ -1,6 +1,10 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { deleteOrderStorage, getStorage } from '../utils/localStorage'
+import {
+  deleteOrderStorage,
+  getStorage,
+  setStorage,
+} from '../utils/localStorage'
 export const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
@@ -8,7 +12,6 @@ const OrderProvider = ({ children }) => {
   const [isAdd, setIsAdd] = useState(false)
   const [order, setOrder] = useState(initialOrder)
   const navigate = useNavigate()
-  console.log(initialOrder, order)
   // const [finallyOrder, setFinallyOrder] = useState([])
 
   const createOrder = (cityD, id, quantity) => {
@@ -21,22 +24,21 @@ const OrderProvider = ({ children }) => {
       id,
       quantity,
       // table: '',
-      // sucursal: '',
       price,
       // total,
     }
     if (!orderExist) {
-      console.log(orderExist, 'entoces agregos', order)
-
       setOrder([...order, newOrder])
 
       setIsAdd(true)
     } else {
       setIsAdd(false)
     }
-    console.log(isAdd)
-    console.log(order)
   }
+  useEffect(() => {
+    setStorage('order', order)
+  }, [order])
+
   const deleteOrder = () => {
     setOrder([])
     deleteOrderStorage('order')

@@ -11,7 +11,7 @@ export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-
+  const [isLoading, setIsLoading] = useState(true)
   const registerUser = async (data) => {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -21,6 +21,7 @@ export const UserProvider = ({ children }) => {
     const user = userCredential.user
     setUser(user)
   }
+
   const loginUser = async (data) => {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -43,20 +44,23 @@ export const UserProvider = ({ children }) => {
       } else {
         setUser(null)
       }
+      setIsLoading(false)
     })
   }, [])
+
   const signOff = () => {
     signOut(auth)
       .then(() => {
         deleteStorage('order')
       })
       .catch((error) => {
-        // An error happened
         console.log(error)
       })
   }
   return (
-    <UserContext.Provider value={{ user, registerUser, loginUser, signOff }}>
+    <UserContext.Provider
+      value={{ isLoading, user, registerUser, loginUser, signOff }}
+    >
       {children}
     </UserContext.Provider>
   )

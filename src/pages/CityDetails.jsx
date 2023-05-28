@@ -19,7 +19,6 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react'
-import { useQuantity } from '../hooks/useQuantity'
 import { useContext } from 'react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -29,10 +28,10 @@ import { OrderContext } from 'context/OrderContext'
 const CityDetails = () => {
   const [cityD, setCityD] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [quantity, setQuantity] = useState(1)
   const { id } = useParams()
   const toast = useToast()
-
-  const { quantity, setQuantity, error, isAdd, errorMsj } = useQuantity()
+  const { isAdd } = useContext(OrderContext)
   useEffect(() => {
     const getData = async () => {
       const data = await getById(id)
@@ -135,7 +134,7 @@ const CityDetails = () => {
           <ButtonGroup gap={5}>
             <Button
               onClick={() => {
-                createOrder(cityD, id, quantity.id)
+                createOrder(cityD, id, quantity)
                 toast({
                   title: isAdd
                     ? 'Added to your order'
@@ -149,11 +148,11 @@ const CityDetails = () => {
               ADD
             </Button>
           </ButtonGroup>
-          {error && (
+          {/* {error && (
             <Text bg="black" color="yellow.200" p={6}>
               {errorMsj}
             </Text>
-          )}
+          )} */}
         </>
       )}
     </VStack>

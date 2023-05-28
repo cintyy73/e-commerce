@@ -10,6 +10,7 @@ import {
   Button,
   Avatar,
   FormErrorMessage,
+  useToast,
 } from '@chakra-ui/react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
@@ -20,19 +21,20 @@ import logo from 'assets/favicon.png'
 
 const Login = () => {
   const [isError, setIsError] = useState(false)
+
   const navigate = useNavigate()
+  const toast = useToast()
   const { loginUser } = useContext(UserContext)
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm()
-
   const onSubmitlogin = async (data) => {
+    setIsError(false)
     try {
       await loginUser(data)
-
-      setIsError(true)
+      setIsError(false)
 
       navigate('/')
     } catch (error) {
@@ -43,8 +45,20 @@ const Login = () => {
       console.log(errorMessage)
     }
   }
+
   return (
-    <form onSubmit={handleSubmit(onSubmitlogin)}>
+    <form
+      onSubmit={handleSubmit(
+        onSubmitlogin,
+        isError &&
+          toast({
+            title: 'User or password incorrect',
+            status: 'error',
+            isClosable: true,
+            duration: 2000,
+          })
+      )}
+    >
       <Center
         paddingTop={5}
         gap="4"
@@ -84,7 +98,7 @@ const Login = () => {
             <FormErrorMessage>{errors.password?.message}.</FormErrorMessage>
           </FormControl>
           <ButtonGroup>
-            <Button type="submit" colorScheme="yellow">
+            <Button type="submit" isLoading={isSubmitting} colorScheme="yellow">
               Login
             </Button>
             <Button as={NavLink} to="/" colorScheme="red">
@@ -93,7 +107,6 @@ const Login = () => {
           </ButtonGroup>
         </VStack>
       </Center>
-      {/* )} */}
     </form>
   )
 }
