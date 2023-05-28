@@ -33,7 +33,7 @@ const OrderInProgress = () => {
               Price
             </Text>
             <Text fontSize={15} textAlign="center" w="100%">
-              Total x city{' '}
+              Total x city
             </Text>
           </HStack>
           <Divider />

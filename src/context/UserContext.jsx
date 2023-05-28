@@ -12,6 +12,7 @@ export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  // const [isAuth, setIsAuth] = useState(false)
   const registerUser = async (data) => {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -33,19 +34,27 @@ export const UserProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid
-        setUser({
-          email: user.email,
-          password: user.password,
-          uid,
-        })
-      } else {
-        setUser(null)
-      }
-      setIsLoading(false)
-    })
+    const isAuth = () => {
+      onAuthStateChanged(auth, (user) => {
+        try {
+          if (user) {
+            const uid = user.uid
+            setUser({
+              email: user.email,
+              password: user.password,
+              uid,
+            })
+          } else {
+            setUser(null)
+          }
+          setIsLoading(false)
+        } catch (error) {
+          setUser(null)
+          setIsLoading(false)
+        }
+      })
+    }
+    isAuth()
   }, [])
 
   const signOff = () => {

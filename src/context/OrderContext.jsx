@@ -35,6 +35,7 @@ const OrderProvider = ({ children }) => {
       setIsAdd(false)
     }
   }
+
   useEffect(() => {
     setStorage('order', order)
   }, [order])
@@ -48,10 +49,25 @@ const OrderProvider = ({ children }) => {
     setOrder([])
     deleteOrderStorage('order')
   }
-
+  const deleteCity = (id) => {
+    const orderDelete = order.filter((city) => city.id !== id)
+    setOrder(orderDelete)
+  }
+  const changeQuantity = (cityD, id, quantity) => {
+    deleteCity(id)
+    createOrder(cityD, id, quantity)
+  }
   return (
     <OrderContext.Provider
-      value={{ order, deleteOrder, createOrder, isAdd, payOrder }}
+      value={{
+        order,
+        deleteOrder,
+        deleteCity,
+        createOrder,
+        changeQuantity,
+        isAdd,
+        payOrder,
+      }}
     >
       {children}
     </OrderContext.Provider>

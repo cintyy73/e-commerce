@@ -19,11 +19,23 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
+import { useState } from 'react'
 
 const Nav = () => {
   const { menu } = useMenu()
+  const [values, setValues] = useState({
+    min: 0,
+    max: 0,
+    country: '',
+  })
+  const handleChange = (e) =>
+    setValues({ ...values, [e.target.name]: e.target.value })
+
+  const handleCountry = (city) =>
+    setValues({ ...values, country: city.country })
+  // const menuFilter = menu.filter((city) => city.country === values.country)
 
   return (
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>
@@ -66,16 +78,19 @@ const Nav = () => {
               <SearchIcon /> Country
             </MenuButton>
             <MenuList background="black">
-              <MenuItem background="black" as={Link} to="/order">
-                Argentina
-              </MenuItem>
-              <MenuItem background="black" as={Link} to="/order">
-                Peru
-              </MenuItem>
-              <MenuItem background="black" as={Link} to="/order">
-                Russia
-              </MenuItem>
-              <MenuItem background="black">Spain</MenuItem>
+              {menu.map(
+                (city) =>
+                  city.recommended && (
+                    <MenuItem
+                      background="black"
+                      key={city.country + city.id}
+                      city={city}
+                      onClick={() => handleCountry(city)}
+                    >
+                      {city.country}
+                    </MenuItem>
+                  )
+              )}
             </MenuList>
           </Menu>
         </ListItem>
@@ -85,18 +100,18 @@ const Nav = () => {
             <FormLabel>Price</FormLabel>
             <Input
               type="number"
-              // onChange={handleChange}
-              // value={values.name}
+              onChange={handleChange}
+              value={values.name}
               name="min"
-              placeholder="Min"
+              placeholder="100-1000"
             />
 
             <Input
               type="number"
-              // onChange={handleChange}
-              // value={values.name}
+              onChange={handleChange}
+              value={values.name}
               name="max"
-              placeholder="Max"
+              placeholder="100-1000"
             />
           </FormControl>
         </ListItem>

@@ -1,5 +1,5 @@
 import {
-  Box,
+  // Box,
   Button,
   HStack,
   IconButton,
@@ -10,26 +10,28 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
+  // NumberDecrementStepper,
+  // NumberIncrementStepper,
+  // NumberInput,
+  // NumberInputField,
+  // NumberInputStepper,
   Text,
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { OrderContext } from 'context/OrderContext'
 import { completeOrder } from '../services/createOrder'
 import { Link } from 'react-router-dom'
 import { DeleteIcon } from '@chakra-ui/icons'
 
 const Order = () => {
-  const { order, deleteOrder } = useContext(OrderContext)
-  const [quantity, setQuantity] = useState(1)
-  const total = 0
+  const { order, deleteOrder, deleteCity } = useContext(OrderContext)
+  // const [quantity, setQuantity] = useState(1)
+  // console.log(quantity)
+  let total = 0
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <>
       <Button
@@ -60,25 +62,27 @@ const Order = () => {
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {order?.map((city) => (
-              <HStack
-                key={city.id + city.name}
-                alignItems="center"
-                justifyContent="space-evenly"
-              >
-                <VStack w="25%" p={3}>
-                  <Text>{city.name} </Text>
-                </VStack>
-                <VStack w="25%">
-                  <Text>$ {city.price}</Text>
-                </VStack>
-                <VStack w="25%">
-                  <NumberInput
+            {order?.map((city) => {
+              total = total + city.price + city.quantity
+              return (
+                <HStack
+                  key={city.id + city.name}
+                  alignItems="center"
+                  justifyContent="space-evenly"
+                >
+                  <VStack w="25%" p={3}>
+                    <Text>{city.name} </Text>
+                  </VStack>
+                  <VStack w="25%">
+                    <Text>$ {city.price}</Text>
+                  </VStack>
+                  <VStack w="25%">
+                    <Text>{city.quantity}</Text>
+                    {/* <NumberInput
                     color="yellow"
-                    defaultValue={1}
                     min={1}
                     max={city.stock}
-                    value={quantity}
+                    defaultValue={city.quantity}
                     onChange={(value) => setQuantity(Number(value))}
                     name={city.name}
                   >
@@ -89,13 +93,24 @@ const Order = () => {
                         <NumberDecrementStepper />
                       </NumberInputStepper>
                     </Box>
-                  </NumberInput>
-                </VStack>
-                <VStack w="25%">
-                  <Text>$ {city.price * quantity}</Text>
-                </VStack>
-              </HStack>
-            ))}
+                  </NumberInput> */}
+                  </VStack>
+                  <VStack w="25%">
+                    <Text>$ {city.price * city.quantity}</Text>
+                  </VStack>
+                  <VStack>
+                    <IconButton
+                      size="lg"
+                      colorScheme="black"
+                      onClick={() => {
+                        deleteCity(city.id)
+                      }}
+                      icon={<DeleteIcon />}
+                    />
+                  </VStack>
+                </HStack>
+              )
+            })}
           </ModalBody>
           <ModalFooter>
             {/* {error && (

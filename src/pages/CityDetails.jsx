@@ -19,19 +19,20 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react'
-import { useContext } from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getById } from '../services/cities'
 import { OrderContext } from 'context/OrderContext'
+import { DeleteIcon } from '@chakra-ui/icons'
 
 const CityDetails = () => {
+  const { isAdd } = useContext(OrderContext)
   const [cityD, setCityD] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
+  const { createOrder, changeQuantity, deleteCity } = useContext(OrderContext)
   const { id } = useParams()
   const toast = useToast()
-  const { isAdd } = useContext(OrderContext)
   useEffect(() => {
     const getData = async () => {
       const data = await getById(id)
@@ -41,11 +42,10 @@ const CityDetails = () => {
     getData()
   }, [id])
 
-  const { createOrder } = useContext(OrderContext)
-  //  const { order, completeOrder } = useContext(OrderContext)
   return (
     <VStack>
       {isLoading && <Spinner color="yellow" size="xl" />}
+
       {!isLoading && (
         <>
           <Heading bg="black" p={4} color="yellow.200">
@@ -131,7 +131,7 @@ const CityDetails = () => {
               </NumberInputStepper>
             </Box>
           </NumberInput>
-          <ButtonGroup gap={5}>
+          <ButtonGroup gap={5} colorScheme="yellow">
             <Button
               onClick={() => {
                 createOrder(cityD, id, quantity)
@@ -146,6 +146,16 @@ const CityDetails = () => {
               }}
             >
               ADD
+            </Button>
+            <Button
+              onClick={() => {
+                deleteCity(id)
+              }}
+            >
+              <DeleteIcon />
+            </Button>
+            <Button onClick={() => changeQuantity(cityD, id, quantity)}>
+              Change Add {quantity}
             </Button>
           </ButtonGroup>
           {/* {error && (
