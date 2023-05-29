@@ -23,10 +23,13 @@ import { OrderContext } from '../../context/OrderContext'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import OrderInProgress from './OrderInProgress'
+import { completeOrder } from '../../services/completeOrder'
 
 const CheckOut = () => {
-  const { payOrder } = useContext(OrderContext)
+  const { payOrder, order } = useContext(OrderContext)
   const { user } = useContext(UserContext)
+  const { email, uid } = user
+
   const {
     // register,
     handleSubmit,
@@ -94,8 +97,13 @@ const CheckOut = () => {
           {/* <FormErrorMessage>{errors.table?.message}</FormErrorMessage> */}
         </FormControl>
         <ButtonGroup>
-          <Button type="submit" isLoading={isSubmiting} colorScheme="green">
-            Pay order total: $
+          <Button
+            onClick={() => completeOrder(order, email, uid)}
+            type="submit"
+            isLoading={isSubmiting}
+            colorScheme="green"
+          >
+            {/* Pay order total: ${total} */}
           </Button>
           <Button as={Link} to="/" colorScheme="red">
             Cancel

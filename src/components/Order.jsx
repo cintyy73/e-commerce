@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { OrderContext } from 'context/OrderContext'
-import { completeOrder } from '../services/createOrder'
+// import { completeOrder } from '../services/createOrder'
 import { Link } from 'react-router-dom'
 import { DeleteIcon } from '@chakra-ui/icons'
 
@@ -138,13 +138,9 @@ const Order = () => {
                 colorScheme="yellow"
                 size="lg"
                 to="/my-account/checkout"
-                onClick={() => {
-                  completeOrder(order, total)
-
-                  onClose()
-                }}
+                onClick={onClose}
               >
-                Order and pay $87870870
+                Order and pay ${total}
               </Button>
             </VStack>
           </ModalFooter>
