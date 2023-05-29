@@ -1,4 +1,4 @@
-import { Center, SimpleGrid, Spinner } from '@chakra-ui/react'
+import { VStack, Heading, SimpleGrid, Spinner } from '@chakra-ui/react'
 import City from '../components/City'
 import { useMenu } from '../hooks/useMenu'
 
@@ -6,7 +6,10 @@ const Cities = () => {
   const { menu, loading } = useMenu()
   // menu.map((city) => console.log(city.id))
   return (
-    <Center w="100%" h="100%">
+    <VStack w="100%" h="100%">
+      <Heading mt={4} color="yellow.200" bg="black">
+        All Cities
+      </Heading>
       {loading && <Spinner color="yellow" size="xl" />}
       {!loading && (
         <SimpleGrid
@@ -23,7 +26,7 @@ const Cities = () => {
           ))}
         </SimpleGrid>
       )}
-    </Center>
+    </VStack>
   )
 }
 

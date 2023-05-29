@@ -8,6 +8,8 @@ import {
   FormLabel,
   Heading,
   Input,
+  InputGroup,
+  InputRightElement,
   Text,
   VStack,
 } from '@chakra-ui/react'
@@ -22,11 +24,14 @@ import {
   validateName,
   validatePassword,
   validateSurname,
+  validateRepitePassword,
 } from '../../utils/validation'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 const Register = () => {
   const navigate = useNavigate()
-
+  const [show, setShow] = useState(false)
+  const handleClick = () => setShow(!show)
   const [isRegister, setIsRegister] = useState(false)
   const {
     register,
@@ -106,13 +111,50 @@ const Register = () => {
 
             <FormControl isInvalid={errors.password}>
               <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                id="password"
-                placeholder="Password"
-                {...register('password', validatePassword)}
-              />
+              <InputGroup>
+                <Input
+                  pr="4.5rem"
+                  type={show ? 'text' : 'password'}
+                  placeholder="Enter password"
+                  {...register('password', validatePassword)}
+                  id="password"
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? (
+                      <ViewOffIcon color="black" />
+                    ) : (
+                      <ViewIcon color="black" />
+                    )}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
               <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl isInvalid={errors.password}>
+              <FormLabel>Repite Password</FormLabel>
+              <InputGroup>
+                <Input
+                  pr="4.5rem"
+                  type={show ? 'text' : 'password'}
+                  placeholder="Repite password"
+                  {...register('repitePassword', validateRepitePassword)}
+                  id="repitePassword"
+                />
+                <InputRightElement width="4.5rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {show ? (
+                      <ViewOffIcon color="black" />
+                    ) : (
+                      <ViewIcon color="black" />
+                    )}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <FormErrorMessage>
+                {errors.repitePassword?.message}
+              </FormErrorMessage>
             </FormControl>
             <ButtonGroup>
               <Button

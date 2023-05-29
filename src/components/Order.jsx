@@ -63,7 +63,7 @@ const Order = () => {
           <ModalCloseButton />
           <ModalBody>
             {order?.map((city) => {
-              total = total + city.price + city.quantity
+              total = total + city.price * city.quantity
               return (
                 <HStack
                   key={city.id + city.name}

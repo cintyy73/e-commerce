@@ -11,6 +11,8 @@ import {
   Avatar,
   FormErrorMessage,
   useToast,
+  InputRightElement,
+  InputGroup,
 } from '@chakra-ui/react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
@@ -18,10 +20,12 @@ import { UserContext } from 'context/UserContext'
 import { useForm } from 'react-hook-form'
 import { validateEmail, validatePassword } from '../../utils/validation'
 import logo from 'assets/favicon.png'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 const Login = () => {
   const [isError, setIsError] = useState(false)
-
+  const [show, setShow] = useState(false)
+  const handleClick = () => setShow(!show)
   const navigate = useNavigate()
   const toast = useToast()
   const { loginUser } = useContext(UserContext)
@@ -89,12 +93,30 @@ const Login = () => {
           </FormControl>
           <FormControl isInvalid={errors.password}>
             <FormLabel>Password</FormLabel>
-            <Input
+            <InputGroup>
+              <Input
+                pr="4.5rem"
+                type={show ? 'text' : 'password'}
+                placeholder="Enter password"
+                {...register('password', validatePassword)}
+                id="password"
+              />
+              <InputRightElement width="4.5rem">
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                  {show ? (
+                    <ViewOffIcon color="black" />
+                  ) : (
+                    <ViewIcon color="black" />
+                  )}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+            {/* <Input
               type="password"
               {...register('password', validatePassword)}
               id="password"
               placeholder="Password"
-            />
+            /> */}
             <FormErrorMessage>{errors.password?.message}.</FormErrorMessage>
           </FormControl>
           <ButtonGroup>

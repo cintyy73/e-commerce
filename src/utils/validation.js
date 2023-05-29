@@ -19,15 +19,19 @@ export const validatePassword = {
     message: '8 characters',
   },
 }
+export const validateRepitePassword = {
+  required: 'this is required',
+}
+
 export const validateTable = {
   required: 'this is required',
-  minLength: {
+  min: {
     value: 1,
-    message: '8 characters',
+    message: '1-25',
   },
-  maxLength: {
-    value: 20,
-    message: ' 1 - 20',
+  max: {
+    value: 25,
+    message: ' 1 - 25',
   },
 }
 export const validateEmail = {

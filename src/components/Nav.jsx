@@ -46,6 +46,11 @@ const Nav = () => {
           </Button>
         </ListItem>
         <ListItem>
+          <Button to="/cities" as={NavLink} colorScheme="yellow">
+            All
+          </Button>
+        </ListItem>
+        <ListItem>
           <Button to="/menu" as={NavLink} colorScheme="yellow">
             <ViewIcon /> Menu
           </Button>

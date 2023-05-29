@@ -54,8 +54,14 @@ const OrderProvider = ({ children }) => {
     setOrder(orderDelete)
   }
   const changeQuantity = (cityD, id, quantity) => {
-    deleteCity(id)
-    createOrder(cityD, id, quantity)
+    const { name, price } = cityD
+    console.log(order)
+    const newOrder = order.filter((city) => city.id !== id)
+    setOrder(newOrder)
+    const cityNew = { name, price, id }
+    createOrder(cityNew, id, quantity)
+
+    console.log('order', order)
   }
   return (
     <OrderContext.Provider

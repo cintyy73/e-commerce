@@ -56,7 +56,6 @@ export const UserProvider = ({ children }) => {
     }
     isAuth()
   }, [])
-
   const signOff = () => {
     signOut(auth)
       .then(() => {

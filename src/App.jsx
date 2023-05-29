@@ -24,7 +24,10 @@ function App() {
   return (
     <Routes>
       <Route element={<Home />}>
-        <Route path="/" element={<Cities />} />
+        <Route path="/" element={<Recommended />} />
+        {/* //cambiar a limit */}
+
+        <Route path="/cities" element={<Cities />} />
         <Route path="/recommended" element={<Recommended />} />
         <Route path="/city/:id" element={<CityDetails />} />
       </Route>

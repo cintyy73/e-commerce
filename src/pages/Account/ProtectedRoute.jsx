@@ -1,15 +1,15 @@
-// import { useContext } from 'react'
-// //
-// import UserContext from 'hooks/UserContext'
+import { getAuth } from 'firebase/auth'
+
 import { Navigate, Outlet } from 'react-router-dom'
 const ProtectedRoute = () => {
-  // const { user } = useContext(UserContext)
-  const userL = true
+  const auth = getAuth()
+  const user = auth.currentUser
 
-  if (!userL) {
-    return <Navigate to="/login" replace />
+  if (!user) {
+    return <Navigate to="/login" replace={false} />
+  } else {
+    return <Outlet />
   }
-  return <Outlet />
 }
 
 export default ProtectedRoute
