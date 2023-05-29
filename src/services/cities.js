@@ -1,4 +1,13 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from 'firebase/firestore'
 import { db } from '../firebase/config'
 export const getAllCities = async () => {
   const data = await getDocs(collection(db, 'cities'))
@@ -21,17 +30,41 @@ export const getById = async (id) => {
     throw new Error('No exist doc')
   }
 }
+export const recommended = async () => {
+  const q = query(collection(db, 'cities'), where('recommended', '==', true))
+  let recommendedCity = []
+  const querySnapshot = await getDocs(q)
+  querySnapshot.forEach((doc) => {
+    recommendedCity.push({ ...doc.data(), id: doc.id })
+    // console.log(doc.id, ' => ', doc.data())
+  })
+  return recommendedCity
+}
 
-// export const getAssets = async () => {
-//   const data = await getDocs(collection(db, 'assets'))
-//   let info = []
-//   data.forEach((doc) => {
-//     info.push({
-//       ...doc.data(),
-//     })
-//   })
-//   console.log(info[0].face)
-//   console.log(info[0].twt)
-//   console.log(info[0].ig)
-//   return info
-// }
+export const recents = async () => {
+  const q = query(collection(db, 'cities'), orderBy('name', 'desc'), limit(3))
+  let recentsCity = []
+  const querySnapshot = await getDocs(q)
+  querySnapshot.forEach((doc) => {
+    recentsCity.push({ ...doc.data(), id: doc.id })
+    // console.log(doc.id, ' => ', doc.data())
+  })
+  return recentsCity
+}
+
+export const filters = async () => {
+  const q = query(
+    collection(db, 'cities'),
+    where('country', '==', 'russia'),
+    where('price', '<', 400)
+  )
+
+  let filtersCities = []
+  const querySnapshot = await getDocs(q)
+  querySnapshot.forEach((doc) => {
+    filtersCities.push({ ...doc.data(), doc })
+    console.log(doc.id, ' => ', doc.data())
+    // console.log(filtersCities)
+  })
+  return filtersCities
+}

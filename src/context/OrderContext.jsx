@@ -9,7 +9,7 @@ export const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
   const initialOrder = getStorage('order') || []
-  const [isAdd, setIsAdd] = useState(false)
+  // const [isAdd, setIsAdd] = useState(false)
   const [order, setOrder] = useState(initialOrder)
   const navigate = useNavigate()
   // const [finallyOrder, setFinallyOrder] = useState([])
@@ -30,9 +30,15 @@ const OrderProvider = ({ children }) => {
     if (!orderExist) {
       setOrder([...order, newOrder])
 
-      setIsAdd(true)
+      // setIsAdd(true)
     } else {
-      setIsAdd(false)
+      const newOrders = order.map((order) => {
+        if (order.id === id) {
+          order.quantity = quantity
+        }
+        return order
+      })
+      setOrder(newOrders)
     }
   }
 
@@ -53,16 +59,7 @@ const OrderProvider = ({ children }) => {
     const orderDelete = order.filter((city) => city.id !== id)
     setOrder(orderDelete)
   }
-  const changeQuantity = (cityD, id, quantity) => {
-    const { name, price } = cityD
-    console.log(order)
-    const newOrder = order.filter((city) => city.id !== id)
-    setOrder(newOrder)
-    const cityNew = { name, price, id }
-    createOrder(cityNew, id, quantity)
 
-    console.log('order', order)
-  }
   return (
     <OrderContext.Provider
       value={{
@@ -70,8 +67,7 @@ const OrderProvider = ({ children }) => {
         deleteOrder,
         deleteCity,
         createOrder,
-        changeQuantity,
-        isAdd,
+        // isAdd,
         payOrder,
       }}
     >

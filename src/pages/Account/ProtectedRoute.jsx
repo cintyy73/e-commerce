@@ -7,9 +7,8 @@ const ProtectedRoute = () => {
 
   if (!user) {
     return <Navigate to="/login" replace={false} />
-  } else {
-    return <Outlet />
   }
+  return <Outlet />
 }
 
 export default ProtectedRoute

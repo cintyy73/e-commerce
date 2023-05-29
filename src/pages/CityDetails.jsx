@@ -30,7 +30,7 @@ const CityDetails = () => {
   const [cityD, setCityD] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [quantity, setQuantity] = useState(1)
-  const { createOrder, changeQuantity, deleteCity } = useContext(OrderContext)
+  const { createOrder, deleteCity } = useContext(OrderContext)
   const { id } = useParams()
   const toast = useToast()
   useEffect(() => {
@@ -153,9 +153,6 @@ const CityDetails = () => {
               }}
             >
               <DeleteIcon />
-            </Button>
-            <Button onClick={() => changeQuantity(cityD, id, quantity)}>
-              Change Add {quantity}
             </Button>
           </ButtonGroup>
           {/* {error && (

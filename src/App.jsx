@@ -15,6 +15,7 @@ import OrderInProgress from './pages/Account/OrderInProgress'
 import { useContext } from 'react'
 import { UserContext } from './context/UserContext'
 import { Spinner } from '@chakra-ui/react'
+import Recents from './pages/Recents'
 
 function App() {
   const { isLoading } = useContext(UserContext)
@@ -24,7 +25,7 @@ function App() {
   return (
     <Routes>
       <Route element={<Home />}>
-        <Route path="/" element={<Recommended />} />
+        <Route path="/" element={<Recents />} />
         {/* //cambiar a limit */}
 
         <Route path="/cities" element={<Cities />} />
