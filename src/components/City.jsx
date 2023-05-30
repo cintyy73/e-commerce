@@ -1,20 +1,19 @@
+import { NavLink } from 'react-router-dom'
 import {
   Button,
-  // ButtonGroup,
   Card,
   CardBody,
   CardFooter,
-  HStack,
   Heading,
   Image,
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { NavLink } from 'react-router-dom'
 
 const City = (city) => {
   const { dessert, first, country, entrance, price, image, id, name } =
     city.city
+
   return (
     <Card
       border="4px solid black"
@@ -34,14 +33,12 @@ const City = (city) => {
 
       <Stack gap={2}>
         <CardBody>
-          <HStack>
-            <Heading p={2} size="md">
-              {name}
-            </Heading>
-            <Heading p={2} size="sm">
-              {country}
-            </Heading>
-          </HStack>
+          <Heading p={2} size="md">
+            {name}
+          </Heading>
+          <Heading p={2} size="sm">
+            {country}
+          </Heading>
 
           <Text textDecoration="underline" fontSize="small" py="2">
             Entrance:

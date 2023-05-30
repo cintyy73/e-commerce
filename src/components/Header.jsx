@@ -64,7 +64,7 @@ const Header = () => {
                 rightIcon={<ChevronDownIcon />}
                 colorScheme="yellow"
               >
-                My account
+                My account 😋
               </MenuButton>
               <Portal>
                 <MenuList color="yellow.200" background="black">

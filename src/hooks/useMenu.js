@@ -29,21 +29,6 @@ export const useMenu = () => {
 
   const { id } = useParams()
   const cityD = menu.find((c) => c.id === id)
-  // const limitCities = query(cityDet, orderBy('name'), limit(3))
-  // const { city } = menu
-  // console.log(q)
-
-  // const q = query(cityDet, where('country', '==', 'russia'))
-  // // Add a new document with a generated id
-  // const country = async () => {
-  //   const querySnapshot = await getDocs(q)
-  //   querySnapshot.forEach((doc) => {
-  //     // doc.data() is never undefined for query doc snapshots
-  //     console.log(doc.id, ' => ', doc.data())
-  //   })
-  // }
-  // country()
-  // later...
 
   return { cityDet, menu, loading, cityD }
 }

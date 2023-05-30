@@ -44,7 +44,7 @@ const Order = () => {
           onOpen()
         }}
       >
-        My order
+        My order 🍽️
       </Button>
       <Modal size="6xl" isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay

@@ -26,13 +26,15 @@ import { OrderContext } from 'context/OrderContext'
 import { DeleteIcon } from '@chakra-ui/icons'
 
 const CityDetails = () => {
-  const { isAdd } = useContext(OrderContext)
-  const [cityD, setCityD] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [cityD, setCityD] = useState(null)
   const [quantity, setQuantity] = useState(1)
+
   const { createOrder, deleteCity } = useContext(OrderContext)
+  const { isAdd } = useContext(OrderContext)
   const { id } = useParams()
   const toast = useToast()
+
   useEffect(() => {
     const getData = async () => {
       const data = await getById(id)

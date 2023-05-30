@@ -22,37 +22,12 @@ import {
 
 import { Link, NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
-import { useEffect, useState } from 'react'
-import { filters } from '../services/cities'
+import { useFilters } from '../hooks/useFilters'
 
 const Nav = () => {
   const { menu } = useMenu()
-  const [country, setCountry] = useState([])
-  console.log(country)
-  const [values, setValues] = useState({
-    min: 0,
-    max: 1000,
-    country: '',
-  })
-  const handleChange = (e) =>
-    setValues({ ...values, [e.target.name]: e.target.value })
+  const { values, handleChange, handleCountry } = useFilters()
 
-  const handleCountry = (city) =>
-    setValues({ ...values, country: city.country })
-
-  useEffect(() => {
-    const getFilterCity = async () => {
-      const countryList = await filters(values.country)
-      setCountry(countryList)
-    }
-    getFilterCity()
-  }, [values])
-
-  // const listFilterPrice = () => {
-  //   country.filter((city) => city.price === 430)
-  // }
-  // console.log(listFilterPrice())
-  //hasta aca me filtra x country
   return (
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>
       <List padding={6} spacing={6}>

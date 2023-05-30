@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <GridItem bgColor="black" color="yellow.200" pl="2" area={'footer'}>
       <Divider color="yellow.300"></Divider>
-      <HStack justifyContent="space-around">
+      <HStack pt={5} justifyContent="space-around">
         <HStack gap={4}>
           <VStack display={{ base: 'none', md: 'flex' }}>
             <Text as={NavLink} to="/">

@@ -1,11 +1,13 @@
 import {
   collection,
   doc,
+  endAt,
   getDoc,
   getDocs,
   limit,
   orderBy,
   query,
+  startAt,
   where,
 } from 'firebase/firestore'
 import { db } from '../firebase/config'
@@ -52,13 +54,18 @@ export const recents = async () => {
   return recentsCity
 }
 
-export const filters = async (country) => {
-  const q = query(collection(db, 'cities'), where('country', '==', country))
+export const allCitiesFilters = async (country) => {
+  const q = query(
+    collection(db, 'cities'),
+    orderBy('country'),
+    startAt(country),
+    endAt(country + '/uf8ff')
+  )
+  let citiesXcountry = []
 
-  let filtersCities = []
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
-    filtersCities.push({ ...doc.data(), id: doc.id })
+    citiesXcountry.push({ ...doc.data(), id: doc.id })
   })
-  return filtersCities
+  return citiesXcountry
 }

@@ -1,58 +1,55 @@
+import { useContext } from 'react'
+import { Spinner } from '@chakra-ui/react'
 import { Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
+import { UserContext } from './context/UserContext'
 
-import Register from './pages/auth/Register'
-import Recommended from './components/Recommended'
-import Menu from './components/Menu'
+import Home from './pages/Home'
+// import Recents from './pages/Recents'
 import Cities from './pages/Cities'
+import Recommended from './pages/Recommended'
 import CityDetails from './pages/CityDetails'
-import NotFound from './pages/NotFound'
+
+import Menu from './components/Menu'
+import Register from './pages/auth/Register'
 import Login from './pages/auth/Login'
+
+import NotFound from './pages/NotFound'
+
 import CheckOut from './pages/Account/CheckOut'
 import LayoutAccount from './pages/Account/LayoutAccount'
-import ProtectedRoute from './pages/Account/ProtectedRoute'
+import ProtectedRoute from './pages/Account/components/ProtectedRoute'
 import OrderInProgress from './pages/Account/OrderInProgress'
-import { useContext } from 'react'
-import { UserContext } from './context/UserContext'
-import { Spinner } from '@chakra-ui/react'
-import Recents from './pages/Recents'
+import CitiesFilter from './pages/CitiesFilter'
 
 function App() {
   const { isLoading } = useContext(UserContext)
+
   if (isLoading) {
     return <Spinner />
   }
+
   return (
     <Routes>
       <Route element={<Home />}>
-        <Route path="/" element={<Recents />} />
-        {/* //cambiar a limit */}
+        <Route path="/" element={<CitiesFilter />} />
 
+        {/* <Route path="/" element={<Recents />} /> */}
         <Route path="/cities" element={<Cities />} />
         <Route path="/recommended" element={<Recommended />} />
         <Route path="/city/:id" element={<CityDetails />} />
       </Route>
+
       <Route path="/menu" element={<Menu />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotFound />} />
+
       <Route element={<ProtectedRoute />}>
         <Route path="/my-account" element={<LayoutAccount />}>
           <Route path="order-in-progress" element={<OrderInProgress />} />
           <Route path="checkout" element={<CheckOut />} />
         </Route>
       </Route>
-      {/* <Route
-        path="/my-account"
-        element={
-          <ProtectedRoute>
-            <LayoutAccount />
-          </ProtectedRoute>
-        }
-      >
-        <Route path="order-in-progress" element={<OrderInProgress />} />
-        <Route path="checkout" element={<CheckOut />} />
-      </Route> */}
-      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
