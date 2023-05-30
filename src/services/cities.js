@@ -52,19 +52,13 @@ export const recents = async () => {
   return recentsCity
 }
 
-export const filters = async () => {
-  const q = query(
-    collection(db, 'cities'),
-    where('country', '==', 'russia'),
-    where('price', '<', 400)
-  )
+export const filters = async (country) => {
+  const q = query(collection(db, 'cities'), where('country', '==', country))
 
   let filtersCities = []
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
-    filtersCities.push({ ...doc.data(), doc })
-    console.log(doc.id, ' => ', doc.data())
-    // console.log(filtersCities)
+    filtersCities.push({ ...doc.data(), id: doc.id })
   })
   return filtersCities
 }

@@ -30,7 +30,7 @@ const Footer = () => {
           </VStack>
           <VStack display={{ base: 'none', md: 'flex' }}>
             <Text as={NavLink} to="/my-account">
-              my account
+              My account
             </Text>
             <Text as={NavLink} to="/login">
               Login
@@ -55,14 +55,14 @@ const Footer = () => {
               src="https://www.citypng.com/public/uploads/preview/-51615208019svqsspmeg7.png?v=2023051621"
             />
           </Link>
-          <Link target="blank" href="https://twitter.com">
+          <Link target="blank" href="https://www.instagram.com/">
             <Avatar
               size="md"
               name="logo instagram"
               src="https://www.citypng.com/public/uploads/preview/-11598200949vmcvk1prc6.png?v=2023051621 "
             />
           </Link>
-          <Link target="blank" href="https://www.instagram.com/">
+          <Link target="blank" href="https://twitter.com">
             <Avatar
               size="md"
               name="logo twitter"

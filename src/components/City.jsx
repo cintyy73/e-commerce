@@ -4,6 +4,7 @@ import {
   Card,
   CardBody,
   CardFooter,
+  HStack,
   Heading,
   Image,
   Stack,
@@ -31,30 +32,36 @@ const City = (city) => {
         alt="Caffe Latte"
       />
 
-      <Stack>
+      <Stack gap={2}>
         <CardBody>
-          <Heading size="md">{name} </Heading>
-          <Heading size="sm">{country} </Heading>
+          <HStack>
+            <Heading p={2} size="md">
+              {name}
+            </Heading>
+            <Heading p={2} size="sm">
+              {country}
+            </Heading>
+          </HStack>
 
-          <Text fontSize="small" py="2">
-            Entrance:{' '}
+          <Text textDecoration="underline" fontSize="small" py="2">
+            Entrance:
           </Text>
           <Text fontSize="small" py="2">
             {entrance}
           </Text>
-          <Text fontSize="small" py="2">
-            First course:{' '}
+          <Text textDecoration="underline" fontSize="small" py="2">
+            First course:
           </Text>
           <Text fontSize="small" py="2">
             {first}
           </Text>
-          <Text fontSize="small" py="2">
-            Dessert:{' '}
+          <Text textDecoration="underline" fontSize="small" py="2">
+            Dessert:
           </Text>
           <Text fontSize="small" py="2">
             {dessert}
           </Text>
-          <Text fontSize="small" size={12}>
+          <Text textAlign="center" fontSize="md" size={12}>
             ${price}
           </Text>
         </CardBody>

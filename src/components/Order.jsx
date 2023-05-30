@@ -23,7 +23,7 @@ import { useContext } from 'react'
 import { OrderContext } from 'context/OrderContext'
 // import { completeOrder } from '../services/createOrder'
 import { Link } from 'react-router-dom'
-import { DeleteIcon } from '@chakra-ui/icons'
+import { CalendarIcon, DeleteIcon } from '@chakra-ui/icons'
 
 const Order = () => {
   const { order, deleteOrder, deleteCity } = useContext(OrderContext)
@@ -35,8 +35,9 @@ const Order = () => {
   return (
     <>
       <Button
-        size={{ base: 'xs', md: 'lg' }}
+        size={{ base: 'xs', md: 'md' }}
         colorScheme="black"
+        rightIcon={<CalendarIcon />}
         variant="outline"
         ml="4"
         onClick={() => {

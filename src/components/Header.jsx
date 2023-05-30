@@ -21,7 +21,7 @@ import { useContext } from 'react'
 import { UserContext } from 'context/UserContext'
 import { OrderContext } from 'context/OrderContext'
 
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { CheckCircleIcon, ChevronDownIcon, EditIcon } from '@chakra-ui/icons'
 // import { signOut } from 'firebase/auth'
 
 const Header = () => {
@@ -43,14 +43,14 @@ const Header = () => {
         </VStack>
 
         <HStack>
-          <ButtonGroup size={{ base: 'xs', md: 'lg' }} colorScheme="yellow">
+          <ButtonGroup size={{ base: 'xs', md: 'md' }} colorScheme="yellow">
             {!user && (
-              <Button as={NavLink} to="/register">
+              <Button rightIcon={<EditIcon />} as={NavLink} to="/register">
                 Register
               </Button>
             )}
             {!user && (
-              <Button as={NavLink} to="/login">
+              <Button rightIcon={<CheckCircleIcon />} as={NavLink} to="/login">
                 Login
               </Button>
             )}
@@ -59,7 +59,7 @@ const Header = () => {
           {user && (
             <Menu>
               <MenuButton
-                size={{ base: 'xs', md: 'lg' }}
+                size={{ base: 'xs', md: 'md' }}
                 as={Button}
                 rightIcon={<ChevronDownIcon />}
                 colorScheme="yellow"

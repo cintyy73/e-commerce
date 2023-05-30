@@ -1,15 +1,15 @@
 import {
+  CheckCircleIcon,
   ChevronDownIcon,
   SearchIcon,
   StarIcon,
-  ViewIcon,
 } from '@chakra-ui/icons'
+
 import {
   Button,
   FormControl,
   FormLabel,
   GridItem,
-  Heading,
   Input,
   List,
   ListIcon,
@@ -19,15 +19,19 @@ import {
   MenuItem,
   MenuList,
 } from '@chakra-ui/react'
-import { NavLink } from 'react-router-dom'
+
+import { Link, NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { filters } from '../services/cities'
 
 const Nav = () => {
   const { menu } = useMenu()
+  const [country, setCountry] = useState([])
+  console.log(country)
   const [values, setValues] = useState({
     min: 0,
-    max: 0,
+    max: 1000,
     country: '',
   })
   const handleChange = (e) =>
@@ -35,31 +39,43 @@ const Nav = () => {
 
   const handleCountry = (city) =>
     setValues({ ...values, country: city.country })
-  // const menuFilter = menu.filter((city) => city.country === values.country)
 
+  useEffect(() => {
+    const getFilterCity = async () => {
+      const countryList = await filters(values.country)
+      setCountry(countryList)
+    }
+    getFilterCity()
+  }, [values])
+
+  // const listFilterPrice = () => {
+  //   country.filter((city) => city.price === 430)
+  // }
+  // console.log(listFilterPrice())
+  //hasta aca me filtra x country
   return (
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>
       <List padding={6} spacing={6}>
         <ListItem>
           <Button to="/" as={NavLink} colorScheme="yellow">
-            HOME
+            📌 HOME
           </Button>
         </ListItem>
-        <ListItem>
-          <Button to="/cities" as={NavLink} colorScheme="yellow">
-            All
-          </Button>
-        </ListItem>
+
         <ListItem>
           <Button to="/menu" as={NavLink} colorScheme="yellow">
-            <ViewIcon /> Menu
+            🗒️ MENU
           </Button>
         </ListItem>
         <ListItem>
+          <ListItem to="/cities" as={Link}>
+            <ListIcon color="gray" as={CheckCircleIcon} /> All Cities
+          </ListItem>
           <List>
-            <Heading as={NavLink} to="/recommended" size="md">
-              Recommended
-            </Heading>
+            <ListItem as={Link} to="/recommended" size="md">
+              <ListIcon color="gray" as={CheckCircleIcon} />
+              All Recommended
+            </ListItem>
 
             {menu.map(
               (city) =>
@@ -102,7 +118,7 @@ const Nav = () => {
 
         <ListItem>
           <FormControl>
-            <FormLabel>Price</FormLabel>
+            <FormLabel>$ Price minim</FormLabel>
             <Input
               type="number"
               onChange={handleChange}
@@ -110,6 +126,7 @@ const Nav = () => {
               name="min"
               placeholder="100-1000"
             />
+            <FormLabel>$ Price maxim</FormLabel>
 
             <Input
               type="number"

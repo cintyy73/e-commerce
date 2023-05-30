@@ -1,10 +1,13 @@
 import { createContext, useEffect, useState } from 'react'
+
 import { useNavigate } from 'react-router-dom'
+
 import {
   deleteOrderStorage,
   getStorage,
   setStorage,
 } from '../utils/localStorage'
+
 export const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
@@ -18,19 +21,16 @@ const OrderProvider = ({ children }) => {
     const { name, price } = cityD
 
     const orderExist = order.some((city) => city.id === id)
-    //
+
     const newOrder = {
       name,
       id,
       quantity,
-      // table: '',
       price,
-      // total,
     }
+
     if (!orderExist) {
       setOrder([...order, newOrder])
-
-      // setIsAdd(true)
     } else {
       const newOrders = order.map((order) => {
         if (order.id === id) {
@@ -50,11 +50,13 @@ const OrderProvider = ({ children }) => {
     setOrder([])
     deleteOrderStorage('order')
   }
+
   const payOrder = () => {
     navigate('/')
     setOrder([])
     deleteOrderStorage('order')
   }
+
   const deleteCity = (id) => {
     const orderDelete = order.filter((city) => city.id !== id)
     setOrder(orderDelete)

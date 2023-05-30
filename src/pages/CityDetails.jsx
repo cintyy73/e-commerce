@@ -145,7 +145,7 @@ const CityDetails = () => {
                 })
               }}
             >
-              ADD
+              Add {quantity}
             </Button>
             <Button
               onClick={() => {
