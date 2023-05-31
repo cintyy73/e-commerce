@@ -30,19 +30,17 @@ const Header = () => {
   const toast = useToast()
 
   return (
-    <GridItem p={5} bg="black" color="#ffc600" area={'header'}>
+    <GridItem w="100%" p={5} bg="black" color="#ffc600" area={'header'}>
       <HStack justifyContent="space-between" alignItems="center">
         <Avatar size="xl" name="logo resto" src={logo} />
         <VStack display={{ base: 'none', md: 'flex' }}>
           <Heading>Arian Maldonado</Heading>
           <Text>CHEFF INTERNATIONAL</Text>
         </VStack>
-        <VStack display={{ base: 'flex', md: 'none' }}>
-          <Heading>Arian M.</Heading>
-          <Text>CHEFF INT.</Text>
-        </VStack>
 
-        <HStack>
+        <Heading display={{ base: 'flex', md: 'none' }}>Arian rest</Heading>
+
+        <HStack gap={2} flexDirection={{ base: 'column', md: 'row' }}>
           <ButtonGroup size={{ base: 'xs', md: 'md' }} colorScheme="yellow">
             {!user && (
               <Button rightIcon={<EditIcon />} as={NavLink} to="/register">

@@ -24,6 +24,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 const Login = () => {
   const [isError, setIsError] = useState(false)
+  const [messageError, setMessageError] = useState('')
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
   const navigate = useNavigate()
@@ -39,28 +40,35 @@ const Login = () => {
     try {
       await loginUser(data)
       setIsError(false)
-
-      navigate('/welcome')
+      toast({
+        title: messageError,
+        status: 'error',
+        isClosable: true,
+        duration: 2000,
+      })
+      setTimeout(() => {
+        navigate('/')
+      }, 2000)
     } catch (error) {
       setIsError(true)
       const errorCode = error.code
       const errorMessage = error.message
-      console.log(errorCode)
       console.log(errorMessage)
+      setMessageError(errorCode)
     }
   }
 
   return (
     <form
       onSubmit={handleSubmit(
-        onSubmitlogin,
-        isError &&
-          toast({
-            title: 'User or password incorrect',
-            status: 'error',
-            isClosable: true,
-            duration: 2000,
-          })
+        onSubmitlogin
+        // isError &&
+        //   toast({
+        //     title: messageError,
+        //     status: 'error',
+        //     isClosable: true,
+        //     duration: 2000,
+        //   })
       )}
     >
       <Center
@@ -76,7 +84,9 @@ const Login = () => {
 
         {isError && (
           <>
+            <Text color="red.500">Error: {messageError}</Text>
             <Text>Please you must create an account to continue!</Text>
+
             <NavLink to="/register">Go Register</NavLink>
           </>
         )}

@@ -29,9 +29,11 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 const Register = () => {
-  const navigate = useNavigate()
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
+  const navigate = useNavigate()
+  const [error, setError] = useState(false)
+  const [messageError, setMessageError] = useState('')
   const [isRegister, setIsRegister] = useState(false)
   const {
     register,
@@ -39,20 +41,27 @@ const Register = () => {
     formState: { errors, isSubmitting },
   } = useForm()
   const { registerUser } = useContext(UserContext)
-  const onSubmitRegister = (data) => {
+  const onSubmitRegister = async (data) => {
+    setError(false)
     try {
-      registerUser(data)
-      setIsRegister(true)
-      navigate('/login')
+      await registerUser(data)
+      setError(false)
+      setMessageError('cuenta creada correctamente seras redirigido a login')
+
+      setTimeout(() => {
+        navigate('/login')
+      }, 3000)
     } catch (error) {
       setIsRegister(false)
-
+      setError(true)
       const errorCode = error.code
       const errorMessage = error.message
       console.log(errorCode)
       console.log(errorMessage)
+      // throw new Error(errorMessage)
     }
   }
+
   return (
     <Center
       onSubmit={handleSubmit(onSubmitRegister)}
@@ -67,17 +76,19 @@ const Register = () => {
       <Heading>Welcome to Arian</Heading>
       <Avatar size="xl" name="logo resto" src={logo} />
 
-      {!isRegister && (
-        <Text>Please you must create an account to continue!</Text>
+      {error && (
+        <>
+          <Text>{messageError}</Text>
+          <Text>Please you must create an account to continue!</Text>
+        </>
+      )}
+      {!error && (
+        <>
+          <Text>cuenta creada correctamente seras redirigido a login</Text>
+          <Link to="/">Home</Link>
+        </>
       )}
       <>
-        {isRegister && (
-          <>
-            <Text>cuenta creada correctamente ir a</Text>
-            <Link to="/">home</Link>
-          </>
-        )}
-
         {!isRegister && (
           <VStack>
             <FormControl isInvalid={errors.name}>

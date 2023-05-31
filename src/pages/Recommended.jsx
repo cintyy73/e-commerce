@@ -21,7 +21,6 @@ const Recommended = () => {
       {isLoading && <Spinner color="yellow" size="xl" />}
       {!isLoading && (
         <>
-          {' '}
           <Heading mt={4} color="yellow.200" bg="black">
             Recommended
           </Heading>

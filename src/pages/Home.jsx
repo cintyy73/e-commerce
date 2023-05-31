@@ -11,13 +11,13 @@ const Home = () => {
       templateAreas={`"header header"
                     "nav main"
                     "footer footer"`}
-      gridTemplateRows={'130px 1fr 150px'}
+      gridTemplateRows={'140px 1fr 150px'}
       gridTemplateColumns={{
-        base: '150px 1fr',
+        base: '160px 1fr',
         md: '200px 1fr',
       }}
       minHeight="100vh"
-      minW="300px"
+      // minW="300px"
       color="blackAlpha.700"
       fontWeight="bold"
     >

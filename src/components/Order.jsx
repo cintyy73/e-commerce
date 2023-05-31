@@ -47,7 +47,7 @@ const Order = () => {
           backdropFilter="blur(10px) hue-rotate(90deg)"
         />
         <ModalContent
-          fontSize={20}
+          fontSize={{ base: 'xs', md: 'md' }}
           padding={5}
           color="yellow.100"
           bgColor="black"
@@ -68,13 +68,13 @@ const Order = () => {
                   alignItems="center"
                   justifyContent="space-evenly"
                 >
-                  <VStack w="25%" p={3}>
+                  <VStack w="35%" p={3}>
                     <Text>{name} </Text>
                   </VStack>
                   <VStack w="25%">
                     <Text>$ {price}</Text>
                   </VStack>
-                  <VStack w="25%">
+                  <VStack w="15%">
                     <Text>{quantity}</Text>
                   </VStack>
                   <VStack w="25%">

@@ -16,9 +16,11 @@ const LayoutAccount = () => {
   return (
     <VStack minH="100vh" bg="black">
       <HStack
+        gap={3}
+        width="100%"
+        flexDir={{ base: 'column', md: 'row' }}
         w="100%"
         color="yellow.200"
-        minw="100%"
         justifyContent="space-evenly"
         alignItems="center"
       >
@@ -27,7 +29,13 @@ const LayoutAccount = () => {
           <Heading>Arian Maldonado</Heading>
           <Text>CHEFF INTERNATIONAL</Text>
         </VStack>
-        <Button to="/" variant="outline" as={NavLink} colorScheme="black">
+        <Button
+          size={{ base: 'xs', md: 'md' }}
+          to="/"
+          variant="outline"
+          as={NavLink}
+          colorScheme="black"
+        >
           📌 HOME
         </Button>
 

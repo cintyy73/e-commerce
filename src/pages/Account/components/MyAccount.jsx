@@ -21,6 +21,7 @@ const MyAccount = () => {
   return (
     <>
       <Button
+        size={{ base: 'xs', md: 'md' }}
         ref={btnRef}
         color="yellow.300"
         colorScheme="black"
@@ -28,7 +29,7 @@ const MyAccount = () => {
         variant={'outline'}
         rightIcon={<CalendarIcon />}
       >
-        Previous Orders
+        My Orders
       </Button>
 
       <Drawer
