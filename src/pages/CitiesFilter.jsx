@@ -18,6 +18,7 @@ import City from '../components/City'
 import { useMenu } from '../hooks/useMenu'
 import { useEffect, useState } from 'react'
 import { allCitiesFilters } from '../services/cities'
+import { useDebounce } from '../hooks/useDebonce'
 // import { useEffect, useState } from 'react'
 // import { allCitiesFilters } from '../services/cities'
 
@@ -25,12 +26,15 @@ const CitiesFilter = () => {
   const { menu } = useMenu()
 
   const [loading, setLoading] = useState(true)
-  const [countryCities, setCountryCities] = useState([])
   const [values, setValues] = useState({
     min: 0,
     max: 1000,
     country: '',
   })
+  const [countryCities, setCountryCities] = useState([])
+  const debounceMin = useDebounce(values.min, 2000)
+  const debounceMax = useDebounce(values.max, 2000)
+
   const handleChange = (e) =>
     setValues({ ...values, [e.target.name]: e.target.value })
 
@@ -41,19 +45,23 @@ const CitiesFilter = () => {
     const getCitiesCountry = async () => {
       const cities = await allCitiesFilters(values.country)
       const filtList = cities.filter((city) => {
-        if (city.price < values.min) {
+        if (city.price < debounceMin) {
           return false
         }
-        if (city.price > values.max) {
+        if (city.price > debounceMax) {
           return false
         }
         return true
       })
       setCountryCities(filtList)
+
       setLoading(false)
     }
+
     getCitiesCountry()
-  }, [values])
+  }, [debounceMax, debounceMin, values.country])
+  console.log('fikter', values)
+  console.log('debonce' + debounceMin, debounceMax)
   return (
     <VStack>
       <HStack
@@ -139,6 +147,16 @@ const CitiesFilter = () => {
           {countryCities.map((city) => (
             <City key={city.id} city={city}></City>
           ))}
+          {countryCities.length === 0 && (
+            <Heading
+              p={7}
+              color="yellow.200"
+              border="solid 3px green"
+              bg="black"
+            >
+              No cities found
+            </Heading>
+          )}
         </SimpleGrid>
       )}
     </VStack>

@@ -1,5 +1,4 @@
 import {
-  // Box,
   Button,
   HStack,
   IconButton,
@@ -10,11 +9,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  // NumberDecrementStepper,
-  // NumberIncrementStepper,
-  // NumberInput,
-  // NumberInputField,
-  // NumberInputStepper,
   Text,
   Tooltip,
   VStack,
@@ -24,8 +18,11 @@ import { useContext } from 'react'
 import { OrderContext } from 'context/OrderContext'
 import { Link } from 'react-router-dom'
 import { CalendarIcon, DeleteIcon } from '@chakra-ui/icons'
+import { getAuth } from 'firebase/auth'
 
 const Order = () => {
+  const auth = getAuth()
+  const user = auth.currentUser
   const { order, deleteOrder, deleteCity } = useContext(OrderContext)
   let total = 0
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -42,7 +39,7 @@ const Order = () => {
           onOpen()
         }}
       >
-        🍽️ My order
+        My order
       </Button>
       <Modal size="6xl" isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay
@@ -63,25 +60,25 @@ const Order = () => {
             <ModalCloseButton />
           </Tooltip>
           <ModalBody>
-            {order?.map((city) => {
-              total = total + city.price * city.quantity
+            {order?.map(({ price, id, quantity, name }) => {
+              total = total + price * quantity
               return (
                 <HStack
-                  key={city.id + city.name}
+                  key={id + name}
                   alignItems="center"
                   justifyContent="space-evenly"
                 >
                   <VStack w="25%" p={3}>
-                    <Text>{city.name} </Text>
+                    <Text>{name} </Text>
                   </VStack>
                   <VStack w="25%">
-                    <Text>$ {city.price}</Text>
+                    <Text>$ {price}</Text>
                   </VStack>
                   <VStack w="25%">
-                    <Text>{city.quantity}</Text>
+                    <Text>{quantity}</Text>
                   </VStack>
                   <VStack w="25%">
-                    <Text>$ {city.price * city.quantity}</Text>
+                    <Text>$ {price * quantity}</Text>
                   </VStack>
                   <VStack>
                     <Tooltip hasArrow label="Delete" bg="red.600">
@@ -89,7 +86,7 @@ const Order = () => {
                         size="lg"
                         colorScheme="black"
                         onClick={() => {
-                          deleteCity(city.id)
+                          deleteCity(id)
                         }}
                         icon={<DeleteIcon />}
                       />
@@ -116,16 +113,26 @@ const Order = () => {
                   />
                 </Tooltip>
               </HStack>
-
-              <Button
-                as={Link}
-                colorScheme="yellow"
-                size="lg"
-                to="/my-account/checkout"
-                onClick={onClose}
+              <Tooltip
+                hasArrow
+                label={user ? 'Continue pay' : 'Go login and pay'}
+                bg="green.100"
+                color="black"
               >
-                Order and pay ${total}
-              </Button>
+                <Button
+                  as={Link}
+                  colorScheme="yellow"
+                  size="lg"
+                  to={
+                    order.length > 0
+                      ? '/my-account/checkout'
+                      : '/my-account/order-in-progress'
+                  }
+                  onClick={onClose}
+                >
+                  {user ? 'Order and pay ' + total : 'Login and pay'}
+                </Button>
+              </Tooltip>
             </VStack>
           </ModalFooter>
         </ModalContent>

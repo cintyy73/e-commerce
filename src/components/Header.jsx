@@ -68,8 +68,12 @@ const Header = () => {
               </MenuButton>
               <Portal>
                 <MenuList color="yellow.200" background="black">
-                  <MenuItem as={Link} background="black" to="/my-account">
-                    My account
+                  <MenuItem
+                    as={Link}
+                    background="black"
+                    to="/my-account/checkout"
+                  >
+                    Checkout
                   </MenuItem>
                   <MenuItem
                     as={Link}

@@ -40,7 +40,7 @@ const Login = () => {
       await loginUser(data)
       setIsError(false)
 
-      navigate('/')
+      navigate('/welcome')
     } catch (error) {
       setIsError(true)
       const errorCode = error.code

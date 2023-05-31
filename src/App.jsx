@@ -20,6 +20,7 @@ import LayoutAccount from './pages/Account/LayoutAccount'
 import ProtectedRoute from './pages/Account/components/ProtectedRoute'
 import OrderInProgress from './pages/Account/OrderInProgress'
 import CitiesFilter from './pages/CitiesFilter'
+import Welcome from './pages/Welcome'
 
 function App() {
   const { isLoading } = useContext(UserContext)
@@ -32,6 +33,7 @@ function App() {
     <Routes>
       <Route element={<Home />}>
         <Route path="/" element={<Recents />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/search" element={<CitiesFilter />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/recommended" element={<Recommended />} />

@@ -1,7 +1,6 @@
 import {
   Button,
   ButtonGroup,
-  Center,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -35,18 +34,19 @@ const CheckOut = () => {
     formState: { isSubmiting, errors },
   } = useForm()
   return (
-    <Center
+    <VStack
       onSubmit={handleSubmit(payOrder)}
       paddingTop={5}
       as="form"
+      justifyContent="space-evenly"
       gap="4"
       flexDirection="column"
       minHeight="100vh"
       bg="black"
       color="yellow.400"
     >
-      <VStack>
-        <OrderInProgress />
+      <OrderInProgress />
+      <VStack border="solid 3px green" padding={10} gap={3}>
         <Heading>Finish order and pay</Heading>
         <FormControl isInvalid={errors.name}>
           <FormLabel>Name</FormLabel>
@@ -101,7 +101,7 @@ const CheckOut = () => {
           </Button>
         </ButtonGroup>
       </VStack>
-    </Center>
+    </VStack>
   )
 }
 

@@ -11,12 +11,15 @@ import {
   Spinner,
   ButtonGroup,
 } from '@chakra-ui/react'
+
 import { NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
+
 import Order from './Order'
 
 const Menu = () => {
   const { menu, loading } = useMenu()
+
   return (
     <HStack
       color="yellow.200"
@@ -28,17 +31,16 @@ const Menu = () => {
     >
       <HStack w="100%" justifyContent="space-evenly" pb={6}>
         <Heading fontSize={40}>Menu</Heading>
-        <ButtonGroup>
+        <ButtonGroup gap={4}>
           <Button
             variant="outline"
             p={2}
-            size="lg"
-            fontSize={25}
+            size={{ base: 'xs', md: 'md' }}
             as={NavLink}
             to="/"
             colorScheme="black"
           >
-            Home
+            📌Home
           </Button>
           <Order />
         </ButtonGroup>
@@ -53,36 +55,37 @@ const Menu = () => {
             }}
             gap={20}
           >
-            {menu.map((city) => (
-              <GridItem fontSize={10} key={city.name}>
-                <List>
-                  (
-                  <ListItem>
-                    <Heading fontSize={15}>{city.name} </Heading>
-                    <Divider />
-                    <Heading fontSize={10}>{city.country} </Heading>
-                    <Text>Entrance : {city.entrance}</Text>
-                    <Text>First : {city.first}</Text>
-                    <Text>Dessert: {city.dessert}</Text>
-                    <Text textAlign="center" fontSize={30}>
-                      ${city.price}
-                    </Text>
-                  </ListItem>
-                  )
-                  <ButtonGroup>
+            {menu.map(
+              ({ name, id, entrance, first, dessert, country, price }) => (
+                <GridItem fontSize={10} key={name}>
+                  <List>
+                    (
+                    <ListItem>
+                      <Heading fontSize={15}>{name} </Heading>
+                      <Divider />
+                      <Heading fontSize={10}>{country} </Heading>
+                      <Text>Entrance : {entrance}</Text>
+                      <Text>First : {first}</Text>
+                      <Text>Dessert: {dessert}</Text>
+                      <Text textAlign="center" fontSize={30}>
+                        ${price}
+                      </Text>
+                    </ListItem>
+                    )
                     <Button
                       alignSelf="center"
                       as={NavLink}
-                      size="sm"
-                      to={'/city/' + city.id}
-                      colorScheme="yellow"
+                      size={{ base: 'xs', md: 'md' }}
+                      to={'/city/' + id}
+                      colorScheme="black"
+                      variant={'outline'}
                     >
-                      Details
+                      + Details 🍽️
                     </Button>
-                  </ButtonGroup>
-                </List>
-              </GridItem>
-            ))}
+                  </List>
+                </GridItem>
+              )
+            )}
           </Grid>
         </>
       )}

@@ -1,3 +1,4 @@
+import { CalendarIcon } from '@chakra-ui/icons'
 import {
   Drawer,
   DrawerBody,
@@ -19,8 +20,15 @@ const MyAccount = () => {
   const btnRef = useRef()
   return (
     <>
-      <Button ref={btnRef} color="yellow" colorScheme="black" onClick={onOpen}>
-        My previous Orders
+      <Button
+        ref={btnRef}
+        color="yellow.300"
+        colorScheme="black"
+        onClick={onOpen}
+        variant={'outline'}
+        rightIcon={<CalendarIcon />}
+      >
+        Previous Orders
       </Button>
 
       <Drawer

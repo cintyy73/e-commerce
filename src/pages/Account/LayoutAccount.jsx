@@ -10,13 +10,14 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import logo from 'assets/favicon.png'
-import MyAccount from '../../components/MyAccount'
+import MyAccount from './components/MyAccount'
+import Order from '../../components/Order'
 const LayoutAccount = () => {
   return (
-    <VStack bg="black">
+    <VStack minH="100vh" bg="black">
       <HStack
-        bg="black"
-        color="yellow"
+        w="100%"
+        color="yellow.200"
         minw="100%"
         justifyContent="space-evenly"
         alignItems="center"
@@ -26,10 +27,13 @@ const LayoutAccount = () => {
           <Heading>Arian Maldonado</Heading>
           <Text>CHEFF INTERNATIONAL</Text>
         </VStack>
-        <Button to="/" as={NavLink} colorScheme="yellow">
-          HOME
+        <Button to="/" variant="outline" as={NavLink} colorScheme="black">
+          📌 HOME
         </Button>
+
         <MyAccount />
+
+        <Order />
       </HStack>
       <Stack color="yellow.100" bg="black">
         <Outlet />
