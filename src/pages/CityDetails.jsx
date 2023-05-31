@@ -16,6 +16,7 @@ import {
   SimpleGrid,
   Spinner,
   Text,
+  Tooltip,
   VStack,
   useToast,
 } from '@chakra-ui/react'
@@ -31,7 +32,6 @@ const CityDetails = () => {
   const [quantity, setQuantity] = useState(1)
 
   const { createOrder, deleteCity } = useContext(OrderContext)
-  const { isAdd } = useContext(OrderContext)
   const { id } = useParams()
   const toast = useToast()
 
@@ -128,40 +128,54 @@ const CityDetails = () => {
             <Box bg="black">
               <NumberInputField />
               <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
+                <Tooltip
+                  hasArrow
+                  placement="top-start"
+                  label="+"
+                  bg="green.600"
+                >
+                  <NumberIncrementStepper />
+                </Tooltip>
+                <Tooltip hasArrow label="-" bg="red.600">
+                  <NumberDecrementStepper />
+                </Tooltip>
               </NumberInputStepper>
             </Box>
           </NumberInput>
           <ButtonGroup gap={5} colorScheme="yellow">
-            <Button
-              onClick={() => {
-                createOrder(cityD, id, quantity)
-                toast({
-                  title: isAdd
-                    ? 'Added to your order'
-                    : 'Cannot be added to your order',
-                  status: isAdd ? 'success' : 'warning',
-                  duration: 4000,
-                  isClosable: true,
-                })
-              }}
-            >
-              Add {quantity}
-            </Button>
-            <Button
-              onClick={() => {
-                deleteCity(id)
-              }}
-            >
-              <DeleteIcon />
-            </Button>
+            <Tooltip hasArrow label="Add" bg="green.600">
+              <Button
+                onClick={() => {
+                  createOrder(cityD, id, quantity)
+                  toast({
+                    title:
+                      'You have added ' + quantity + ' items to your order',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                  })
+                }}
+              >
+                Add {quantity}
+              </Button>
+            </Tooltip>
+            T
+            <Tooltip hasArrow label="Delete" bg="red.600">
+              <Button
+                onClick={() => {
+                  deleteCity(id)
+                  toast({
+                    title: 'Removed from your order succesfully',
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                  })
+                }}
+              >
+                <DeleteIcon />
+              </Button>
+            </Tooltip>
           </ButtonGroup>
-          {/* {error && (
-            <Text bg="black" color="yellow.200" p={6}>
-              {errorMsj}
-            </Text>
-          )} */}
         </>
       )}
     </VStack>

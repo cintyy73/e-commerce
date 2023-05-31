@@ -1,32 +1,12 @@
-import {
-  CheckCircleIcon,
-  ChevronDownIcon,
-  SearchIcon,
-  StarIcon,
-} from '@chakra-ui/icons'
+import { CheckCircleIcon, StarIcon } from '@chakra-ui/icons'
 
-import {
-  Button,
-  FormControl,
-  FormLabel,
-  GridItem,
-  Input,
-  List,
-  ListIcon,
-  ListItem,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from '@chakra-ui/react'
+import { Button, GridItem, List, ListIcon, ListItem } from '@chakra-ui/react'
 
 import { Link, NavLink } from 'react-router-dom'
 import { useMenu } from '../hooks/useMenu'
-import { useFilters } from '../hooks/useFilters'
 
 const Nav = () => {
   const { menu } = useMenu()
-  const { values, handleChange, handleCountry } = useFilters()
 
   return (
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>
@@ -40,6 +20,11 @@ const Nav = () => {
         <ListItem>
           <Button to="/menu" as={NavLink} colorScheme="yellow">
             🗒️ MENU
+          </Button>
+        </ListItem>
+        <ListItem>
+          <Button to="/search" as={NavLink} colorScheme="yellow">
+            🔎 SEARCH
           </Button>
         </ListItem>
         <ListItem>
@@ -62,55 +47,6 @@ const Nav = () => {
                 )
             )}
           </List>
-        </ListItem>
-        <ListItem>
-          <Menu>
-            <MenuButton
-              colorScheme="yellow"
-              as={Button}
-              rightIcon={<ChevronDownIcon />}
-              size="sm"
-            >
-              <SearchIcon /> Country
-            </MenuButton>
-            <MenuList background="black">
-              {menu.map(
-                (city) =>
-                  city.recommended && (
-                    <MenuItem
-                      background="black"
-                      key={city.country + city.id}
-                      city={city}
-                      onClick={() => handleCountry(city)}
-                    >
-                      {city.country}
-                    </MenuItem>
-                  )
-              )}
-            </MenuList>
-          </Menu>
-        </ListItem>
-
-        <ListItem>
-          <FormControl>
-            <FormLabel>$ Price minim</FormLabel>
-            <Input
-              type="number"
-              onChange={handleChange}
-              value={values.name}
-              name="min"
-              placeholder="100-1000"
-            />
-            <FormLabel>$ Price maxim</FormLabel>
-
-            <Input
-              type="number"
-              onChange={handleChange}
-              value={values.name}
-              name="max"
-              placeholder="100-1000"
-            />
-          </FormControl>
         </ListItem>
       </List>
     </GridItem>

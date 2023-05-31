@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import { UserContext } from './context/UserContext'
 
 import Home from './pages/Home'
-// import Recents from './pages/Recents'
+import Recents from './pages/Recents'
 import Cities from './pages/Cities'
 import Recommended from './pages/Recommended'
 import CityDetails from './pages/CityDetails'
@@ -31,9 +31,8 @@ function App() {
   return (
     <Routes>
       <Route element={<Home />}>
-        <Route path="/" element={<CitiesFilter />} />
-
-        {/* <Route path="/" element={<Recents />} /> */}
+        <Route path="/" element={<Recents />} />
+        <Route path="/search" element={<CitiesFilter />} />
         <Route path="/cities" element={<Cities />} />
         <Route path="/recommended" element={<Recommended />} />
         <Route path="/city/:id" element={<CityDetails />} />

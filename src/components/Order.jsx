@@ -16,19 +16,17 @@ import {
   // NumberInputField,
   // NumberInputStepper,
   Text,
+  Tooltip,
   VStack,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { OrderContext } from 'context/OrderContext'
-// import { completeOrder } from '../services/createOrder'
 import { Link } from 'react-router-dom'
 import { CalendarIcon, DeleteIcon } from '@chakra-ui/icons'
 
 const Order = () => {
   const { order, deleteOrder, deleteCity } = useContext(OrderContext)
-  // const [quantity, setQuantity] = useState(1)
-  // console.log(quantity)
   let total = 0
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -44,7 +42,7 @@ const Order = () => {
           onOpen()
         }}
       >
-        My order 🍽️
+        🍽️ My order
       </Button>
       <Modal size="6xl" isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay
@@ -61,7 +59,9 @@ const Order = () => {
           <ModalHeader fontStyle="underline" fontSize={30} textAlign="center">
             Order
           </ModalHeader>
-          <ModalCloseButton />
+          <Tooltip hasArrow label="Close" bg="red.600">
+            <ModalCloseButton />
+          </Tooltip>
           <ModalBody>
             {order?.map((city) => {
               total = total + city.price * city.quantity
@@ -79,59 +79,42 @@ const Order = () => {
                   </VStack>
                   <VStack w="25%">
                     <Text>{city.quantity}</Text>
-                    {/* <NumberInput
-                    color="yellow"
-                    min={1}
-                    max={city.stock}
-                    defaultValue={city.quantity}
-                    onChange={(value) => setQuantity(Number(value))}
-                    name={city.name}
-                  >
-                    <Box bg="black">
-                      <NumberInputField />
-                      <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                      </NumberInputStepper>
-                    </Box>
-                  </NumberInput> */}
                   </VStack>
                   <VStack w="25%">
                     <Text>$ {city.price * city.quantity}</Text>
                   </VStack>
                   <VStack>
-                    <IconButton
-                      size="lg"
-                      colorScheme="black"
-                      onClick={() => {
-                        deleteCity(city.id)
-                      }}
-                      icon={<DeleteIcon />}
-                    />
+                    <Tooltip hasArrow label="Delete" bg="red.600">
+                      <IconButton
+                        size="lg"
+                        colorScheme="black"
+                        onClick={() => {
+                          deleteCity(city.id)
+                        }}
+                        icon={<DeleteIcon />}
+                      />
+                    </Tooltip>
                   </VStack>
                 </HStack>
               )
             })}
           </ModalBody>
           <ModalFooter>
-            {/* {error && (
-              <Text bg="black" color="yellow.200" p={6}>
-                {errorMsj}
-              </Text>
-            )} */}
             <VStack>
               <HStack w="100%">
                 <Text w="55%">Total </Text>
 
                 <Text w="45%">$ {total}</Text>
-                <IconButton
-                  size="lg"
-                  colorScheme="black"
-                  onClick={() => {
-                    deleteOrder()
-                  }}
-                  icon={<DeleteIcon />}
-                />
+                <Tooltip hasArrow label="Delete" bg="red.600">
+                  <IconButton
+                    size="lg"
+                    colorScheme="black"
+                    onClick={() => {
+                      deleteOrder()
+                    }}
+                    icon={<DeleteIcon />}
+                  />
+                </Tooltip>
               </HStack>
 
               <Button
