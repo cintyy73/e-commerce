@@ -21,7 +21,7 @@ import { OrderContext } from '../../context/OrderContext'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import OrderInProgress from './OrderInProgress'
-import { completeOrder } from '../../services/completeOrder'
+import { dataUser } from '../../services/completeOrder'
 
 const CheckOut = () => {
   const { payOrder, order } = useContext(OrderContext)
@@ -33,9 +33,31 @@ const CheckOut = () => {
     handleSubmit,
     formState: { isSubmiting, errors },
   } = useForm()
+
+  const onSubmit = async (data) => {
+    try {
+      const { name, surname, table } = data
+      const orderData = {
+        name,
+        surname,
+        table,
+        email,
+        uid,
+        order,
+      }
+      console.log(orderData)
+      await dataUser(orderData)
+      // await addOrder(orderData)
+      payOrder()
+    } catch (error) {
+      console.log(error)
+      // throw new Error('no se puede crear')
+    }
+  }
+
   return (
     <VStack
-      onSubmit={handleSubmit(payOrder)}
+      onSubmit={handleSubmit(onSubmit)}
       paddingTop={5}
       as="form"
       justifyContent="space-evenly"
@@ -88,12 +110,7 @@ const CheckOut = () => {
           <FormErrorMessage>{errors.table?.message}</FormErrorMessage>
         </FormControl>
         <ButtonGroup>
-          <Button
-            onClick={() => email && completeOrder(order, email, uid)}
-            type="submit"
-            isLoading={isSubmiting}
-            colorScheme="green"
-          >
+          <Button type="submit" isLoading={isSubmiting} colorScheme="green">
             Pay
           </Button>
           <Button as={Link} to="/" colorScheme="red">
