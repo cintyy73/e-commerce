@@ -24,7 +24,6 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 const Login = () => {
   const [isError, setIsError] = useState(false)
-  const [messageError, setMessageError] = useState('')
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
   const navigate = useNavigate()
@@ -41,11 +40,13 @@ const Login = () => {
       await loginUser(data)
       setIsError(false)
       toast({
-        title: messageError,
-        status: 'error',
+        title: 'User successfully logged',
+        description: 'You will be redirected to the Home',
+        status: 'success',
         isClosable: true,
         duration: 2000,
       })
+
       setTimeout(() => {
         navigate('/')
       }, 2000)
@@ -54,23 +55,21 @@ const Login = () => {
       const errorCode = error.code
       const errorMessage = error.message
       console.log(errorMessage)
-      setMessageError(errorCode)
+      toast({
+        title: 'Failed to login!',
+        description: errorCode,
+        status: 'error',
+        isClosable: true,
+        duration: 4000,
+      })
     }
   }
-
+  const resetLogin = (e) => {
+    e.target.reset
+    setIsError(false)
+  }
   return (
-    <form
-      onSubmit={handleSubmit(
-        onSubmitlogin
-        // isError &&
-        //   toast({
-        //     title: messageError,
-        //     status: 'error',
-        //     isClosable: true,
-        //     duration: 2000,
-        //   })
-      )}
-    >
+    <form onSubmit={handleSubmit(onSubmitlogin)}>
       <Center
         paddingTop={5}
         gap="4"
@@ -84,7 +83,6 @@ const Login = () => {
 
         {isError && (
           <>
-            <Text color="red.500">Error: {messageError}</Text>
             <Text>Please you must create an account to continue!</Text>
 
             <NavLink to="/register">Go Register</NavLink>
@@ -121,20 +119,18 @@ const Login = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-            {/* <Input
-              type="password"
-              {...register('password', validatePassword)}
-              id="password"
-              placeholder="Password"
-            /> */}
+
             <FormErrorMessage>{errors.password?.message}.</FormErrorMessage>
           </FormControl>
           <ButtonGroup>
             <Button type="submit" isLoading={isSubmitting} colorScheme="yellow">
               Login
             </Button>
-            <Button as={NavLink} to="/" colorScheme="red">
+            <Button onClick={resetLogin} type="reset" colorScheme="red">
               Cancel
+            </Button>
+            <Button as={NavLink} to="/" variant="outline" colorScheme="black">
+              HOME
             </Button>
           </ButtonGroup>
         </VStack>

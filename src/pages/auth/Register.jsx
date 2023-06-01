@@ -3,6 +3,7 @@ import {
   Button,
   ButtonGroup,
   Center,
+  useToast,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -10,15 +11,15 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Text,
   VStack,
 } from '@chakra-ui/react'
-// import { useForm } from '../../hooks/useForm'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import logo from 'assets/favicon.png'
+
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import { useForm } from 'react-hook-form'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { UserContext } from 'context/UserContext'
-import { useForm } from 'react-hook-form'
+import logo from 'assets/favicon.png'
 import {
   validateEmail,
   validateName,
@@ -26,41 +27,45 @@ import {
   validateSurname,
   validateRepitePassword,
 } from '../../utils/validation'
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 const Register = () => {
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
   const navigate = useNavigate()
-  const [error, setError] = useState(false)
-  const [messageError, setMessageError] = useState('')
-  const [isRegister, setIsRegister] = useState(false)
+  const toast = useToast()
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm()
   const { registerUser } = useContext(UserContext)
   const onSubmitRegister = async (data) => {
-    setError(false)
     try {
       await registerUser(data)
-      setError(false)
-      setMessageError('cuenta creada correctamente seras redirigido a login')
-
+      toast({
+        title: 'Account create successfully',
+        description: 'You will redirected to login',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      })
       setTimeout(() => {
         navigate('/login')
       }, 3000)
     } catch (error) {
-      setIsRegister(false)
-      setError(true)
       const errorCode = error.code
       const errorMessage = error.message
-      console.log(errorCode)
       console.log(errorMessage)
-      // throw new Error(errorMessage)
+      toast({
+        title: errorCode,
+        status: 'warning',
+        duration: 4000,
+        isClosable: true,
+      })
     }
   }
+  const reset = (e) => e.target.value
 
   return (
     <Center
@@ -76,112 +81,93 @@ const Register = () => {
       <Heading>Welcome to Arian</Heading>
       <Avatar size="xl" name="logo resto" src={logo} />
 
-      {error && (
-        <>
-          <Text>{messageError}</Text>
-          <Text>Please you must create an account to continue!</Text>
-        </>
-      )}
-      {!error && (
-        <>
-          <Text>cuenta creada correctamente seras redirigido a login</Text>
-          <Link to="/">Home</Link>
-        </>
-      )}
-      <>
-        {!isRegister && (
-          <VStack>
-            <FormControl isInvalid={errors.name}>
-              <FormLabel>Name</FormLabel>
-              <Input
-                id="name"
-                placeholder="Name"
-                {...register('name', validateName)}
-              />
-              <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={errors.surname}>
-              <FormLabel>Surname</FormLabel>
-              <Input
-                id="surname"
-                placeholder="Surname"
-                {...register('surname', validateSurname)}
-              />
-              <FormErrorMessage>{errors.surname?.message}</FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={errors.email}>
-              <FormLabel>E-mail</FormLabel>
-              <Input
-                type="email"
-                {...register('email', validateEmail)}
-                id="email"
-                placeholder="Email"
-              />
-              <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
-            </FormControl>
+      <VStack>
+        <FormControl isInvalid={errors.name}>
+          <FormLabel>Name</FormLabel>
+          <Input
+            id="name"
+            placeholder="Name"
+            {...register('name', validateName)}
+          />
+          <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.surname}>
+          <FormLabel>Surname</FormLabel>
+          <Input
+            id="surname"
+            placeholder="Surname"
+            {...register('surname', validateSurname)}
+          />
+          <FormErrorMessage>{errors.surname?.message}</FormErrorMessage>
+        </FormControl>
+        <FormControl isInvalid={errors.email}>
+          <FormLabel>E-mail</FormLabel>
+          <Input
+            type="email"
+            {...register('email', validateEmail)}
+            id="email"
+            placeholder="Email"
+          />
+          <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+        </FormControl>
 
-            <FormControl isInvalid={errors.password}>
-              <FormLabel>Password</FormLabel>
-              <InputGroup>
-                <Input
-                  pr="4.5rem"
-                  type={show ? 'text' : 'password'}
-                  placeholder="Enter password"
-                  {...register('password', validatePassword)}
-                  id="password"
-                />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? (
-                      <ViewOffIcon color="black" />
-                    ) : (
-                      <ViewIcon color="black" />
-                    )}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-              <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-            </FormControl>
+        <FormControl isInvalid={errors.password}>
+          <FormLabel>Password</FormLabel>
+          <InputGroup>
+            <Input
+              pr="4.5rem"
+              type={show ? 'text' : 'password'}
+              placeholder="Enter password"
+              {...register('password', validatePassword)}
+              id="password"
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? (
+                  <ViewOffIcon color="black" />
+                ) : (
+                  <ViewIcon color="black" />
+                )}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
+          <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
+        </FormControl>
 
-            <FormControl isInvalid={errors.password}>
-              <FormLabel>Repite Password</FormLabel>
-              <InputGroup>
-                <Input
-                  pr="4.5rem"
-                  type={show ? 'text' : 'password'}
-                  placeholder="Repite password"
-                  {...register('repitePassword', validateRepitePassword)}
-                  id="repitePassword"
-                />
-                <InputRightElement width="4.5rem">
-                  <Button h="1.75rem" size="sm" onClick={handleClick}>
-                    {show ? (
-                      <ViewOffIcon color="black" />
-                    ) : (
-                      <ViewIcon color="black" />
-                    )}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-              <FormErrorMessage>
-                {errors.repitePassword?.message}
-              </FormErrorMessage>
-            </FormControl>
-            <ButtonGroup>
-              <Button
-                type="submit"
-                isLoading={isSubmitting}
-                colorScheme="yellow"
-              >
-                Create
+        <FormControl isInvalid={errors.password}>
+          <FormLabel>Repite Password</FormLabel>
+          <InputGroup>
+            <Input
+              pr="4.5rem"
+              type={show ? 'text' : 'password'}
+              placeholder="Repite password"
+              {...register('repitePassword', validateRepitePassword)}
+              id="repitePassword"
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? (
+                  <ViewOffIcon color="black" />
+                ) : (
+                  <ViewIcon color="black" />
+                )}
               </Button>
-              <Button as={NavLink} to="/" colorScheme="red">
-                Cancel
-              </Button>
-            </ButtonGroup>
-          </VStack>
-        )}
-      </>
+            </InputRightElement>
+          </InputGroup>
+          <FormErrorMessage>{errors.repitePassword?.message}</FormErrorMessage>
+        </FormControl>
+        <ButtonGroup>
+          <Button type="submit" colorScheme="yellow">
+            Create
+          </Button>
+          <Button type="reset" colorScheme="red" onClick={reset}>
+            Cancel
+          </Button>
+          <Button as={NavLink} to="/" variant="outline" colorScheme="black">
+            HOME
+          </Button>
+        </ButtonGroup>
+      </VStack>
     </Center>
   )
 }

@@ -7,12 +7,14 @@ import {
   signOut,
 } from 'firebase/auth'
 import { deleteStorage } from '../utils/localStorage'
+import { useToast } from '@chakra-ui/react'
 export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
+  const toast = useToast()
+
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  // const [isAuth, setIsAuth] = useState(false)
   const registerUser = async (data) => {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -60,6 +62,12 @@ export const UserProvider = ({ children }) => {
     signOut(auth)
       .then(() => {
         deleteStorage('order')
+        toast({
+          title: 'Sign off correct',
+          status: 'info',
+          isClosable: true,
+          duration: 3000,
+        })
       })
       .catch((error) => {
         console.log(error)

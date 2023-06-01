@@ -51,24 +51,23 @@ export const dataUser = async (orderData) => {
     }
     await setDoc(doc(db, 'users', uid), dataUser)
   }
-
+  // hasta aca creo objeto de datos de usuario
   const user = doc(db, 'users', uid)
   const docSnap = await getDoc(user)
   if (docSnap.exists()) {
     let total = 0
     for (const city of order) {
       total += city.price * city.quantity
-      const order = { order, table, total, complete: true }
     }
 
+    const orderC = { order, table, total, complete: true }
+
     // Add a new document with a generated id
-    // const newCityRef = addDoc(collection(db, 'orders'))
 
-    // later...
     // await addDoc(user, 'orders', order)
-    await addDoc(collection(db, 'orders'), order)
+    await addDoc(collection(db, 'orders'), orderC)
 
-    // console.log('Document data:', docSnap.data())
+    console.log('Document data:', docSnap.data())
   } else {
     // docSnap.data() will be undefined in this case
     console.log('No such document!')

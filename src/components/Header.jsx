@@ -12,7 +12,6 @@ import {
   Portal,
   Text,
   VStack,
-  useToast,
 } from '@chakra-ui/react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from 'assets/favicon.png'
@@ -27,7 +26,6 @@ import { CheckCircleIcon, ChevronDownIcon, EditIcon } from '@chakra-ui/icons'
 const Header = () => {
   const { deleteOrder } = useContext(OrderContext)
   const { signOff, user } = useContext(UserContext)
-  const toast = useToast()
 
   return (
     <GridItem w="100%" p={5} bg="black" color="#ffc600" area={'header'}>
@@ -86,13 +84,6 @@ const Header = () => {
                     onClick={() => {
                       deleteOrder()
                       signOff()
-                      toast({
-                        position: 'top-right',
-                        title: 'Sign off correct',
-                        status: 'success',
-                        isClosable: true,
-                        duration: 3000,
-                      })
                     }}
                   >
                     Sign Out
