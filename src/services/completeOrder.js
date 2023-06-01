@@ -1,4 +1,4 @@
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, getDocs } from 'firebase/firestore'
 import { db } from '../firebase/config'
 
 export const completeOrder = async (orderData) => {
@@ -17,4 +17,11 @@ export const completeOrder = async (orderData) => {
     }
     await addDoc(collection(db, 'orders'), orderUser)
   }
+}
+
+export const getOrders = async () => {
+  const querySnapshot = await getDocs(collection(db, 'orders'))
+  const orders = querySnapshot.docs.map((doc) => doc.data())
+  // console.log(orders)
+  return orders
 }

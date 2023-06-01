@@ -19,10 +19,20 @@ import {
   Divider,
   Tooltip,
 } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { getOrders } from '../../../services/completeOrder'
 const MyAccount = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
+  const [orderList, setOrderList] = useState([])
+  useEffect(() => {
+    const getData = async () => {
+      const orderList = await getOrders()
+      setOrderList(orderList)
+    }
+    getData()
+  }, [])
+  console.log(orderList)
   return (
     <>
       <Button
