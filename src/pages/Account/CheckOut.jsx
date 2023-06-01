@@ -21,7 +21,7 @@ import { OrderContext } from '../../context/OrderContext'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import OrderInProgress from './OrderInProgress'
-import { dataUser } from '../../services/completeOrder'
+import { completeOrder } from '../../services/completeOrder'
 
 const CheckOut = () => {
   const { payOrder, order } = useContext(OrderContext)
@@ -46,12 +46,11 @@ const CheckOut = () => {
         order,
       }
       console.log(orderData)
-      await dataUser(orderData)
+      completeOrder(orderData)
       payOrder()
       console.log('Order create!!')
     } catch (error) {
       console.log(error)
-      // throw new Error('no se puede crear')
     }
   }
 

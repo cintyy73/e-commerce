@@ -41,7 +41,12 @@ const Order = () => {
       >
         My order
       </Button>
-      <Modal size="6xl" isCentered isOpen={isOpen} onClose={onClose}>
+      <Modal
+        size={{ base: 'full', md: '6xl' }}
+        isCentered
+        isOpen={isOpen}
+        onClose={onClose}
+      >
         <ModalOverlay
           bg="blackAlpha.300"
           backdropFilter="blur(10px) hue-rotate(90deg)"

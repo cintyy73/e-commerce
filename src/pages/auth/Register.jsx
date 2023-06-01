@@ -65,6 +65,7 @@ const Register = () => {
       })
     }
   }
+
   const reset = (e) => e.target.value
 
   return (
