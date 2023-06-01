@@ -65,6 +65,7 @@ const CitiesFilter = () => {
   return (
     <VStack>
       <HStack
+        flexDir={{ base: 'column', md: 'row' }}
         w="100%"
         justifyContent="space-evenly"
         alignItems="flex-end"

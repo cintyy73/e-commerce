@@ -48,7 +48,7 @@ const Login = () => {
       })
 
       setTimeout(() => {
-        navigate('/')
+        navigate('/welcome')
       }, 2000)
     } catch (error) {
       setIsError(true)

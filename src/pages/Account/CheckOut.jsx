@@ -35,7 +35,6 @@ const CheckOut = () => {
   } = useForm()
 
   const onSubmit = async (data) => {
-    // const [create, setCreate] = useState('')
     try {
       const { name, surname, table } = data
       const orderData = {
@@ -48,7 +47,6 @@ const CheckOut = () => {
       }
       console.log(orderData)
       await dataUser(orderData)
-      // await addOrder(orderData)
       payOrder()
       console.log('Order create!!')
     } catch (error) {
@@ -72,7 +70,6 @@ const CheckOut = () => {
       <OrderInProgress />
       <VStack border="solid 3px green" padding={10} gap={3}>
         <Heading>Finish order and pay</Heading>
-        {/* <Heading>{create}</Heading> */}
         <FormControl isInvalid={errors.name}>
           <FormLabel>Name</FormLabel>
           <Input

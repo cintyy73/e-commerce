@@ -6,13 +6,20 @@ import {
   CardFooter,
   Heading,
   Image,
+  Spinner,
   Stack,
   Text,
+  useMenu,
 } from '@chakra-ui/react'
 
 const City = (city) => {
+  const { loading } = useMenu()
   const { dessert, first, country, entrance, price, image, id, name } =
     city.city
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     <Card

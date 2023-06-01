@@ -96,9 +96,10 @@ const OrderInProgress = () => {
             </GridItem>
           </SimpleGrid>
           <Button
+            alignSelf="center"
+            w={{ base: '40%', md: '20%' }}
             to="/my-account/checkout"
             variant="outline"
-            size="md"
             as={NavLink}
             colorScheme="black"
           >

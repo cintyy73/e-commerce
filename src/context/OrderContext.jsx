@@ -12,10 +12,8 @@ export const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
   const initialOrder = getStorage('order') || []
-  // const [isAdd, setIsAdd] = useState(false)
   const [order, setOrder] = useState(initialOrder)
   const navigate = useNavigate()
-  // const [finallyOrder, setFinallyOrder] = useState([])
 
   const createOrder = (cityD, id, quantity) => {
     const { name, price } = cityD
@@ -69,7 +67,6 @@ const OrderProvider = ({ children }) => {
         deleteOrder,
         deleteCity,
         createOrder,
-        // isAdd,
         payOrder,
       }}
     >
