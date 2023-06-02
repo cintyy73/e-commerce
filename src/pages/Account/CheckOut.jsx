@@ -8,6 +8,7 @@ import {
   Input,
   Popover,
   PopoverArrow,
+  // PopoverBody,
   PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
@@ -26,7 +27,7 @@ import {
 } from '../../utils/validation'
 import { useContext } from 'react'
 import { OrderContext } from '../../context/OrderContext'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import OrderInProgress from './OrderInProgress'
 import { completeOrder } from '../../services/completeOrder'
@@ -147,7 +148,7 @@ const CheckOut = () => {
             </PopoverContent>
             {/* </Portal> */}
           </Popover>
-          <Button as={Link} to="/" colorScheme="red">
+          <Button type="reset" colorScheme="red">
             Cancel
           </Button>
         </ButtonGroup>

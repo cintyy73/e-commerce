@@ -64,8 +64,8 @@ const Login = () => {
       })
     }
   }
-  const resetLogin = (e) => {
-    e.target.reset
+  const resetLogin = () => {
+    // e.target.reset
     setIsError(false)
   }
   return (

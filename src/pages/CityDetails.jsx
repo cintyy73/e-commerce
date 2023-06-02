@@ -79,7 +79,7 @@ const CityDetails = () => {
             <GridItem width="100%">
               <Card bgColor="yellow.200">
                 <CardHeader>
-                  <Heading size="md"> First </Heading>
+                  <Heading size="md"> Main dish </Heading>
                   <Text>{cityD?.first}</Text>
                 </CardHeader>
                 <CardBody>

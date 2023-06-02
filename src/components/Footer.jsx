@@ -7,6 +7,7 @@ import {
   Heading,
   Link,
   Divider,
+  Tooltip,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 import logo from 'assets/favicon.png'
@@ -48,27 +49,33 @@ const Footer = () => {
           </Heading>
         </HStack>
         <HStack justifyContent="space-evenly">
-          <Link target="blank" href="https://es-la.facebook.com">
-            <Avatar
-              size="md"
-              name="logo facebook"
-              src="https://www.citypng.com/public/uploads/preview/-51615208019svqsspmeg7.png?v=2023051621"
-            />
-          </Link>
-          <Link target="blank" href="https://www.instagram.com/">
-            <Avatar
-              size="md"
-              name="logo instagram"
-              src="https://www.citypng.com/public/uploads/preview/-11598200949vmcvk1prc6.png?v=2023051621 "
-            />
-          </Link>
-          <Link target="blank" href="https://twitter.com">
-            <Avatar
-              size="md"
-              name="logo twitter"
-              src="https://www.citypng.com/public/uploads/preview/-51615207660lfhck0plbm.png?v=2023051621"
-            />
-          </Link>
+          <Tooltip colorScheme="facebook" hasArrow label="Go Facebook">
+            <Link target="blank" href="https://es-la.facebook.com">
+              <Avatar
+                size="md"
+                name="logo facebook"
+                src="https://www.citypng.com/public/uploads/preview/-51615208019svqsspmeg7.png?v=2023051621"
+              />
+            </Link>
+          </Tooltip>
+          <Tooltip colorScheme="facebook" hasArrow label="Go Instagram">
+            <Link target="blank" href="https://www.instagram.com/">
+              <Avatar
+                size="md"
+                name="logo instagram"
+                src="https://www.citypng.com/public/uploads/preview/-11598200949vmcvk1prc6.png?v=2023051621 "
+              />
+            </Link>
+          </Tooltip>
+          <Tooltip colorScheme="facebook" hasArrow label="Go twitter">
+            <Link target="blank" href="https://twitter.com">
+              <Avatar
+                size="md"
+                name="logo twitter"
+                src="https://www.citypng.com/public/uploads/preview/-51615207660lfhck0plbm.png?v=2023051621"
+              />
+            </Link>
+          </Tooltip>
         </HStack>
       </HStack>
     </GridItem>

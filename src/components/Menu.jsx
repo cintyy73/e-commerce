@@ -65,7 +65,7 @@ const Menu = () => {
                       <Divider />
                       <Heading fontSize={10}>{country} </Heading>
                       <Text>Entrance : {entrance}</Text>
-                      <Text>First : {first}</Text>
+                      <Text>Main dish : {first}</Text>
                       <Text>Dessert: {dessert}</Text>
                       <Text textAlign="center" fontSize={30}>
                         ${price}

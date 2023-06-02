@@ -12,6 +12,7 @@ import {
   Spinner,
   Button,
   HStack,
+  Portal,
 } from '@chakra-ui/react'
 
 import City from '../components/City'
@@ -82,22 +83,24 @@ const CitiesFilter = () => {
           >
             <SearchIcon /> Country
           </MenuButton>
-          <MenuList background="black">
-            {menu.map(
-              (city) =>
-                city.recommended && (
-                  <MenuItem
-                    background="black"
-                    color="yellow.200"
-                    key={city.country + city.id}
-                    city={city}
-                    onClick={() => handleCountry(city)}
-                  >
-                    {city.country}
-                  </MenuItem>
-                )
-            )}
-          </MenuList>
+          <Portal>
+            <MenuList background="black">
+              {menu.map(
+                (city) =>
+                  city.recommended && (
+                    <MenuItem
+                      background="black"
+                      color="yellow.200"
+                      key={city.country + city.id}
+                      city={city}
+                      onClick={() => handleCountry(city)}
+                    >
+                      {city.country}
+                    </MenuItem>
+                  )
+              )}
+            </MenuList>
+          </Portal>
         </Menu>
         <Heading m={4} color="yellow.200" bg="black">
           {values.country}

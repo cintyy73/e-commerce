@@ -19,20 +19,45 @@ import {
   Divider,
   Tooltip,
 } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { getOrders } from '../../../services/completeOrder'
+import { UserContext } from '../../../context/UserContext'
 const MyAccount = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
-  const [orderList, setOrderList] = useState([])
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { user } = useContext(UserContext)
+  const { uid } = user
+
+  const [ordersList, setOrdersList] = useState([])
+  const [dataUser, setDataUser] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    order: '',
+    total: '',
+    complete: '',
+  })
   useEffect(() => {
     const getData = async () => {
       const orderList = await getOrders()
-      setOrderList(orderList)
+      setOrdersList(orderList)
+      // const userData = await getUserData(uid)
+      // console.log(userData)
+      orderList.map((order) => {
+        if (order.user.uid === uid) {
+          const dataUser = {
+            name: order.user.name,
+            surname: order.user.surname,
+            email: order.user.email,
+          }
+          setDataUser(dataUser)
+        }
+        console.log(dataUser)
+      })
     }
     getData()
-  }, [])
-  console.log(orderList)
+  }, [uid, dataUser])
+
   return (
     <>
       <Button
@@ -68,11 +93,13 @@ const MyAccount = () => {
             <List spacing={3}>
               <ListItem>
                 <Heading fontSize={20}>🫵 Name & Surname: </Heading>
-                <Text fontSize={19}>name surname</Text>
+                <Text fontSize={19}>
+                  {dataUser.name} {dataUser.surname}
+                </Text>
               </ListItem>
               <ListItem>
                 <Heading fontSize={20}> 📧 E-mail: </Heading>
-                <Text fontSize={19}>email</Text>
+                <Text fontSize={19}>{dataUser.email}</Text>
               </ListItem>
               <ListItem>
                 <Heading fontSize={20}>🍽️ Visit: </Heading>
@@ -97,86 +124,25 @@ const MyAccount = () => {
                 md: 'repeat(2, minmax(300px, 1fr))',
               }}
             >
-              <GridItem bg="black" color="yellow.100">
-                <Stack border="1px solid green" p={4} maxWidth="max-content">
-                  <Text>order</Text>
-                  <Text>Order: id</Text>
-                  <Text>Complete: complete</Text>
-                  <Text>E-mail: email</Text>
-                  <Text>Total: total</Text>
-                </Stack>
-              </GridItem>{' '}
-              <GridItem bg="black" color="yellow.100">
-                <Stack border="1px solid green" p={4} maxWidth="max-content">
-                  <Text>order</Text>
-                  <Text>Order: id</Text>
-                  <Text>Complete: complete</Text>
-                  <Text>E-mail: email</Text>
-                  <Text>Total: total</Text>
-                </Stack>
-              </GridItem>{' '}
-              <GridItem bg="black" color="yellow.100">
-                <Stack border="1px solid green" p={4} maxWidth="max-content">
-                  <Text>order</Text>
-                  <Text>Order: id</Text>
-                  <Text>Complete: complete</Text>
-                  <Text>E-mail: email</Text>
-                  <Text>Total: total</Text>
-                </Stack>
-              </GridItem>{' '}
-              <GridItem bg="black" color="yellow.100">
-                <Stack border="1px solid green" p={4} maxWidth="max-content">
-                  <Text>order</Text>
-                  <Text>Order: id</Text>
-                  <Text>Complete: complete</Text>
-                  <Text>E-mail: email</Text>
-                  <Text>Total: total</Text>
-                </Stack>
-              </GridItem>{' '}
-              <GridItem bg="black" color="yellow.100">
-                <Stack border="1px solid green" p={4} maxWidth="max-content">
-                  <Text>order</Text>
-                  <Text>Order: id</Text>
-                  <Text>Complete: complete</Text>
-                  <Text>E-mail: email</Text>
-                  <Text>Total: total</Text>
-                </Stack>
-              </GridItem>{' '}
-              <GridItem bg="black" color="yellow.100">
-                <Stack border="1px solid green" p={4} maxWidth="max-content">
-                  <Text>order</Text>
-                  <Text>Order: id</Text>
-                  <Text>Complete: complete</Text>
-                  <Text>E-mail: email</Text>
-                  <Text>Total: total</Text>
-                </Stack>
-              </GridItem>{' '}
-              <GridItem bg="black" color="yellow.100">
-                <Stack border="1px solid green" p={4} maxWidth="max-content">
-                  <Text>order</Text>
-                  <Text>Order: id</Text>
-                  <Text>Complete: complete</Text>
-                  <Text>E-mail: email</Text>
-                  <Text>Total: total</Text>
-                </Stack>
-              </GridItem>{' '}
-              {/* {orders.map((order) => (
-                <Stack key={id}>
-                  <Text>order</Text>
-                  <Text>Order: {id}</Text>
-                  <Text>Complete: {complete}</Text>
-                  <Text>E-mail: {email}</Text>
-                  <Text>Total: {total}</Text>
-                </Stack>
-              ))} */}
+              {/* {ordersList.map((order) => {
+                ;<GridItem key={order.id} bg="black" color="yellow.100">
+                  <Stack border="1px solid green" p={4} maxWidth="max-content">
+                    <Text>order</Text>
+                    <Text>Order: {order.id}</Text>
+                    <Text>Complete: complete</Text>
+                    <Text>E-mail: email</Text>
+                    <Text>Total: total</Text>
+                  </Stack>
+                </GridItem>
+              })} segun firebas no hay consultas hasta aca llegue, antes del map funcionaba ok!
+              hasta cuando borre los items*/}
             </SimpleGrid>
           </DrawerBody>
 
           <DrawerFooter bg="black" color="yellow.100">
             <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
+              Close
             </Button>
-            <Button colorScheme="yellow">Save</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

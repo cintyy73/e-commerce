@@ -34,7 +34,7 @@ const Nav = () => {
           <List>
             <ListItem as={Link} to="/recommended" size="md">
               <ListIcon color="gray" as={CheckCircleIcon} />
-              All Recommended
+              Recommended
             </ListItem>
 
             {menu.map(

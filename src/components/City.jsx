@@ -54,7 +54,7 @@ const City = (city) => {
             {entrance}
           </Text>
           <Text textDecoration="underline" fontSize="small" py="2">
-            First course:
+            Main dish
           </Text>
           <Text fontSize="small" py="2">
             {first}

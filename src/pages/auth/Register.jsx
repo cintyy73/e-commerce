@@ -66,8 +66,6 @@ const Register = () => {
     }
   }
 
-  const reset = (e) => e.target.value
-
   return (
     <Center
       onSubmit={handleSubmit(onSubmitRegister)}
@@ -161,7 +159,7 @@ const Register = () => {
           <Button type="submit" colorScheme="yellow">
             Create
           </Button>
-          <Button type="reset" colorScheme="red" onClick={reset}>
+          <Button type="reset" colorScheme="red">
             Cancel
           </Button>
           <Button as={NavLink} to="/" variant="outline" colorScheme="black">
