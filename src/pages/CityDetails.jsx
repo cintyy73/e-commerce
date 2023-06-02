@@ -18,7 +18,6 @@ import {
   Text,
   Tooltip,
   VStack,
-  useToast,
 } from '@chakra-ui/react'
 import { useEffect, useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -33,7 +32,6 @@ const CityDetails = () => {
 
   const { createOrder, deleteCity } = useContext(OrderContext)
   const { id } = useParams()
-  const toast = useToast()
 
   useEffect(() => {
     const getData = async () => {
@@ -147,29 +145,16 @@ const CityDetails = () => {
               <Button
                 onClick={() => {
                   createOrder(cityD, id, quantity)
-                  toast({
-                    title:
-                      'You have added ' + quantity + ' items to your order',
-                    status: 'success',
-                    duration: 4000,
-                    isClosable: true,
-                  })
                 }}
               >
                 Add {quantity}
               </Button>
             </Tooltip>
-            T
+
             <Tooltip hasArrow label="Delete" bg="red.600">
               <Button
                 onClick={() => {
                   deleteCity(id)
-                  toast({
-                    title: 'Removed from your order succesfully',
-                    status: 'error',
-                    duration: 3000,
-                    isClosable: true,
-                  })
                 }}
               >
                 <DeleteIcon />

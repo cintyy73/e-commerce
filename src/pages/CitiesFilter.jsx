@@ -19,8 +19,6 @@ import { useMenu } from '../hooks/useMenu'
 import { useEffect, useState } from 'react'
 import { allCitiesFilters } from '../services/cities'
 import { useDebounce } from '../hooks/useDebonce'
-// import { useEffect, useState } from 'react'
-// import { allCitiesFilters } from '../services/cities'
 
 const CitiesFilter = () => {
   const { menu } = useMenu()
@@ -60,18 +58,20 @@ const CitiesFilter = () => {
 
     getCitiesCountry()
   }, [debounceMax, debounceMin, values.country])
-  console.log('fikter', values)
-  console.log('debonce' + debounceMin, debounceMax)
+  if (loading) {
+    return <Spinner />
+  }
+
   return (
-    <VStack>
+    <VStack minH="100vh">
       <HStack
         flexDir={{ base: 'column', md: 'row' }}
         w="100%"
         justifyContent="space-evenly"
-        alignItems="flex-end"
+        alignItems={{ base: 'center', md: 'flex-end' }}
         gap={4}
         color="yellow.300"
-        pb={6}
+        p={6}
       >
         <Menu>
           <MenuButton
@@ -150,12 +150,13 @@ const CitiesFilter = () => {
           ))}
           {countryCities.length === 0 && (
             <Heading
+              fontSize={20}
               p={7}
               color="yellow.200"
               border="solid 3px green"
               bg="black"
             >
-              No cities found
+              No matches,choose a country and change price range please!
             </Heading>
           )}
         </SimpleGrid>

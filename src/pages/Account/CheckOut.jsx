@@ -6,7 +6,15 @@ import {
   FormLabel,
   Heading,
   Input,
+  Popover,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  // Portal,
   VStack,
+  useToast,
 } from '@chakra-ui/react'
 // import { NavLink } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -27,6 +35,7 @@ const CheckOut = () => {
   const { payOrder, order } = useContext(OrderContext)
   const { user } = useContext(UserContext)
   const { email, uid } = user
+  const toast = useToast()
 
   const {
     register,
@@ -45,12 +54,24 @@ const CheckOut = () => {
         uid,
         order,
       }
-      console.log(orderData)
       completeOrder(orderData)
       payOrder()
-      console.log('Order create!!')
+      toast({
+        title: 'Payment made successfully!',
+        description: 'In 15 minutes you will receive your order at table ',
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+      })
     } catch (error) {
       console.log(error)
+      toast({
+        title: 'Error creating order',
+        description: 'Please check the data entered and try again',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
     }
   }
 
@@ -109,9 +130,23 @@ const CheckOut = () => {
           <FormErrorMessage>{errors.table?.message}</FormErrorMessage>
         </FormControl>
         <ButtonGroup>
-          <Button type="submit" isLoading={isSubmiting} colorScheme="green">
-            Pay
-          </Button>
+          <Popover>
+            <PopoverTrigger>
+              <Button type="button" colorScheme="green">
+                Pay
+              </Button>
+            </PopoverTrigger>
+            {/* <Portal> */}
+            <PopoverContent bg="black" color="yellow.100">
+              <PopoverArrow />
+              <PopoverHeader>Finish order and pay</PopoverHeader>
+              <Button isLoading={isSubmiting} type="submit" colorScheme="green">
+                OK
+              </Button>
+              <PopoverCloseButton />
+            </PopoverContent>
+            {/* </Portal> */}
+          </Popover>
           <Button as={Link} to="/" colorScheme="red">
             Cancel
           </Button>

@@ -1,21 +1,13 @@
 import { useEffect, useState } from 'react'
 import { getAllCities } from '../services/cities'
-import {
-  collection,
-  doc,
-  // getDocs,
-  // limit,
-  // orderBy,
-  // query,
-  // where,
-} from 'firebase/firestore'
+import { collection, doc } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { useParams } from 'react-router-dom'
 
 export const useMenu = () => {
   const [menu, setMenu] = useState([])
   const [loading, setLoading] = useState(true)
-  // const [error, setError] = useState(null)
+  const { id } = useParams()
 
   useEffect(() => {
     const getMenu = async () => {
@@ -25,9 +17,9 @@ export const useMenu = () => {
     }
     getMenu()
   }, [])
+
   const cityDet = doc(collection(db, 'cities'))
 
-  const { id } = useParams()
   const cityD = menu.find((c) => c.id === id)
 
   return { cityDet, menu, loading, cityD }

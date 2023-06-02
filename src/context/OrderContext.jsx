@@ -7,12 +7,14 @@ import {
   getStorage,
   setStorage,
 } from '../utils/localStorage'
+import { useToast } from '@chakra-ui/react'
 
 export const OrderContext = createContext()
 
 const OrderProvider = ({ children }) => {
   const initialOrder = getStorage('order') || []
   const [order, setOrder] = useState(initialOrder)
+  const toast = useToast()
   const navigate = useNavigate()
 
   const createOrder = (cityD, id, quantity) => {
@@ -38,6 +40,12 @@ const OrderProvider = ({ children }) => {
       })
       setOrder(newOrders)
     }
+    toast({
+      title: 'You have added ' + quantity + ' items to your order',
+      status: 'success',
+      duration: 4000,
+      isClosable: true,
+    })
   }
 
   useEffect(() => {
@@ -50,14 +58,22 @@ const OrderProvider = ({ children }) => {
   }
 
   const payOrder = () => {
-    navigate('/')
     setOrder([])
     deleteOrderStorage('order')
+    setTimeout(() => {
+      navigate('/')
+    }, 2000)
   }
 
   const deleteCity = (id) => {
     const orderDelete = order.filter((city) => city.id !== id)
     setOrder(orderDelete)
+    toast({
+      title: 'Removed from your order succesfully',
+      status: 'error',
+      duration: 3000,
+      isClosable: true,
+    })
   }
 
   return (

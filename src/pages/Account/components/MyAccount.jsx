@@ -52,7 +52,8 @@ const MyAccount = () => {
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        size={{ base: 'xs', md: 'lg' }}
+        closeOnOverlayClick={false}
+        size={{ base: 'full', md: 'lg' }}
       >
         <DrawerOverlay />
         <DrawerContent>
