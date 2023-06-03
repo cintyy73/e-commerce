@@ -38,7 +38,6 @@ export const recommended = async () => {
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
     recommendedCity.push({ ...doc.data(), id: doc.id })
-    // console.log(doc.id, ' => ', doc.data())
   })
   return recommendedCity
 }
@@ -49,7 +48,6 @@ export const recents = async () => {
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
     recentsCity.push({ ...doc.data(), id: doc.id })
-    // console.log(doc.id, ' => ', doc.data())
   })
   return recentsCity
 }

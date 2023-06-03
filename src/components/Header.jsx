@@ -21,7 +21,6 @@ import { UserContext } from 'context/UserContext'
 import { OrderContext } from 'context/OrderContext'
 
 import { CheckCircleIcon, ChevronDownIcon, EditIcon } from '@chakra-ui/icons'
-// import { signOut } from 'firebase/auth'
 
 const Header = () => {
   const { deleteOrder } = useContext(OrderContext)

@@ -22,17 +22,5 @@ export const completeOrder = async (orderData) => {
 export const getOrders = async () => {
   const querySnapshot = await getDocs(collection(db, 'orders'))
   const orders = querySnapshot.docs.map((doc) => doc.data())
-  // console.log(orders)
   return orders
 }
-// export const getUserData = async (uid) => {
-//   const q = query(collection('orders').orderBy('user', 'asc'))
-//   let userData = []
-//   const querySnapshot = await getDocs(q)
-//   querySnapshot.forEach((doc) => {
-
-//     userData.push({ ...doc.data(), -.})
-//     // console.log(doc.id, ' => ', doc.data())
-//   })
-//   return userData
-// }

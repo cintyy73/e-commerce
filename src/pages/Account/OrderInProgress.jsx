@@ -95,7 +95,6 @@ const OrderInProgress = () => {
               </HStack>
             </GridItem>
           </SimpleGrid>
-          {/* {!isOcult && ( */}
           <Button
             alignSelf="center"
             w={{ base: '40%', md: '20%' }}
@@ -106,7 +105,6 @@ const OrderInProgress = () => {
           >
             Go checkout
           </Button>
-          {/* // )} */}
         </Stack>
       )}
     </Stack>

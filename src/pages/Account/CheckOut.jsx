@@ -138,6 +138,7 @@ const CheckOut = () => {
               </Button>
             </PopoverTrigger>
             {/* <Portal> */}
+            {/* Si uso el portal elimina el warning en consola pero, no ejecuta el submit */}
             <PopoverContent bg="black" color="yellow.100">
               <PopoverArrow />
               <PopoverHeader>Finish order and pay</PopoverHeader>
