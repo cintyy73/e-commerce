@@ -56,7 +56,7 @@ const MyAccount = () => {
       })
     }
     getData()
-  }, [uid, dataUser])
+  }, [uid])
 
   return (
     <>
