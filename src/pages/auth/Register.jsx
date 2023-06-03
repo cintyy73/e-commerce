@@ -25,7 +25,7 @@ import {
   validateName,
   validatePassword,
   validateSurname,
-  validateRepitePassword,
+  validatePasswordRegister,
 } from '../../utils/validation'
 
 const Register = () => {
@@ -140,7 +140,7 @@ const Register = () => {
               pr="4.5rem"
               type={show ? 'text' : 'password'}
               placeholder="Repite password"
-              {...register('repitePassword', validateRepitePassword)}
+              {...register('repitePassword', validatePasswordRegister)}
               id="repitePassword"
             />
             <InputRightElement width="4.5rem">
@@ -170,5 +170,4 @@ const Register = () => {
     </Center>
   )
 }
-
 export default Register

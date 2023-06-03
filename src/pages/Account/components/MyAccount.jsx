@@ -14,8 +14,8 @@ import {
   ListItem,
   Text,
   SimpleGrid,
-  Stack,
-  GridItem,
+  // Stack,
+  // GridItem,
   Divider,
   Tooltip,
 } from '@chakra-ui/react'
@@ -28,7 +28,7 @@ const MyAccount = () => {
   const { user } = useContext(UserContext)
   const { uid } = user
 
-  const [ordersList, setOrdersList] = useState([])
+  // const [ordersList, setOrdersList] = useState([])
   const [dataUser, setDataUser] = useState({
     name: '',
     surname: '',
@@ -40,7 +40,7 @@ const MyAccount = () => {
   useEffect(() => {
     const getData = async () => {
       const orderList = await getOrders()
-      setOrdersList(orderList)
+      // setOrdersList(orderList)
       // const userData = await getUserData(uid)
       // console.log(userData)
       orderList.map((order) => {
@@ -49,10 +49,10 @@ const MyAccount = () => {
             name: order.user.name,
             surname: order.user.surname,
             email: order.user.email,
+            order: order.order,
           }
           setDataUser(dataUser)
         }
-        console.log(dataUser)
       })
     }
     getData()
@@ -88,43 +88,45 @@ const MyAccount = () => {
           <DrawerHeader bg="black" color="yellow.100">
             <Heading color="yellow.200">My account 🪪</Heading>
           </DrawerHeader>
-
           <DrawerBody bg="black" color="yellow.100">
-            <List spacing={3}>
-              <ListItem>
-                <Heading fontSize={20}>🫵 Name & Surname: </Heading>
-                <Text fontSize={19}>
-                  {dataUser.name} {dataUser.surname}
-                </Text>
-              </ListItem>
-              <ListItem>
-                <Heading fontSize={20}> 📧 E-mail: </Heading>
-                <Text fontSize={19}>{dataUser.email}</Text>
-              </ListItem>
-              <ListItem>
-                <Heading fontSize={20}>🍽️ Visit: </Heading>
-                <Text fontSize={19}>order.length</Text>
-              </ListItem>
-              <ListItem>
-                <Heading fontSize={20}>🌀Frequent tables </Heading>
-                <Text fontSize={19}>number</Text>
-              </ListItem>
-            </List>
-            <Divider />
-            <Heading p={5} color="yellow.200">
-              My orders 📋
-            </Heading>
-            <Divider mb={4} />
-
-            <SimpleGrid
-              alignItems=""
-              spacing={4}
-              templateColumns={{
-                base: 'repeat(1, minmax(300px, 1fr))',
-                md: 'repeat(2, minmax(300px, 1fr))',
-              }}
-            >
-              {/* {ordersList.map((order) => {
+            {!dataUser.order && <Heading>Dont have orders ...</Heading>}
+            {dataUser.order && (
+              <>
+                {' '}
+                <List spacing={3}>
+                  <ListItem>
+                    <Heading fontSize={20}>🫵 Name & Surname: </Heading>
+                    <Text fontSize={19}>
+                      {dataUser.name} {dataUser.surname}
+                    </Text>
+                  </ListItem>
+                  <ListItem>
+                    <Heading fontSize={20}> 📧 E-mail: </Heading>
+                    <Text fontSize={19}>{dataUser.email}</Text>
+                  </ListItem>
+                  <ListItem>
+                    <Heading fontSize={20}>🍽️ Visit: </Heading>
+                    <Text fontSize={19}>order.length</Text>
+                  </ListItem>
+                  <ListItem>
+                    <Heading fontSize={20}>🌀Frequent tables </Heading>
+                    <Text fontSize={19}>number</Text>
+                  </ListItem>
+                </List>
+                <Divider />
+                <Heading p={5} color="yellow.200">
+                  My orders 📋
+                </Heading>
+                <Divider mb={4} />
+                <SimpleGrid
+                  alignItems=""
+                  spacing={4}
+                  templateColumns={{
+                    base: 'repeat(1, minmax(300px, 1fr))',
+                    md: 'repeat(2, minmax(300px, 1fr))',
+                  }}
+                >
+                  {/* {ordersList.map((order) => {
                 ;<GridItem key={order.id} bg="black" color="yellow.100">
                   <Stack border="1px solid green" p={4} maxWidth="max-content">
                     <Text>order</Text>
@@ -136,7 +138,9 @@ const MyAccount = () => {
                 </GridItem>
               })} segun firebas no hay consultas hasta aca llegue, antes del map funcionaba ok!
               hasta cuando borre los items*/}
-            </SimpleGrid>
+                </SimpleGrid>
+              </>
+            )}
           </DrawerBody>
 
           <DrawerFooter bg="black" color="yellow.100">

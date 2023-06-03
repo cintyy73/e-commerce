@@ -15,12 +15,25 @@ export const validateName = {
 export const validatePassword = {
   required: 'this is required',
   minLength: {
+    value: 6,
+    message: '**Password must be more than 4 characters',
+  },
+  maxLength: {
     value: 8,
-    message: '8 characters',
+    message: '**Password cannot exceed more than 8 characters',
   },
 }
-export const validateRepitePassword = {
-  required: 'this is required',
+
+export const validatePasswordRegister = {
+  required: '**Password is required',
+  minLength: {
+    value: 6,
+    message: '**Password must be more than 4 characters',
+  },
+  maxLength: {
+    value: 8,
+    message: '**Password cannot exceed more than 18 characters',
+  },
 }
 
 export const validateTable = {
