@@ -71,39 +71,39 @@
 
 ### Logo de App
 
-![Logo de App](src/assets/favicon.png).
+![Logo de App](src/assets/favicon.png)
 
 ### Home
 
-![Home](src/assets/readme/home.jpg).
+![Home](src/assets/readme/home.jpg)
 
 ### Detalle de ciudades
 
-![Detalle de ciudades](src/assets/readme/details.jpg).
+![Detalle de ciudades](src/assets/readme/details.jpg)
 
 ### Filtros
 
-![Register/Login](src/assets/readme/filters.jpg).
+![Filters](src/assets/readme/filter.jpg)
 
 ### Menú
 
-![Menú](src/assets/readme/menu.jpg).
+![Menú](src/assets/readme/menu.jpg)
 
 ### Login
 
-![Login](src/assets/readme/register.jpg).
+![Login](src/assets/readme/login.jpg)
 
 ### Register
 
-![Register](src/assets/readme/login.jpg).
+![Register](src/assets/readme/register.jpg)
 
 ### Checkout
 
-![Checkout](src/assets/readme/checkout.jpg).
+![Checkout](src/assets/readme/checkout.jpg)
 
 ### Ordenes anteriores
 
-![Ordenes anteriores](src/assets/readme/orders.jpg.jpg).
+![Ordenes anteriores](src/assets/readme/orders.jpg)
 
 ### Ahora te invito a probar mi App.
 
