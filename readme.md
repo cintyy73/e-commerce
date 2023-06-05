@@ -12,12 +12,13 @@
 
   Tecnologías empleadas:
 
-- `Vite`
-- `React JS`
-- `Chakra UI`
-- `Firebase`
-- `React Hook Form`
-- `Vercel`
+- [Vite](https://vitejs.dev/guide/)
+- [React JS](https://es.react.dev/learn)
+- [React Hook Form](https://react-hook-form.com/)
+- [React Router Dom](https://reactrouter.com/en/main)
+- [Chakra UI](https://chakra-ui.com/docs/)
+- [Firebase](https://firebase.google.com/docs?hl=es-419)
+- [Vercel](https://vercel.com/)
 
 ### Descripción
 
@@ -70,39 +71,39 @@
 
 ### Logo de App
 
-![Logo de App](src/assets//.png).
+![Logo de App](src/assets/favicon.png).
 
-### Inicio
+### Home
 
-![Inicio](src/assets/.jpg).
-
-### Vista de ciudades
-
-![Vista de ciudades](src/assets/.jpg).
+![Home](src/assets/readme/home.jpg).
 
 ### Detalle de ciudades
 
-![Detalle de ciudades](src/assets/.jpg).
+![Detalle de ciudades](src/assets/readme/details.jpg).
+
+### Filtros
+
+![Register/Login](src/assets/readme/filters.jpg).
 
 ### Menú
 
-![Menú](src/assets/.jpg).
+![Menú](src/assets/readme/menu.jpg).
 
-### Register/Login
+### Login
 
-![Register/Login](src/assets/.jpg).
+![Login](src/assets/readme/register.jpg).
 
-### Mi cuenta/ordenes
+### Register
 
-![Mi cuenta/ordenes](src/assets/.jpg).
+![Register](src/assets/readme/login.jpg).
 
 ### Checkout
 
-![Checkout](src/assets/.jpg).
+![Checkout](src/assets/readme/checkout.jpg).
 
-### Orden
+### Ordenes anteriores
 
-## ![Orden](src/assets/.jpg).
+![Ordenes anteriores](src/assets/readme/orders.jpg.jpg).
 
 ### Ahora te invito a probar mi App.
 

@@ -140,7 +140,7 @@ const CityDetails = () => {
               </NumberInputStepper>
             </Box>
           </NumberInput>
-          <ButtonGroup gap={5} colorScheme="yellow">
+          <ButtonGroup p={3} gap={5} colorScheme="yellow">
             <Tooltip hasArrow label="Add" bg="green.600">
               <Button
                 onClick={() => {

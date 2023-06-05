@@ -65,6 +65,14 @@ const Header = () => {
                 <MenuList color="yellow.200" background="black">
                   <MenuItem
                     as={Link}
+                    to="/my-account/orders"
+                    background="black"
+                    color="green.100"
+                  >
+                    <Text textDecoration="underline">{user.email}</Text>
+                  </MenuItem>
+                  <MenuItem
+                    as={Link}
                     background="black"
                     to="/my-account/checkout"
                   >

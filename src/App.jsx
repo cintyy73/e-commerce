@@ -21,6 +21,7 @@ import ProtectedRoute from './pages/Account/components/ProtectedRoute'
 import OrderInProgress from './pages/Account/OrderInProgress'
 import CitiesFilter from './pages/CitiesFilter'
 import Welcome from './pages/Welcome'
+import MyOrders from './pages/Account/components/MyOrders'
 
 function App() {
   const { isLoading } = useContext(UserContext)
@@ -47,6 +48,8 @@ function App() {
 
       <Route element={<ProtectedRoute />}>
         <Route path="/my-account" element={<LayoutAccount />}>
+          <Route path="orders" element={<MyOrders />} />
+
           <Route path="order-in-progress" element={<OrderInProgress />} />
           <Route path="checkout" element={<CheckOut />} />
         </Route>

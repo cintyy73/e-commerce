@@ -13,9 +13,6 @@ import {
   List,
   ListItem,
   Text,
-  SimpleGrid,
-  // Stack,
-  // GridItem,
   Divider,
   Tooltip,
 } from '@chakra-ui/react'
@@ -27,8 +24,7 @@ const MyAccount = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { user } = useContext(UserContext)
   const { uid } = user
-
-  // const [ordersList, setOrdersList] = useState([])
+  const uidUser = uid
   const [dataUser, setDataUser] = useState({
     name: '',
     surname: '',
@@ -40,11 +36,9 @@ const MyAccount = () => {
   useEffect(() => {
     const getData = async () => {
       const orderList = await getOrders()
-      // setOrdersList(orderList)
-      // const userData = await getUserData(uid)
-      // console.log(userData)
+
       orderList.map((order) => {
-        if (order.user.uid === uid) {
+        if (order.user.uid === uidUser) {
           const dataUser = {
             name: order.user.name,
             surname: order.user.surname,
@@ -56,7 +50,7 @@ const MyAccount = () => {
       })
     }
     getData()
-  }, [uid])
+  }, [uidUser])
 
   return (
     <>
@@ -89,58 +83,28 @@ const MyAccount = () => {
             <Heading color="yellow.200">My account 🪪</Heading>
           </DrawerHeader>
           <DrawerBody bg="black" color="yellow.100">
-            {!dataUser.order && <Heading>Dont have orders ...</Heading>}
-            {dataUser.order && (
-              <>
-                {' '}
-                <List spacing={3}>
-                  <ListItem>
-                    <Heading fontSize={20}>🫵 Name & Surname: </Heading>
-                    <Text fontSize={19}>
-                      {dataUser.name} {dataUser.surname}
-                    </Text>
-                  </ListItem>
-                  <ListItem>
-                    <Heading fontSize={20}> 📧 E-mail: </Heading>
-                    <Text fontSize={19}>{dataUser.email}</Text>
-                  </ListItem>
-                  <ListItem>
-                    <Heading fontSize={20}>🍽️ Visit: </Heading>
-                    <Text fontSize={19}>order.length</Text>
-                  </ListItem>
-                  <ListItem>
-                    <Heading fontSize={20}>🌀Frequent tables </Heading>
-                    <Text fontSize={19}>number</Text>
-                  </ListItem>
-                </List>
-                <Divider />
-                <Heading p={5} color="yellow.200">
-                  My orders 📋
-                </Heading>
-                <Divider mb={4} />
-                <SimpleGrid
-                  alignItems=""
-                  spacing={4}
-                  templateColumns={{
-                    base: 'repeat(1, minmax(300px, 1fr))',
-                    md: 'repeat(2, minmax(300px, 1fr))',
-                  }}
-                >
-                  {/* {ordersList.map((order) => {
-                ;<GridItem key={order.id} bg="black" color="yellow.100">
-                  <Stack border="1px solid green" p={4} maxWidth="max-content">
-                    <Text>order</Text>
-                    <Text>Order: {order.id}</Text>
-                    <Text>Complete: complete</Text>
-                    <Text>E-mail: email</Text>
-                    <Text>Total: total</Text>
-                  </Stack>
-                </GridItem>
-              })} segun firebas no hay consultas hasta aca llegue, antes del map funcionaba ok!
-              hasta cuando borre los items*/}
-                </SimpleGrid>
-              </>
-            )}
+            {' '}
+            <List spacing={3}>
+              <ListItem>
+                <Heading fontSize={20}>🫵 Name & Surname: </Heading>
+                <Text fontSize={19}>
+                  {dataUser.name} {dataUser.surname}
+                </Text>
+              </ListItem>
+              <ListItem>
+                <Heading fontSize={20}> 📧 E-mail: </Heading>
+                <Text fontSize={19}>{dataUser.email}</Text>
+              </ListItem>
+              <ListItem>
+                <Heading fontSize={20}>🍽️ Visit: </Heading>
+                <Text fontSize={19}>order.length</Text>
+              </ListItem>
+              <ListItem>
+                <Heading fontSize={20}>🌀Frequent tables </Heading>
+                <Text fontSize={19}>number</Text>
+              </ListItem>
+            </List>
+            <Divider />
           </DrawerBody>
 
           <DrawerFooter bg="black" color="yellow.100">
