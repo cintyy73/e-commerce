@@ -29,17 +29,21 @@ const City = (city) => {
       overflow="hidden"
       variant="outline"
       maxWidth="md"
+      fontSize={{ base: 'sm', lg: 'md' }}
+      boxShadow="dark-lg"
+      rounded="md"
+      p={2}
     >
       <Image
         objectFit="cover"
         maxW={{ base: '100%', lg: '200px' }}
         height={{ base: '200px', md: '100%' }}
         src={image}
-        alt="Caffe Latte"
+        alt={name}
       />
 
-      <Stack gap={2}>
-        <CardBody>
+      <Stack gap={2} p={2}>
+        <CardBody textAlign="center">
           <Heading p={2} size="md">
             {name}
           </Heading>
@@ -47,25 +51,19 @@ const City = (city) => {
             {country}
           </Heading>
 
-          <Text textDecoration="underline" fontSize="small" py="2">
+          <Text textDecoration="underline" py="2">
             Entrance:
           </Text>
-          <Text fontSize="small" py="2">
-            {entrance}
-          </Text>
-          <Text textDecoration="underline" fontSize="small" py="2">
+          <Text py="2">{entrance}</Text>
+          <Text textDecoration="underline" py="2">
             Main dish
           </Text>
-          <Text fontSize="small" py="2">
-            {first}
-          </Text>
-          <Text textDecoration="underline" fontSize="small" py="2">
+          <Text py="2">{first}</Text>
+          <Text textDecoration="underline" py="2">
             Dessert:
           </Text>
-          <Text fontSize="small" py="2">
-            {dessert}
-          </Text>
-          <Text textAlign="center" fontSize="md" size={12}>
+          <Text py="2">{dessert}</Text>
+          <Text fontSize="md" size={12}>
             ${price}
           </Text>
         </CardBody>

@@ -13,7 +13,7 @@ const GridCities = ({ renderList }) => {
       }}
     >
       {renderList.map((city) => (
-        <City key={city.id + 'recent'} city={city}></City>
+        <City key={city.id} city={city}></City>
       ))}
     </SimpleGrid>
   )

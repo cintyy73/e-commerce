@@ -53,35 +53,32 @@ const Menu = () => {
               base: 'repeat( 2, 1fr)',
               md: 'repeat(4, 1fr)',
             }}
-            gap={20}
+            gap={5}
           >
             {menu.map(
               ({ name, id, entrance, first, dessert, country, price }) => (
-                <GridItem fontSize={10} key={name}>
+                <GridItem fontSize="md" key={name}>
                   <List>
-                    (
                     <ListItem>
                       <Heading fontSize={15}>{name} </Heading>
                       <Divider />
-                      <Heading fontSize={10}>{country} </Heading>
+                      <Heading fontSize={15}>{country} </Heading>
                       <Text>Entrance : {entrance}</Text>
                       <Text>Main dish : {first}</Text>
                       <Text>Dessert: {dessert}</Text>
-                      <Text textAlign="center" fontSize={30}>
-                        ${price}
-                      </Text>
+                      <Text fontSize={30}>${price}</Text>
+
+                      <Button
+                        alignSelf="center"
+                        as={NavLink}
+                        size={{ base: 'xs', md: 'md' }}
+                        to={'/city/' + id}
+                        colorScheme="black"
+                        variant={'outline'}
+                      >
+                        + Details 🍽️
+                      </Button>
                     </ListItem>
-                    )
-                    <Button
-                      alignSelf="center"
-                      as={NavLink}
-                      size={{ base: 'xs', md: 'md' }}
-                      to={'/city/' + id}
-                      colorScheme="black"
-                      variant={'outline'}
-                    >
-                      + Details 🍽️
-                    </Button>
                   </List>
                 </GridItem>
               )

@@ -73,16 +73,16 @@ const Order = () => {
                   alignItems="center"
                   justifyContent="space-evenly"
                 >
-                  <VStack w="35%" p={3}>
+                  <VStack w="30%" p={3}>
                     <Text>{name} </Text>
                   </VStack>
-                  <VStack w="25%">
+                  <VStack w="30%">
                     <Text>$ {price}</Text>
                   </VStack>
-                  <VStack w="15%">
+                  <VStack w="10%">
                     <Text>{quantity}</Text>
                   </VStack>
-                  <VStack w="25%">
+                  <VStack w="30%">
                     <Text>$ {price * quantity}</Text>
                   </VStack>
                   <VStack>
@@ -104,9 +104,9 @@ const Order = () => {
           <ModalFooter>
             <VStack>
               <HStack w="100%">
-                <Text w="55%">Total </Text>
+                <Text>Total </Text>
 
-                <Text w="45%">$ {total}</Text>
+                <Text>$ {total}</Text>
                 <Tooltip hasArrow label="Delete" bg="red.600">
                   <IconButton
                     size="lg"

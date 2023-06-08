@@ -30,22 +30,36 @@ const Header = () => {
     <GridItem w="100%" p={5} bg="black" color="#ffc600" area={'header'}>
       <HStack justifyContent="space-between" alignItems="center">
         <Avatar size="xl" name="logo resto" src={logo} />
-        <VStack display={{ base: 'none', md: 'flex' }}>
-          <Heading>Arian Maldonado</Heading>
-          <Text>CHEFF INTERNATIONAL</Text>
+        <VStack textAlign="center">
+          <Heading fontSize={{ base: 'lg', md: '4xl' }}>
+            Arian Maldonado
+          </Heading>
+          <Text fontSize={{ base: 'xs', md: 'xl' }}>CHEFF INTERNATIONAL</Text>
         </VStack>
 
-        <Heading display={{ base: 'flex', md: 'none' }}>Arian rest</Heading>
-
         <HStack gap={2} flexDirection={{ base: 'column', md: 'row' }}>
-          <ButtonGroup size={{ base: 'xs', md: 'md' }} colorScheme="yellow">
+          <ButtonGroup
+            flexDirection={{ base: 'column', md: 'row' }}
+            size={{ base: 'xs', md: 'md' }}
+            colorScheme="yellow"
+          >
             {!user && (
-              <Button rightIcon={<EditIcon />} as={NavLink} to="/register">
+              <Button
+                m={2}
+                rightIcon={<EditIcon />}
+                as={NavLink}
+                to="/register"
+              >
                 Register
               </Button>
             )}
             {!user && (
-              <Button rightIcon={<CheckCircleIcon />} as={NavLink} to="/login">
+              <Button
+                m={2}
+                rightIcon={<CheckCircleIcon />}
+                as={NavLink}
+                to="/login"
+              >
                 Login
               </Button>
             )}

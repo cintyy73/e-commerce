@@ -29,11 +29,11 @@ const Nav = () => {
         </ListItem>
         <ListItem>
           <ListItem to="/cities" as={Link}>
-            <ListIcon color="gray" as={CheckCircleIcon} /> All Cities
+            <ListIcon color="blue.300" as={CheckCircleIcon} /> All Cities
           </ListItem>
           <List>
             <ListItem as={Link} to="/recommended" size="md">
-              <ListIcon color="gray" as={CheckCircleIcon} />
+              <ListIcon color="blue.300" as={CheckCircleIcon} />
               Recommended
             </ListItem>
 
@@ -41,7 +41,7 @@ const Nav = () => {
               (city) =>
                 city.recommended && (
                   <ListItem key={city.id} city={city}>
-                    <ListIcon color="gray" as={StarIcon} />
+                    <ListIcon color="green" as={StarIcon} />
                     <NavLink to={'/city/' + city.id}> {city.name}</NavLink>
                   </ListItem>
                 )
