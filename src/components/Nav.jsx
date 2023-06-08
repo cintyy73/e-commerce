@@ -1,4 +1,5 @@
 import { CheckCircleIcon, StarIcon } from '@chakra-ui/icons'
+import Order from './Order'
 
 import { Button, GridItem, List, ListIcon, ListItem } from '@chakra-ui/react'
 
@@ -11,6 +12,9 @@ const Nav = () => {
   return (
     <GridItem pl="2" bg="black" color="yellow.300" area={'nav'}>
       <List padding={6} spacing={6}>
+        <ListItem>
+          <Order />
+        </ListItem>
         <ListItem>
           <Button
             size={{ base: 'xs', md: 'md' }}
@@ -46,7 +50,7 @@ const Nav = () => {
           <ListItem fontSize={{ base: 'xs', md: 'lg' }} to="/cities" as={Link}>
             <ListIcon color="blue.300" as={CheckCircleIcon} /> All Cities
           </ListItem>
-          <List>
+          <List spacing={4}>
             <ListItem
               fontSize={{ base: 'xs', md: 'lg' }}
               as={Link}

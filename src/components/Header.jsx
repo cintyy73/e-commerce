@@ -15,7 +15,6 @@ import {
 } from '@chakra-ui/react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from 'assets/favicon.png'
-import Order from './Order'
 import { useContext } from 'react'
 import { UserContext } from 'context/UserContext'
 import { OrderContext } from 'context/OrderContext'
@@ -113,7 +112,6 @@ const Header = () => {
               </Portal>
             </Menu>
           )}
-          <Order />
         </HStack>
       </HStack>
     </GridItem>

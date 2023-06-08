@@ -34,7 +34,6 @@ const Order = () => {
         colorScheme="black"
         rightIcon={<CalendarIcon />}
         variant="outline"
-        ml="4"
         onClick={() => {
           onOpen()
         }}

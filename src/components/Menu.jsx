@@ -10,6 +10,7 @@ import {
   Divider,
   Spinner,
   ButtonGroup,
+  VStack,
 } from '@chakra-ui/react'
 
 import { NavLink } from 'react-router-dom'
@@ -30,7 +31,7 @@ const Menu = () => {
       minHeight="100vh"
     >
       <HStack w="100%" justifyContent="space-evenly" pb={6}>
-        <Heading fontSize={40}>Menu</Heading>
+        <Heading fontSize={{ base: '2xl', md: '4xl' }}>Menu</Heading>
         <ButtonGroup gap={4}>
           <Button
             variant="outline"
@@ -57,27 +58,42 @@ const Menu = () => {
           >
             {menu.map(
               ({ name, id, entrance, first, dessert, country, price }) => (
-                <GridItem fontSize="md" key={name}>
+                <GridItem fontSize="md" marginBottom={5} key={name}>
                   <List>
                     <ListItem>
-                      <Heading fontSize={15}>{name} </Heading>
-                      <Divider />
-                      <Heading fontSize={15}>{country} </Heading>
-                      <Text>Entrance : {entrance}</Text>
-                      <Text>Main dish : {first}</Text>
-                      <Text>Dessert: {dessert}</Text>
-                      <Text fontSize={30}>${price}</Text>
-
-                      <Button
-                        alignSelf="center"
-                        as={NavLink}
-                        size={{ base: 'xs', md: 'md' }}
-                        to={'/city/' + id}
-                        colorScheme="black"
-                        variant={'outline'}
+                      <VStack
+                        justifyContent="center"
+                        alignItems="center"
+                        textAlign="center"
+                        gap={1}
                       >
-                        + Details 🍽️
-                      </Button>
+                        <Heading fontSize="xl">{name} </Heading>
+                        <Divider />
+                        <Heading fontSize="xl">{country} </Heading>
+                        <VStack
+                          justifyContent={{
+                            base: 'space-around',
+                            md: 'center',
+                          }}
+                          height={{ base: '250px', md: '150px' }}
+                          p={2}
+                        >
+                          <Text>Entrance : {entrance}</Text>
+                          <Text>Main dish : {first}</Text>
+                          <Text>Dessert: {dessert}</Text>
+                        </VStack>
+                        <Text fontSize={30}>${price}</Text>
+                        <Button
+                          alignSelf="center"
+                          as={NavLink}
+                          size={{ base: 'xs', md: 'md' }}
+                          to={'/city/' + id}
+                          colorScheme="black"
+                          variant={'outline'}
+                        >
+                          + Details 🍽️
+                        </Button>
+                      </VStack>
                     </ListItem>
                   </List>
                 </GridItem>

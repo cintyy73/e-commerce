@@ -59,16 +59,17 @@ const CityDetails = () => {
           </Heading>
 
           <SimpleGrid
-            spacing={7}
+            spacing={5}
+            p={2}
             templateColumns={{
               base: 'repeat(1, 1fr) ',
               md: 'repeat(3, 1fr) ',
             }}
           >
-            <GridItem border="3px solid black" width="100%">
+            <GridItem textAlign="center" border="3px solid black" width="100%">
               <Card bgColor="yellow.200">
                 <CardHeader>
-                  <Heading size="md">Entrance </Heading>
+                  <Heading fontSize="md">Entrance </Heading>
                   <Text>{cityD?.entrance} </Text>
                 </CardHeader>
                 <CardBody>
@@ -83,9 +84,9 @@ const CityDetails = () => {
               </Card>
             </GridItem>
             <GridItem width="100%">
-              <Card bgColor="yellow.200">
+              <Card textAlign="center" bgColor="yellow.200">
                 <CardHeader>
-                  <Heading size="md"> Main dish </Heading>
+                  <Heading fontSize="md"> Main dish </Heading>
                   <Text>{cityD?.first}</Text>
                 </CardHeader>
                 <CardBody>
@@ -100,9 +101,9 @@ const CityDetails = () => {
               </Card>
             </GridItem>
             <GridItem width="100%">
-              <Card bgColor="yellow.200">
+              <Card textAlign="center" bgColor="yellow.200">
                 <CardHeader>
-                  <Heading size="md"> Dessert</Heading>
+                  <Heading fontSize="md"> Dessert</Heading>
                   <Text>{cityD?.dessert} </Text>
                 </CardHeader>
                 <CardBody>
