@@ -14,18 +14,17 @@ const MyOrders = () => {
   const { user } = useContext(UserContext)
   const { uid } = user
   const uidUser = uid
-  console.log(uidUser)
   const [ordersUser, setOrdersUser] = useState([])
   useEffect(() => {
     const getData = async () => {
       const ordersList = await getOrders()
       let list = []
-      list = ordersList.filter((order) => order.user.uid === uidUser)
+      list = ordersList.filter(({ user }) => user.uid === uidUser)
       setOrdersUser(list)
     }
     getData()
   }, [uidUser])
-  console.log(ordersUser)
+
   return (
     <SimpleGrid
       alignItems=""
@@ -44,19 +43,35 @@ const MyOrders = () => {
           You dont have orders yet
         </Heading>
       )}
-      {ordersUser.map(({ order, table, total } = order) => (
-        <GridItem key={order.id} bg="black" color="yellow.100">
-          <Stack border="1px solid green" p={4} maxWidth="max-content">
-            <Text>Order </Text>
-            <Divider />
-            <Text>Complete: {order.complete ? 'Yes' : 'No'}</Text>
-            <Text>E-mail: {user.email}</Text>
-            <Text>Table: {table}</Text>
+      {ordersUser.map(({ order, table, total, complete, user } = order) => {
+        return (
+          <GridItem key={table + total} bg="black" color="yellow.100">
+            <Stack border="1px solid green" p={4} maxWidth="max-content">
+              <Text>Order </Text>
 
-            <Text>Total: {total}</Text>
-          </Stack>
-        </GridItem>
-      ))}
+              <Divider />
+              <Text>Name: {user.name} </Text>
+              <Text>Surname: {user.surname} </Text>
+              <Divider />
+
+              <Text color={complete ? 'green' : 'red'}>
+                {complete ? 'Delivered' : 'Undelivered'}
+              </Text>
+              <Text>E-mail: {user.email}</Text>
+              <Text>Table N° {table}</Text>
+              <Divider />
+              {order.map(({ name, price, quantity, id } = order) => (
+                <Stack key={id}>
+                  <Text>
+                    {name} x {quantity} = ${price * quantity}
+                  </Text>
+                </Stack>
+              ))}
+              <Text>Total : ${total}</Text>
+            </Stack>
+          </GridItem>
+        )
+      })}
     </SimpleGrid>
   )
 }

@@ -48,7 +48,13 @@ const CityDetails = () => {
 
       {!isLoading && (
         <>
-          <Heading bg="black" p={4} color="yellow.200">
+          <Heading
+            mt={4}
+            bg="blackAlpha.600"
+            fontSize={{ base: 'md', md: '3xl' }}
+            p={2}
+            color="yellow.200"
+          >
             {cityD?.name}
           </Heading>
 
@@ -111,7 +117,7 @@ const CityDetails = () => {
               </Card>
             </GridItem>
           </SimpleGrid>
-          <Heading bg="black" color="yellow.200">
+          <Heading bg="blackAlpha.600" color="yellow.200">
             ${cityD?.price}
           </Heading>
           <NumberInput

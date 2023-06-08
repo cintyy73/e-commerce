@@ -84,7 +84,7 @@ const CitiesFilter = () => {
             <SearchIcon /> Country
           </MenuButton>
           <Portal>
-            <MenuList background="black">
+            <MenuList bg="blackAlpha.600">
               {menu.map(
                 (city) =>
                   city.recommended && (
@@ -102,11 +102,11 @@ const CitiesFilter = () => {
             </MenuList>
           </Portal>
         </Menu>
-        <Heading m={4} color="yellow.200" bg="black">
+        <Heading m={4} color="yellow.300" bg="black">
           {values.country}
         </Heading>
         <VStack>
-          <FormLabel fontSize={20} bg="black" color="yellow.200">
+          <FormLabel fontSize={20} bg="blackAlpha.600" color="yellow.200">
             Minimmum Price
           </FormLabel>
           <Input
@@ -121,7 +121,7 @@ const CitiesFilter = () => {
         </VStack>
 
         <VStack>
-          <FormLabel fontSize={20} bg="black" color="yellow.200">
+          <FormLabel fontSize={20} bg="blackAlpha.600" color="yellow.300">
             Maximmum Price
           </FormLabel>
 
@@ -157,7 +157,8 @@ const CitiesFilter = () => {
               p={7}
               color="yellow.200"
               border="solid 3px green"
-              bg="black"
+              bg="blackAlpha.800"
+              rounded={10}
             >
               No matches,choose a country and change price range please!
             </Heading>

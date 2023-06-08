@@ -21,7 +21,7 @@ const Recents = () => {
       {isLoading && <Spinner color="yellow" size="xl" />}
       {!isLoading && (
         <>
-          <Heading mt={4} color="yellow.200" bg="black">
+          <Heading mt={4} color="yellow.200" bg="blackAlpha.600">
             Recents
           </Heading>
           <GridCities renderList={isRecents} />

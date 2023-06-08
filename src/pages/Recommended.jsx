@@ -21,8 +21,8 @@ const Recommended = () => {
       {isLoading && <Spinner color="yellow" size="xl" />}
       {!isLoading && (
         <>
-          <Heading mt={4} color="yellow.200" bg="black">
-            Recommended
+          <Heading mt={4} color="yellow.200" bg="blackAlpha.600">
+            Recommended Top 5
           </Heading>
           <GridCities renderList={isRecommended} />
         </>

@@ -46,7 +46,7 @@ const CheckOut = () => {
 
   const onSubmit = async (data) => {
     try {
-      const { name, surname, table } = data
+      const { name, surname, complete, table } = data
       const orderData = {
         name,
         surname,
@@ -54,6 +54,7 @@ const CheckOut = () => {
         email,
         uid,
         order,
+        complete,
       }
       completeOrder(orderData)
       payOrder()

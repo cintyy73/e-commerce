@@ -12,16 +12,17 @@ const Welcome = () => {
         justifyContent="center"
         alignItems="center"
         w="100%"
-        minH="70vh"
+        h="100%"
         color="yellow.200"
         gap={5}
+        alignContent="center"
       >
         <VStack
           justifyContent="center"
-          width="60%"
-          minHeight="30vh"
-          bg="black"
+          bg="blackAlpha.700"
           color="yellow"
+          p={5}
+          rounded={10}
         >
           <Heading fontSize={25} as="h1">
             Welcome
@@ -29,10 +30,10 @@ const Welcome = () => {
           <Heading fontSize={20} as="h2">
             {user.email ? user.email : ''}
           </Heading>
-          <Heading fontSize={15} as="h3">
-            Thank you for choosing us, We hope you enjoy this evening and come
-            back soon!
+          <Heading textAlign="center" fontSize={15} as="h3">
+            Thank you for choosing us!
           </Heading>
+          <Text>Go to your account to see your orders</Text>
           <Text>Go ... </Text>
           <Button
             as={NavLink}
@@ -47,7 +48,8 @@ const Welcome = () => {
       </VStack>
     )
   } else {
-    ;<Navigate to="/recents" replace />
+    // ;<Navigate to="/recents" replace />
+    Navigate('/recents')
   }
 }
 

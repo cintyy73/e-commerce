@@ -14,6 +14,7 @@ export const completeOrder = async (orderData) => {
       table,
       order,
       total,
+      complete: true,
     }
     await addDoc(collection(db, 'orders'), orderUser)
   }

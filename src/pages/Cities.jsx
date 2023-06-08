@@ -7,7 +7,7 @@ const Cities = () => {
 
   return (
     <VStack w="100%" h="100%">
-      <Heading mt={4} color="yellow.200" bg="black">
+      <Heading mt={4} color="yellow.200" bg="blackAlpha.600">
         All Cities
       </Heading>
       {loading && <Spinner color="yellow" size="xl" />}

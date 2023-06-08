@@ -37,13 +37,14 @@ const MyAccount = () => {
     const getData = async () => {
       const orderList = await getOrders()
 
-      orderList.map((order) => {
-        if (order.user.uid === uidUser) {
+      orderList.map(({ user, order } = order) => {
+        if (user.uid === uidUser) {
           const dataUser = {
-            name: order.user.name,
-            surname: order.user.surname,
-            email: order.user.email,
-            order: order.order,
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+            order: order,
+            id: uidUser,
           }
           setDataUser(dataUser)
         }
@@ -51,7 +52,7 @@ const MyAccount = () => {
     }
     getData()
   }, [uidUser])
-
+  const { name, email, surname, id } = dataUser
   return (
     <>
       <Button
@@ -83,25 +84,23 @@ const MyAccount = () => {
             <Heading color="yellow.200">My account 🪪</Heading>
           </DrawerHeader>
           <DrawerBody bg="black" color="yellow.100">
-            {' '}
             <List spacing={3}>
               <ListItem>
                 <Heading fontSize={20}>🫵 Name & Surname: </Heading>
-                <Text fontSize={19}>
-                  {dataUser.name} {dataUser.surname}
-                </Text>
+                <Text fontSize={19}>{name}</Text>
+              </ListItem>
+              <ListItem>
+                <Heading fontSize={20}>🫵 Surname: </Heading>
+                <Text fontSize={19}>{surname}</Text>
               </ListItem>
               <ListItem>
                 <Heading fontSize={20}> 📧 E-mail: </Heading>
-                <Text fontSize={19}>{dataUser.email}</Text>
+                <Text fontSize={19}>{email}</Text>
               </ListItem>
+
               <ListItem>
-                <Heading fontSize={20}>🍽️ Visit: </Heading>
-                <Text fontSize={19}>order.length</Text>
-              </ListItem>
-              <ListItem>
-                <Heading fontSize={20}>🌀Frequent tables </Heading>
-                <Text fontSize={19}>number</Text>
+                <Heading fontSize={20}>🌀 Cliente code</Heading>
+                <Text fontSize={19}>{id}</Text>
               </ListItem>
             </List>
             <Divider />

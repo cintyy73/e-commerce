@@ -13,7 +13,7 @@ const Home = () => {
                     "footer footer"`}
       gridTemplateRows={'140px 1fr 150px'}
       gridTemplateColumns={{
-        base: '160px 1fr',
+        base: '130px 1fr',
         md: '200px 1fr',
       }}
       minHeight="100vh"

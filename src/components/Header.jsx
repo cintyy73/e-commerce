@@ -29,7 +29,7 @@ const Header = () => {
   return (
     <GridItem w="100%" p={5} bg="black" color="#ffc600" area={'header'}>
       <HStack justifyContent="space-between" alignItems="center">
-        <Avatar size="xl" name="logo resto" src={logo} />
+        <Avatar size={{ base: 'lg', md: 'xl' }} name="logo resto" src={logo} />
         <VStack textAlign="center">
           <Heading fontSize={{ base: 'lg', md: '4xl' }}>
             Arian Maldonado
@@ -73,7 +73,7 @@ const Header = () => {
                 rightIcon={<ChevronDownIcon />}
                 colorScheme="yellow"
               >
-                My account 😋
+                Account😋
               </MenuButton>
               <Portal>
                 <MenuList color="yellow.200" background="black">
