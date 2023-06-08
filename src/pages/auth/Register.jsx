@@ -133,7 +133,7 @@ const Register = () => {
           <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
         </FormControl>
 
-        <FormControl isInvalid={errors.password}>
+        <FormControl isInvalid={errors.repitePassword}>
           <FormLabel>Repite Password</FormLabel>
           <InputGroup>
             <Input

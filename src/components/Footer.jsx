@@ -6,7 +6,6 @@ import {
   Avatar,
   Heading,
   Link,
-  Divider,
   Tooltip,
 } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
@@ -15,7 +14,6 @@ import logo from 'assets/favicon.png'
 const Footer = () => {
   return (
     <GridItem bgColor="black" color="yellow.200" pl="2" area={'footer'}>
-      <Divider color="yellow.300"></Divider>
       <HStack pt={5} justifyContent="space-around">
         <HStack gap={4}>
           <VStack display={{ base: 'none', md: 'flex' }}>

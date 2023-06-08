@@ -5,8 +5,8 @@ export const validateSurname = {
     message: 'min 3 characters',
   },
   maxLength: {
-    value: 12,
-    message: 'max 12 characters',
+    value: 18,
+    message: 'max 18 characters',
   },
 }
 export const validateName = {
@@ -16,8 +16,8 @@ export const validateName = {
     message: 'min 4 characters',
   },
   maxLength: {
-    value: 12,
-    message: 'max 12 characters',
+    value: 18,
+    message: 'max 18 characters',
   },
 }
 export const validatePassword = {
