@@ -34,6 +34,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm()
+
   const onSubmitlogin = async (data) => {
     setIsError(false)
     try {
@@ -65,7 +66,6 @@ const Login = () => {
     }
   }
   const resetLogin = () => {
-    // e.target.reset
     setIsError(false)
   }
   return (

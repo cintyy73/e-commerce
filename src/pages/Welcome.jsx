@@ -13,28 +13,28 @@ const Welcome = () => {
         alignItems="center"
         w="100%"
         h="100%"
-        color="yellow.200"
         gap={5}
         alignContent="center"
+        textAlign="center"
       >
         <VStack
+          color="yellow.300"
           justifyContent="center"
           bg="blackAlpha.700"
-          color="yellow"
           p={5}
           rounded={10}
         >
           <Heading fontSize={25} as="h1">
-            Welcome
+            Welcome!
           </Heading>
           <Heading fontSize={20} as="h2">
             {user.email ? user.email : ''}
           </Heading>
-          <Heading textAlign="center" fontSize={15} as="h3">
+          <Heading color="blue.400" textAlign="center" fontSize={15} as="h3">
             Thank you for choosing us!
           </Heading>
           <Text>Go to your account to see your orders</Text>
-          <Text>Go ... </Text>
+          <Text color="green">Go ... </Text>
           <Button
             as={NavLink}
             to="/my-account/checkout"
@@ -48,8 +48,7 @@ const Welcome = () => {
       </VStack>
     )
   } else {
-    // ;<Navigate to="/recents" replace />
-    Navigate('/recents')
+    ;<Navigate to="/recents" replace />
   }
 }
 

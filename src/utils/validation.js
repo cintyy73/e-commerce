@@ -2,14 +2,22 @@ export const validateSurname = {
   required: 'this is required',
   minLength: {
     value: 3,
-    message: '3 characters',
+    message: 'min 3 characters',
+  },
+  maxLength: {
+    value: 12,
+    message: 'max 12 characters',
   },
 }
 export const validateName = {
   required: 'this is required',
   minLength: {
     value: 4,
-    message: '4 characters',
+    message: 'min 4 characters',
+  },
+  maxLength: {
+    value: 12,
+    message: 'max 12 characters',
   },
 }
 export const validatePassword = {
@@ -32,7 +40,7 @@ export const validatePasswordRegister = {
   },
   maxLength: {
     value: 8,
-    message: '**Password cannot exceed more than 18 characters',
+    message: '**Password cannot exceed more than 8 characters',
   },
 }
 
@@ -40,11 +48,11 @@ export const validateTable = {
   required: 'this is required',
   min: {
     value: 1,
-    message: '1-25',
+    message: 'Range valid  1 - 25',
   },
   max: {
     value: 25,
-    message: ' 1 - 25',
+    message: 'Range valid  1 - 25',
   },
 }
 export const validateEmail = {
