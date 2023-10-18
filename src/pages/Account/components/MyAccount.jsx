@@ -33,6 +33,8 @@ const MyAccount = () => {
     total: '',
     complete: '',
   })
+  console.log(user)
+
   useEffect(() => {
     const getData = async () => {
       const orderList = await getOrders()
